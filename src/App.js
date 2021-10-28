@@ -15,6 +15,8 @@ import GLNavBar from './components/glNavBar';
 import GLSeasons from "./components/glSeasons";
 import GLGames from "./components/glGames";
 import GLPlayers from "./components/glPlayers";
+import GLHome from "./components/glHome";
+
 
 
 function App() {
@@ -25,7 +27,7 @@ function App() {
         <Container fluid style={{paddingTop: ".75rem"}}>
           <Switch>
             <Route exact path="/">
-              <div>home</div>
+              <GLHome></GLHome>
             </Route>
             <Route path="/seasons">
               <GLSeasons></GLSeasons>
