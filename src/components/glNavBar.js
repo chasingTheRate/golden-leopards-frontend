@@ -13,9 +13,11 @@ import { withRouter } from 'react-router'
 
 import logo from '../assets/images/goldenLeopards.png';
 
+import './glNavBar.css'
+
 const GLNavBar = () => {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar expand="lg">
   <Container>
     <Link to="/" className="navbar-brand">
       <div style={{height: '50px'}}>
