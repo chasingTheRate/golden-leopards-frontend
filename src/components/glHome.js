@@ -36,7 +36,7 @@ const GLHome = () => {
   }
 
   return (
-      <Container fluid>
+      <Container fluid style={{overflowX: 'scroll'}}>
         <Table striped bordered hover>
           <thead>
             <tr>
