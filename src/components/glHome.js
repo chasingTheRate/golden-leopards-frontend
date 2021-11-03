@@ -40,9 +40,12 @@ const GLHome = () => {
 
   return (
       <Container fluid>
-        <Container>
-          <h1 style={{padding: '10px', color: '#0d6efd'}}
-            >{`${teamRecord.wins}-${teamRecord.losses}-${teamRecord.ties}`}</h1>
+        <Container style = {{padding: '10px'}}>
+          { teamRecord.wins &&
+            <h1 style={{color: '#0d6efd'}}
+              >{`${teamRecord.wins}-${teamRecord.losses}-${teamRecord.ties}`}
+            </h1>
+          }
         </Container>
         <Container style={{overflowX: 'scroll'}}>
           <Table striped bordered hover>
