@@ -5,17 +5,20 @@ import {
   Table
 } from 'react-bootstrap';
 
-import { getPlayersStats } from '../api/goldenLeopardsApi';
+import { getPlayersStats, getTeamRecord } from '../api/goldenLeopardsApi';
 
 const GLHome = () => {
 
   const [playersStats, setPlayersStats] = useState([]);
+  const [teamRecord, setTeamRecord] = useState([]);
+
 
   useEffect(() => {
     const fetchData = async () => {
       const playersStats = await getPlayersStats();
-      console.log(playersStats);
+      const teamRecord = await getTeamRecord();
       setPlayersStats(playersStats);
+      setTeamRecord(teamRecord);
     }
     fetchData();
   }, []);
@@ -36,22 +39,28 @@ const GLHome = () => {
   }
 
   return (
-      <Container fluid style={{overflowX: 'scroll'}}>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Player</th>
-              <th>Goals</th>
-              <th>Assists</th>
-              <th>Saves</th>
-              <th>Goals Allowed</th>
-              <th>Avg min/gm</th>
-            </tr>
-          </thead>
-          <tbody>
-            { getRows() }
-          </tbody>
-        </Table>
+      <Container fluid>
+        <Container>
+          <h1 style={{padding: '10px', color: '#0d6efd'}}
+            >{`${teamRecord.wins}-${teamRecord.losses}-${teamRecord.ties}`}</h1>
+        </Container>
+        <Container style={{overflowX: 'scroll'}}>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>Goals</th>
+                <th>Assists</th>
+                <th>Saves</th>
+                <th>Goals Allowed</th>
+                <th>Avg min/gm</th>
+              </tr>
+            </thead>
+            <tbody>
+              { getRows() }
+            </tbody>
+          </Table>
+        </Container>
       </Container>
   );
 }

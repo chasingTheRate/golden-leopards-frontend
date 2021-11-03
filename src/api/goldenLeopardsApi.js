@@ -18,3 +18,8 @@ export const getPlayersStats = async () => {
   const results = await (await fetch(`https://golden-leopards-backend.herokuapp.com/api/stats/players`)).json();
   return results ? results : [];
 }
+
+export const getTeamRecord = async () => {
+  const results = await (await fetch(`https://golden-leopards-backend.herokuapp.com/api/stats/teamRecord`)).json();
+  return results ? results : [];
+}
