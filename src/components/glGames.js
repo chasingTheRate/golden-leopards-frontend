@@ -19,14 +19,21 @@ const GLGames = () => {
     fetchData();
   }, []);
 
+  const displayScore = (score, opposingTeamScore) => {
+    if (Number.isInteger(score) && Number.isInteger(opposingTeamScore)) {
+      return `${score} - ${opposingTeamScore}`;
+    } else {
+      return '-';
+    }
+  }
   const getRows = () => {
     return games.map( (g, index) => {
-      const date = new Date(g.gameDate);
+      const date = new Date(g.startTime);
       return (
         <tr key={index}>
           <td>{date.toLocaleDateString()}</td>
           <td>{g.opposingTeamName}</td>
-          <td>{`${g.score} - ${g.opposingTeamScore}`}</td>
+          <td>{displayScore(g.score, g.opposingTeamScore)}</td>
           <td>{ g.outcome }</td>
         </tr>
       )
