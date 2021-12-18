@@ -1,0 +1,29 @@
+
+.reserve-area {
+  position: relative;
+  width: 100%;
+  height: 15%;
+  margin-top: 10px;
+  border-style: solid;
+  border-color: rgb(50, 50, 50);
+  border-width: 2px;
+  border-radius: 5px;
+}
+
+.reserve-area label {
+  font-family:  system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: 0.6rem 0.3rem;
+  pointer-events: none;
+  border: 1px solid transparent;
+  transform-origin: 0 0;
+  transition: opacity .1s ease-in-out,transform .1s ease-in-out;
+  opacity: .65;
+  transform: scale(.85) translateY(-0.5rem) translateX(0.15rem);
+  color: #212529;
+}
