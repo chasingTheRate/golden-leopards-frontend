@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 
 import {
   Container,
-  Table
+  Button
 } from 'react-bootstrap';
+
+import GamesTable from '../components/gamesTable';
 
 import { getGames } from '../api/goldenLeopardsApi';
 
@@ -19,43 +21,17 @@ const GLGames = () => {
     fetchData();
   }, []);
 
-  const displayScore = (score, opposingTeamScore) => {
-    if (Number.isInteger(score) && Number.isInteger(opposingTeamScore)) {
-      return `${score} - ${opposingTeamScore}`;
-    } else {
-      return '-';
-    }
-  }
-  const getRows = () => {
-    return games.map( (g, index) => {
-      const date = new Date(g.startTime);
-      return (
-        <tr key={index}>
-          <td>{date.toLocaleDateString()}</td>
-          <td>{g.opposingTeamName}</td>
-          <td>{displayScore(g.score, g.opposingTeamScore)}</td>
-          <td>{ g.outcome }</td>
-        </tr>
-      )
-    })
+  const onFilter = (e) => {
+    console.log('onFitler');
   }
 
   return (
-      <Container fluid>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Team</th>
-              <th>Score</th>
-              <th>W/L</th>
-            </tr>
-          </thead>
-          <tbody>
-            { getRows() }
-          </tbody>
-        </Table>
+    <Container fluid style={{ overflow: 'scroll' }}>
+      <Container fluid style={{display: 'flex', flexDirection: 'row-reverse', padding: 0, marginBottom: '10px'}}>
+          <Button onClick={onFilter}><i class="bi bi-filter"></i></Button>
       </Container>
+      <GamesTable data={ games }></GamesTable>
+    </Container>
   );
 }
 

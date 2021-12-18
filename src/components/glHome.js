@@ -41,7 +41,7 @@ const GLHome = () => {
   return (
       <Container fluid>
         <Container style = {{padding: '10px'}}>
-          { teamRecord.wins &&
+          { teamRecord &&
             <h1 style={{color: '#0d6efd'}}
               >{`${teamRecord.wins}-${teamRecord.losses}-${teamRecord.ties}`}
             </h1>

@@ -30,6 +30,7 @@ const GLNavBar = () => {
         <Link to="/seasons" className="nav-link">Seasons</Link>
         <Link to="/games" className="nav-link">Games</Link>
         <Link to="/players" className="nav-link">Players</Link>
+        <Link to="/lineup" className="nav-link">Lineup</Link>
       </Nav>
     </Navbar.Collapse>
   </Container>
