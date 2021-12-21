@@ -12,12 +12,22 @@ import './field.css';
 
 const Field = () => {
   return (
-      <Container style={{height: '100%'}}>
+      <Container style={{position: 'relative', width: '100%', padding: 0}}>
           <Pitch></Pitch>
           <ReservesArea></ReservesArea>
-          <Draggable bounds='parent'>
-            <div style={{height: '50px', width: '50px', backgroundColor: 'red'}}></div>
-          </Draggable>
+          <div style={{
+            position: 'absolute',
+            width: '100%', height: '100%',
+            backgroundColor: 'transparent',
+            top: 0,
+            left: 0,
+            }}>
+                <Draggable bounds='parent'>
+                  <div style={{height: '50px', width: '50px', backgroundColor: 'black', color: 'white'}}>
+                    test
+                  </div>
+                </Draggable>
+          </div>
       </Container>
   );
 }
