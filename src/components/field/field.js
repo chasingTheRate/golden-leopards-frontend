@@ -23,7 +23,7 @@ const Field = () => {
             left: 0,
             }}>
                 <Draggable bounds='parent'>
-                  <div style={{height: '50px', width: '50px', backgroundColor: 'black', color: 'white'}}>
+                  <div style={{height: '50px', width: '50px', backgroundColor: 'black', color: 'white', top: "25px", left: '50px'}}>
                     test
                   </div>
                 </Draggable>
