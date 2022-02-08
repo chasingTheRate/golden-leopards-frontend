@@ -26,7 +26,7 @@ const GLHome = () => {
   return (
       <Container fluid style={{ padding: 0 }}>
         <Container style={{overflowX: 'scroll', padding: 0}}>
-          <div>Tournament Schedule</div>
+          <div>Upcoming Tournaments</div>
           <TournamentScheduleTable data={ tournamentSchedule }></TournamentScheduleTable>
         </Container>
       </Container>
