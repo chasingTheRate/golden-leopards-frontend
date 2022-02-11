@@ -6,7 +6,7 @@ import {
 } from 'react-bootstrap';
 import moment from 'moment';
 
-const TournamentScheduleTable = ({ columns, data }) => {
+const TournamentScheduleTable = ({ addPlayerToTournament, data }) => {
 
   const formatDate = (record) => {
     const { ['Start Date']: startDate, ['End Date']: endDate } = record;
@@ -24,9 +24,10 @@ const TournamentScheduleTable = ({ columns, data }) => {
         padding: 0, 
       }}>
       <div style={{ display: 'flex', flexDirection: 'column'}}>
-        { data.map(d => {
+        { data.map((d, i) => {
           return (
           <div 
+          key={`tournament-record-${i}`}
           style={{ 
             display: 'flex',
             flexDirection: 'column',
@@ -49,7 +50,7 @@ const TournamentScheduleTable = ({ columns, data }) => {
                 </div>
               </div>
               <div style={{width: '50px'}}>
-                <Button><i className="bi bi-plus-circle"></i></Button>
+                <Button onClick={ (e) => addPlayerToTournament(d) }><i className="bi bi-plus-circle"></i></Button>
               </div>
             </div>
             <div>
@@ -62,8 +63,6 @@ const TournamentScheduleTable = ({ columns, data }) => {
                 </div>
             </div>
             </div>
-            
-    
           </div>
           )
         })}

@@ -26,6 +26,28 @@
 
 export const getTournamentSchedule = async () => {
   const results = await (await fetch(`https://golden-leopards-backend.herokuapp.com/api/schedules/tournaments`)).json();
-  console.log(results);
   return results ? results : [];
+}
+
+export const getRoster = async () => {
+  const results = await (await fetch(`https://golden-leopards-backend.herokuapp.com/api/roster`)).json();
+  return results ? results : [];
+}
+
+export const updateTournament = async (id, tournament) => {
+
+  const modifiedTournaments = Object.assign({}, tournament);
+
+  //  Remove airtable computed & id fields
+
+  delete modifiedTournaments.recordNumber;
+  delete modifiedTournaments.interested;
+  delete modifiedTournaments.id;
+
+  const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(modifiedTournaments)
+  };
+  await fetch(`https://golden-leopards-backend.herokuapp.com/api/schedules/tournaments/${id}`, requestOptions);
 }
