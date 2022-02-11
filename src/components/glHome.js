@@ -38,9 +38,10 @@ const GLHome = () => {
 
   const handleShow = () => setShow(true);
 
-  const handleCheckboxChange = (player) => {
+  const handleCheckboxChange = (e, player) => {
     const updatedTournament = Object.assign({}, selectedTournament);
-    updatedTournament.players = [...updatedTournament.players, player.id];
+    const existingPlayers = updatedTournament.players ? updatedTournament.players : [];
+    updatedTournament.players = [ ...existingPlayers, player.id];
     setSelectedTournament(updatedTournament);
   }
 
@@ -91,11 +92,11 @@ const GLHome = () => {
                   <Form.Check
                     key={`roster-checkbox-${r.id}`} 
                     type={'checkbox'}
-                    id={`default-checkbox`}
+                    id={`default-checkbox-${r.id}`}
                     label={ r.displayName }
                     inline
                     checked={ selectedTournament.players ? selectedTournament.players.includes(r.id) : false }
-                    onChange={ (e) => handleCheckboxChange(r) }
+                    onChange={ (e) => handleCheckboxChange(e, r) }
                   />
                 ))}
               </div>

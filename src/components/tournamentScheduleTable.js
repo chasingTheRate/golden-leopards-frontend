@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+
 import {
   Container,
   Button,
@@ -17,6 +17,7 @@ const TournamentScheduleTable = ({ addPlayerToTournament, data }) => {
 
     return `${moment(startDate, 'YYYY-MM-DD').format('MMM DD')}-${moment(endDate, 'YYYY-MM-DD').format('DD')}`;
   };
+
   return (
     <Container 
       fluid 
@@ -55,12 +56,11 @@ const TournamentScheduleTable = ({ addPlayerToTournament, data }) => {
             </div>
             <div>
               <div style={{ display: 'flex', justifyContent: 'start', height: '40px', alignItems: 'center'}}>
-                <div style={{ marginRight: '3px'}}>
-                  <Badge >Jackie</Badge>
-                </div>
-                <div>
-                  <Badge>Mckenna</Badge>
-                </div>
+                { d.interested && d.interested.map((i, index) => (
+                  <div key={`interested-badge-${index}`} style={{ marginRight: '3px'}}>
+                    <Badge>{ i }</Badge>
+                  </div>
+                ))}
             </div>
             </div>
           </div>
