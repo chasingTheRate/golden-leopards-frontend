@@ -41,7 +41,13 @@ const GLHome = () => {
   const handleCheckboxChange = (e, player) => {
     const updatedTournament = Object.assign({}, selectedTournament);
     const existingPlayers = updatedTournament.players ? updatedTournament.players : [];
-    updatedTournament.players = [ ...existingPlayers, player.id];
+
+    if (existingPlayers.includes(player.id)) {
+      updatedTournament.players = existingPlayers.filter(e => e !== player.id);
+    } else {
+      updatedTournament.players = [ ...existingPlayers, player.id];
+    }
+    
     setSelectedTournament(updatedTournament);
   }
 
