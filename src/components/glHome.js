@@ -57,9 +57,11 @@ const GLHome = () => {
   }
 
   const handleAddPlayerOk = async (e) => {
-    const previousTournament = tournamentSchedule.find(t => t.Id === selectedTournament.Id);
+    
+    const previousTournament = tournamentSchedule.find(t => t.id === selectedTournament.id);
 
     if (_.isEqual(previousTournament.players, selectedTournament.players)) {
+      console.log('test');
       handleClose();
       return;
     }
