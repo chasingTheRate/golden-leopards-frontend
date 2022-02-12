@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Container fluid style={{height: '100%', padding: 0, display: 'flex', flexDirection: 'column'}}>
+        <Container fluid style={{height: '100%', padding: 0, display: 'flex', flexDirection: 'column', backgroundColor: '#f5f5f5'}}>
           <GLNavBar style={{flexGrow: 1}}></GLNavBar>
           <Container fluid style={{flexGrow: 1, paddingTop: ".75rem", paddingBottom: ".75rem"}}>
             <Switch>

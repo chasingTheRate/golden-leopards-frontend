@@ -17,7 +17,7 @@ import './glNavBar.css'
 
 const GLNavBar = () => {
   return (
-    <Navbar expand="xl" style={{height: '50px'}}>
+    <Navbar expand="xl" mx-auto style={{height: '50px'}}>
   <Container>
     <Link to="/" className="navbar-brand" style={{ padding: 0 }}>
       <div>

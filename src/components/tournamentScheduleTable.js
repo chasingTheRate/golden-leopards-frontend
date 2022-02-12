@@ -61,7 +61,8 @@ const TournamentScheduleTable = ({ addPlayerToTournament, data }) => {
             padding: 12,
             marginBottom: '12px',
             borderRadius: '5px',
-            boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
+            boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+            backgroundColor: 'white'
           }}>
             <div style={{ 
             display: 'flex',
