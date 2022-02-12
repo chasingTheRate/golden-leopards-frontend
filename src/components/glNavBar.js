@@ -17,11 +17,11 @@ import './glNavBar.css'
 
 const GLNavBar = () => {
   return (
-    <Navbar expand="lg">
+    <Navbar expand="xl" style={{height: '50px'}}>
   <Container>
-    <Link to="/" className="navbar-brand">
-      <div style={{height: '50px'}}>
-        <img src={logo} alt="Logo" height="55px"/>
+    <Link to="/" className="navbar-brand" style={{ padding: 0 }}>
+      <div>
+        <img src={logo} alt="Logo" height="35px"/>
       </div>
     </Link>
   </Container>
