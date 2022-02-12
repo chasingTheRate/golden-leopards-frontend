@@ -60,8 +60,6 @@ const TournamentScheduleTable = ({ addPlayerToTournament, data }) => {
             flexDirection: 'column',
             padding: 12,
             marginBottom: '12px',
-            //borderColor: 'lightGray', 
-            //borderStyle: 'solid', 
             borderRadius: '5px',
             boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
           }}>
