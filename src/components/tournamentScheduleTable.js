@@ -70,7 +70,7 @@ const TournamentScheduleTable = ({ addPlayerToTournament, data }) => {
                 display: 'flex', 
                 justifyContent: 'center',
                 alignItems: 'center',
-                width: '50px', textAlign:'center', lineHeight: '0.8em' }}>
+                width: '50px', textAlign:'center', lineHeight: '0.9em' }}>
                 <span
                   style={{
                     fontWeight: 600, 
@@ -85,8 +85,8 @@ const TournamentScheduleTable = ({ addPlayerToTournament, data }) => {
                   <span
                     style={{ 
                       fontSize: '0.8em',
-                      color: 'rgba(0, 0, 0, 0.5)',
-                      fontWeight: 500
+                      color: '#ffd700',
+                      fontWeight: 600
                   }}
                   >{ d.Location }</span>
               </div>
