@@ -18,11 +18,37 @@ const TournamentScheduleTable = ({ addPlayerToTournament, data }) => {
     return `${moment(startDate, 'YYYY-MM-DD').format('MMM DD')}-${moment(endDate, 'YYYY-MM-DD').format('DD')}`;
   };
 
+  const getMonth = (record) => {
+    const { ['Start Date']: startDate, ['End Date']: endDate } = record;
+
+    const startMonth = moment(startDate, 'YYYY-MM-DD').format('MMM');
+    const endMonth = moment(endDate, 'YYYY-MM-DD').format('MMM');
+
+    if (startMonth === endMonth) {
+      return startMonth;
+    }
+
+    return `${startMonth}-${endMonth}`;
+  };
+
+  const getDates = (record) => {
+    let { ['Start Date']: startDate, ['End Date']: endDate } = record;
+
+    startDate = moment(startDate, 'YYYY-MM-DD').format('DD');
+    endDate = moment(endDate, 'YYYY-MM-DD').format('DD');
+
+    if (startDate === endDate) {
+      return startDate;
+    }
+
+    return `${startDate}-${endDate}`;
+  };
+
   return (
     <Container 
       fluid 
       style={{ 
-        padding: 0, 
+        padding: 3, 
       }}>
       <div style={{ display: 'flex', flexDirection: 'column'}}>
         { data.map((d, i) => {
@@ -34,21 +60,37 @@ const TournamentScheduleTable = ({ addPlayerToTournament, data }) => {
             flexDirection: 'column',
             padding: 12,
             marginBottom: '12px',
-            borderColor: 'lightGray', 
-            borderStyle: 'solid', 
-            borderRadius: '5px'
+            //borderColor: 'lightGray', 
+            //borderStyle: 'solid', 
+            borderRadius: '5px',
+            boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
           }}>
             <div style={{ 
             display: 'flex',
           }}>
-              <div style={{ width: '85px', textAlign:'left' }}>{ formatDate(d) }</div>
-              <div style={{ flexGrow: 1}}>
-                <div>
+              <div style={{ 
+                display: 'flex', 
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '50px', textAlign:'center', lineHeight: '0.8em' }}>
+                <span
+                  style={{
+                    fontWeight: 600, 
+                    fontSize: '0.8em',
+                  }}
+                >{ getMonth(d) }<br></br>
+                { getDates(d) }</span>
+              </div>
+              <div style={{ flexGrow: 1, lineHeight: '1.1em'}}>
                   <a href={ d.Url }>{ d.Name }</a>
-                </div>
-                <div>
-                  <span>{ d.Location }</span>
-                </div>
+                  <br></br>
+                  <span
+                    style={{ 
+                      fontSize: '0.8em',
+                      color: 'rgba(0, 0, 0, 0.5)',
+                      fontWeight: 500
+                  }}
+                  >{ d.Location }</span>
               </div>
               <div style={{width: '50px'}}>
                 <Button onClick={ (e) => addPlayerToTournament(d) }><i className="bi bi-plus-circle"></i></Button>

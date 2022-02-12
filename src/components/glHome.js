@@ -57,7 +57,7 @@ const GLHome = () => {
   }
 
   const handleAddPlayerOk = async (e) => {
-    
+
     const previousTournament = tournamentSchedule.find(t => t.id === selectedTournament.id);
 
     if (_.isEqual(previousTournament.players, selectedTournament.players)) {
@@ -78,7 +78,9 @@ const GLHome = () => {
   return (
       <Container fluid style={{ padding: 0 }}>
         <Container style={{overflowX: 'scroll', padding: 0}}>
-          <div>Upcoming Tournaments</div>
+          <div style={{textAlign: 'left'}}>
+            <h6>Upcoming Tournaments</h6>
+          </div>
           <TournamentScheduleTable 
             data={ tournamentSchedule }
             addPlayerToTournament= { addPlayerToTournament }
