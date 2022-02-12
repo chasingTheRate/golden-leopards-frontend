@@ -80,7 +80,7 @@ const TournamentScheduleTable = ({ addPlayerToTournament, data }) => {
                 >{ getMonth(d) }<br></br>
                 { getDates(d) }</span>
               </div>
-              <div style={{ flexGrow: 1, lineHeight: '1.1em'}}>
+              <div style={{ flexGrow: 1, lineHeight: '1.1em', fontWeight: 500}}>
                   <a href={ d.Url }>{ d.Name }</a>
                   <br></br>
                   <span
