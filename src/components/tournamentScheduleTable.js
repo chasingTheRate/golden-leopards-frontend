@@ -96,7 +96,13 @@ const TournamentScheduleTable = ({ addPlayerToTournament, data }) => {
               </div>
             </div>
             <div>
-              <div style={{ display: 'flex', justifyContent: 'start', height: '40px', alignItems: 'center'}}>
+              <div style={{
+                display: 'flex',
+                justifyContent: 'start',
+                height: '40px',
+                alignItems: 'center',
+                overflowX: 'scroll'
+              }}>
                 { d.interested && d.interested.map((i, index) => (
                   <div key={`interested-badge-${index}`} style={{ marginRight: '3px'}}>
                     <Badge>{ i }</Badge>
