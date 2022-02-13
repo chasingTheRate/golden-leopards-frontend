@@ -24,13 +24,15 @@
 //   return results ? results : [];
 // }
 
+const goldenLeopardApiBasePath = process.env.REACT_APP_GL_API_BASE_PATH;
+
 export const getTournamentSchedule = async () => {
-  const results = await (await fetch(`https://golden-leopards-backend.herokuapp.com/api/schedules/tournaments`)).json();
+  const results = await (await fetch(`${goldenLeopardApiBasePath}/api/schedules/tournaments`)).json();
   return results ? results : [];
 }
 
 export const getRoster = async () => {
-  const results = await (await fetch(`https://golden-leopards-backend.herokuapp.com/api/roster`)).json();
+  const results = await (await fetch(`${goldenLeopardApiBasePath}/api/roster`)).json();
   return results ? results : [];
 }
 
@@ -49,5 +51,5 @@ export const updateTournament = async (id, tournament) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(modifiedTournaments)
   };
-  await fetch(`https://golden-leopards-backend.herokuapp.com/api/schedules/tournaments/${id}`, requestOptions);
+  await fetch(`${goldenLeopardApiBasePath}/api/schedules/tournaments/${id}`, requestOptions);
 }
