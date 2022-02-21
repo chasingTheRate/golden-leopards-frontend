@@ -8,6 +8,8 @@ import {
 } from 'react-bootstrap';
 import _ from 'lodash';
 
+import backgroundVideo from '../assets/videos/background.mp4';
+import './glHome.css'
 import TournamentScheduleTable from '../components/tournamentScheduleTable';
 
 const GLHome = () => {
@@ -76,9 +78,19 @@ const GLHome = () => {
   }
 
   return (
-      <Container fluid style={{ padding: 0 }}>
+    <div className='home-container'>
+      <div className="video-container">
+       <video autoPlay loop muted id='video'>
+          <source src={ backgroundVideo } type='video/mp4'></source>
+        </video>
+        <div class="caption">
+          <h2>Golden Leopards</h2>
+        </div>
+      </div>
+      <Container fluid style={{ padding: 0, zIndex: 100}}>
+        
         <Container style={{overflowX: 'scroll', padding: 0}}>
-          <div style={{textAlign: 'center', padding: '0 0 0 3px', marginTop: '20px', color: 'rgb(75 75 75)' }}>
+          <div style={{textAlign: 'center', padding: '0 0 0 3px', marginTop: '20px' }}>
             <h6>Upcoming Tournaments</h6>
           </div>
           <TournamentScheduleTable 
@@ -119,6 +131,7 @@ const GLHome = () => {
           </Modal.Footer>
         </Modal>
       </Container>
+    </div>
   );
 }
 
