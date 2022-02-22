@@ -78,60 +78,49 @@ const GLHome = () => {
   }
 
   return (
-    <div className='home-container'>
-      <div className="video-container">
-       <video autoPlay loop muted id='video'>
-          <source src={ backgroundVideo } type='video/mp4'></source>
-        </video>
-        <div class="caption">
-          <h2>Golden Leopards</h2>
+    <Container fluid style={{ padding: 0, zIndex: 100}}>
+      <Container style={{overflowX: 'scroll', padding: 0}}>
+        <div style={{color: 'white', textAlign: 'center', padding: '0 0 0 3px', marginTop: '20px' }}>
+          <h6>Upcoming Tournaments</h6>
         </div>
-      </div>
-      <Container fluid style={{ padding: 0, zIndex: 100}}>
-        
-        <Container style={{overflowX: 'scroll', padding: 0}}>
-          <div style={{textAlign: 'center', padding: '0 0 0 3px', marginTop: '20px' }}>
-            <h6>Upcoming Tournaments</h6>
-          </div>
-          <TournamentScheduleTable 
-            data={ tournamentSchedule }
-            addPlayerToTournament= { addPlayerToTournament }
-          ></TournamentScheduleTable>
-        </Container>
-        <Modal
-          show={show}
-          onHide={handleClose}
-          backdrop="static"
-          keyboard={false}
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Select Player(s)</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-              <div key={`default-checkbox`}>
-                {roster.map(r => (
-                  <Form.Check
-                    key={`roster-checkbox-${r.id}`} 
-                    type={'checkbox'}
-                    id={`default-checkbox-${r.id}`}
-                    label={ r.displayName }
-                    inline
-                    checked={ selectedTournament.players ? selectedTournament.players.includes(r.id) : false }
-                    onChange={ (e) => handleCheckboxChange(e, r) }
-                  />
-                ))}
-              </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={ handleAddPlayerOk }>OK</Button>
-          </Modal.Footer>
-        </Modal>
+        <TournamentScheduleTable 
+          data={ tournamentSchedule }
+          addPlayerToTournament= { addPlayerToTournament }
+        ></TournamentScheduleTable>
       </Container>
-    </div>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Select Player(s)</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <div key={`default-checkbox`}>
+              {roster.map(r => (
+                <Form.Check
+                  key={`roster-checkbox-${r.id}`} 
+                  type={'checkbox'}
+                  id={`default-checkbox-${r.id}`}
+                  label={ r.displayName }
+                  inline
+                  checked={ selectedTournament.players ? selectedTournament.players.includes(r.id) : false }
+                  onChange={ (e) => handleCheckboxChange(e, r) }
+                />
+              ))}
+            </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={ handleAddPlayerOk }>OK</Button>
+        </Modal.Footer>
+      </Modal>
+    </Container>
   );
 }
 
