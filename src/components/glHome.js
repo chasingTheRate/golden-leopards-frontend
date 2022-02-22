@@ -96,7 +96,7 @@ const GLHome = () => {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>Select Player(s)</Modal.Title>
+          <Modal.Title>Add/Remove Interested Player(s)</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <div key={`default-checkbox`}>

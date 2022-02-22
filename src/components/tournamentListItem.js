@@ -99,31 +99,36 @@ const TournamentListItem = ({record, onAdd }) => {
             <Button onClick={ (e) => onAdd(record) }><i className="bi bi-plus-circle"></i></Button>
           </div>
         </div>
-        <div style={{display: 'flex', alignItems: 'center' }}>
-          <hr style={{flexGrow: 1}}></hr>
-          <span style={{
-            fontSize: '0.7em',
-            color: 'rgb(100 100 100)',
-            fontWeight: 600
-          }}
-          >&nbsp; INTERESTED &nbsp;</span>
-          <hr style={{flexGrow: 1}}></hr>
-        </div>
-        <div>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'start',
-            height: '40px',
-            alignItems: 'center',
-            overflowX: 'scroll'
-          }}>
-            { record.interested && record.interested.map((i, index) => (
-              <div key={`interested-badge-${index}`} style={{ marginRight: '3px'}}>
-                <Badge>{ i }</Badge>
+        { record.interested && 
+        
+          <div>
+            <div style={{display: 'flex', alignItems: 'center', height: '20px', marginTop: '5px' }}>
+              <hr style={{flexGrow: 1}}></hr>
+              <span style={{
+                fontSize: '0.7em',
+                color: 'rgb(100 100 100)',
+                fontWeight: 600
+              }}
+              >&nbsp; INTERESTED &nbsp;</span>
+              <hr style={{flexGrow: 1}}></hr>
+            </div>
+            <div>
+              <div style={{
+                display: 'flex',
+                justifyContent: 'start',
+                height: '40px',
+                alignItems: 'center',
+                overflowX: 'scroll'
+              }}>
+                { record.interested && record.interested.map((i, index) => (
+                  <div key={`interested-badge-${index}`} style={{ marginRight: '3px'}}>
+                    <Badge bg="secondary">{ i }</Badge>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
-        </div>
+        }
       </div>
       );
 }
