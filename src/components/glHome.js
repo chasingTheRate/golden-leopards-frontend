@@ -80,8 +80,8 @@ const GLHome = () => {
   return (
     <Container fluid style={{ padding: 0, zIndex: 100}}>
       <Container style={{overflowX: 'scroll', padding: 0}}>
-        <div style={{color: 'white', textAlign: 'center', padding: '0 0 0 3px', marginTop: '20px' }}>
-          <h6>Upcoming Tournaments</h6>
+        <div style={{color: 'white', textAlign: 'center', padding: '0 0 0 3px', marginTop: '20px', marginBottom: '10px', fontWeight: 700 }}>
+          <span>Upcoming Tournaments</span>
         </div>
         <TournamentScheduleTable 
           data={ tournamentSchedule }
