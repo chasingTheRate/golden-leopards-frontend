@@ -5,6 +5,8 @@ import {
 } from 'react-bootstrap';
 import moment from "moment";
 
+import './tournamentListItem.css';
+
 const TournamentListItem = ({record, onAdd }) => {
 
   const formatDate = (record) => {
@@ -96,7 +98,7 @@ const TournamentListItem = ({record, onAdd }) => {
             </div>
           </div>
           <div style={{width: '50px'}}>
-            <Button onClick={ (e) => onAdd(record) }><i className="bi bi-plus-circle"></i></Button>
+            <Button color='red' onClick={ (e) => onAdd(record) }><i className="bi bi-plus-circle"></i></Button>
           </div>
         </div>
         { record.interested && 
