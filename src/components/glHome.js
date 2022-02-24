@@ -121,6 +121,10 @@ const GLHome = () => {
 
   const isValidMonth = ({ ['Start Date']: startDate }, month) => {
 
+    if (!month || month === 'Month' || month === 'all') {
+      return true;
+    }
+
     return month ? moment(startDate, 'YYYY-MM-DD').format('MMM').toString() === month : true;
   };
 
@@ -162,6 +166,7 @@ const GLHome = () => {
                 <option value="Oct">October</option>
                 <option value="Nov">November</option>
                 <option value="Dec">December</option>
+                <option value="all">All</option>
               </Form.Select>
             </div>
           
