@@ -16,3 +16,8 @@ a {
   background-color: #4f68b1 !important;
   border-color: #4f68b1 !important;
 }
+
+.form-check-input:checked{
+  background-color: #4f68b1 !important;
+  border-color: #4f68b1 !important;
+}

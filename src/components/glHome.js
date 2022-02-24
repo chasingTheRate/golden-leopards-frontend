@@ -197,7 +197,7 @@ const GLHome = () => {
           <Modal.Title>Add/Remove Interested Player(s)</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <div key={`default-checkbox`}>
+            <div key={`default-checkbox`} style={{color: 'rgb(100, 100, 100)'}}>
               {roster.map(r => (
                 <Form.Check
                   key={`roster-checkbox-${r.id}`} 
