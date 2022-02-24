@@ -6,3 +6,8 @@ a {
   color: rgb(100 100 100);
   font-weight: 600;
 }
+
+.modal-footer button {
+  background-color: #4f68b1 !important;
+  border-color: #4f68b1 !important;
+}

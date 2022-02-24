@@ -55,6 +55,7 @@ const TournamentListItem = ({record, onAdd }) => {
 
   return (
     <div 
+      className='tli'
       style={{ 
         display: 'flex',
         flexDirection: 'column',

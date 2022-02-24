@@ -207,6 +207,7 @@ const GLHome = () => {
                   inline
                   checked={ selectedTournament.players ? selectedTournament.players.includes(r.id) : false }
                   onChange={ (e) => handleCheckboxChange(e, r) }
+                  style={{width: '85px'}}
                 />
               ))}
             </div>
