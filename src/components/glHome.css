@@ -1,3 +1,8 @@
 a {
   color: #4f68b1;
 }
+
+.gl-select {
+  color: rgb(100 100 100);
+  font-weight: 600;
+}

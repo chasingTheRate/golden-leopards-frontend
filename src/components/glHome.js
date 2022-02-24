@@ -152,7 +152,7 @@ const GLHome = () => {
                 >&nbsp; FILTER &nbsp;</span>
           <div style={{display: 'flex' }}>
             <div style={{margin: '0 8px 0 0', flexGrow: 1}}>
-              <Form.Select aria-label="Tournament Month" onChange={ handleMonthChange } value={ selectedMonth }>
+              <Form.Select className='gl-select' aria-label="Tournament Month" onChange={ handleMonthChange } value={ selectedMonth }>
                 <option>Month</option>
                 <option value="Jan">January</option>
                 <option value="Feb">February</option>
@@ -171,7 +171,7 @@ const GLHome = () => {
             </div>
           
             <div style={{flexGrow: 1}}>
-              <Form.Select aria-label="Tournament Location" onChange={ handleLocationChange } value={ selectedLocation }>
+              <Form.Select className='gl-select' aria-label="Tournament Location" onChange={ handleLocationChange } value={ selectedLocation }>
                 <option>Location</option>
                 <option value="local">Local Only</option>
                 <option value="inState">Texas Only</option>
