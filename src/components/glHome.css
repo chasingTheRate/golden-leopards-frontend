@@ -7,6 +7,11 @@ a {
   font-weight: 600;
 }
 
+.modal-header {
+  background-color: #4f68b1 !important;
+  color: white;
+}
+
 .modal-footer button {
   background-color: #4f68b1 !important;
   border-color: #4f68b1 !important;

@@ -193,7 +193,7 @@ const GLHome = () => {
         keyboard={false}
         centered
       >
-        <Modal.Header closeButton>
+        <Modal.Header closeButton closeVariant='white'>
           <Modal.Title>Add/Remove Interested Player(s)</Modal.Title>
         </Modal.Header>
         <Modal.Body>
