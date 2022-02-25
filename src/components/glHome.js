@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { getRoster, getTournamentSchedule, updateTournament} from '../api/goldenLeopardsApi';
 import {
   Container,
   Button,
   Modal,
-  Form
+  Form,
+  Spinner
 } from 'react-bootstrap';
 import _ from 'lodash';
 import moment from 'moment';
@@ -21,6 +22,11 @@ const GLHome = () => {
   const [selectedTournament, setSelectedTournament] = useState({});
   const [selectedMonth, setSelectedMonth] = useState();
   const [selectedLocation, setSelectedLocation] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [modalBodyHeight, setModalBodyHeight] = useState(0);
+
+  const ref = useRef(null)
+
 
 
   useEffect(() => {
@@ -43,7 +49,14 @@ const GLHome = () => {
     setShow(false)
   };
 
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShow(true);
+  }
+
+  const handleOnShow = () => {
+    const div = Object.assign( {}, ref);
+    setModalBodyHeight(div.current.clientHeight);
+  }
 
   const handleCheckboxChange = (e, player) => {
     const updatedTournament = Object.assign({}, selectedTournament);
@@ -73,12 +86,14 @@ const GLHome = () => {
     }
 
     try {
+      setIsLoading(true);
       await updateTournament(selectedTournament.id, selectedTournament);
       await getSchedule();
-      handleClose();
     } catch (e) {
       console.error(e);
     }
+    setIsLoading(false);
+    handleClose();
   }
 
   const handleMonthChange = (e) => {
@@ -189,6 +204,7 @@ const GLHome = () => {
       <Modal
         show={show}
         onHide={handleClose}
+        onShow= { handleOnShow }
         backdrop="static"
         keyboard={false}
         centered
@@ -197,7 +213,13 @@ const GLHome = () => {
           <Modal.Title>Add/Remove Interested Player(s)</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <div key={`default-checkbox`} style={{color: 'rgb(100, 100, 100)'}}>
+            {isLoading 
+              ? <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: `${modalBodyHeight}px` }}>
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </div>
+              : <div ref={ref} key={`default-checkbox`} style={{color: 'rgb(100, 100, 100)'}}>
               {roster.map(r => (
                 <Form.Check
                   key={`roster-checkbox-${r.id}`} 
@@ -210,7 +232,8 @@ const GLHome = () => {
                   style={{width: '85px'}}
                 />
               ))}
-            </div>
+            </div>}
+            
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
