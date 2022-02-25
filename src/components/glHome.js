@@ -11,6 +11,7 @@ import _ from 'lodash';
 import moment from 'moment';
 
 import './glHome.css'
+import logo from '../assets/images/goldenLeopards.png';
 import TournamentScheduleTable from '../components/tournamentScheduleTable';
 
 const GLHome = () => {
@@ -200,6 +201,9 @@ const GLHome = () => {
           data={ filteredTournamentSchedule }
           addPlayerToTournament= { addPlayerToTournament }
         ></TournamentScheduleTable>
+        <div style={{marginTop: '10px', flexBasis: 1, flexGrow: 1 }}>
+          <img src={logo} alt="Logo" height="100px"/>
+        </div>
       </Container>
       <Modal
         show={show}
