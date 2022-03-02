@@ -27,31 +27,10 @@ const TournamentListItem = ({record, onAdd }) => {
     return `${startDate}-${endDay}`;
   }
 
-  const getMonth = (record) => {
-    const { ['Start Date']: startDate, ['End Date']: endDate } = record;
-
-    const startMonth = moment(startDate, 'YYYY-MM-DD').format('MMM');
-    const endMonth = moment(endDate, 'YYYY-MM-DD').format('MMM');
-
-    if (startMonth === endMonth) {
-      return startMonth;
-    }
-
-    return `${startMonth}-${endMonth}`;
-  };
-
-  const getDates = (record) => {
-    let { ['Start Date']: startDate, ['End Date']: endDate } = record;
-
-    startDate = moment(startDate, 'YYYY-MM-DD').format('DD');
-    endDate = moment(endDate, 'YYYY-MM-DD').format('DD');
-
-    if (startDate === endDate) {
-      return startDate;
-    }
-
-    return `${startDate}-${endDate}`;
-  };
+  const isFilled = () => {
+    const { status = '' } = record;
+    return status === 'filled';
+  }
 
   return (
     <div 
@@ -75,6 +54,7 @@ const TournamentListItem = ({record, onAdd }) => {
               justifyContent: 'center'
             }}>
             <div style={{ lineHeight: '1.1em', fontWeight: 500}}>
+                { isFilled() && <Badge bg="success" style={{marginRight: '10px'}}>FILLED</Badge> }
                 <a href={ record.Url }>{ record.Name }</a>
                 <br></br>
                 <span
@@ -99,7 +79,7 @@ const TournamentListItem = ({record, onAdd }) => {
             </div>
           </div>
           <div style={{width: '50px'}}>
-            <Button color='red' onClick={ (e) => onAdd(record) }><i className="bi bi-plus-circle"></i></Button>
+            <Button color='red' disabled={ isFilled() } onClick={ (e) => onAdd(record) }><i className="bi bi-plus-circle"></i></Button>
           </div>
         </div>
         { record.interested && 
