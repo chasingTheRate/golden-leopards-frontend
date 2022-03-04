@@ -32,6 +32,34 @@ const TournamentListItem = ({record, onAdd }) => {
     return status === 'filled';
   }
 
+  const getStatusBadge = (status) => {
+    switch (status) {
+      case 'accepted':
+        return <Badge className='tli-status-badge' bg="success">ACCEPTED</Badge>
+      case 'registered':
+        return <Badge className='tli-status-badge' bg="info">REGISTERED</Badge>
+      case 'not attending':
+        return <Badge className='tli-status-badge' bg="secondary">NOT ATTENDING</Badge>
+      default:
+        return null
+    }
+  }
+
+  const isDisabled = (status) => {
+    console.log(status);
+    let isDisabled = false;
+    switch (status) {
+      case 'accepted':
+      case 'registered':
+      case 'not attending':
+        isDisabled = true;
+        break;
+      default:
+        isDisabled = false;
+    }
+    return isDisabled;
+  }
+
   return (
     <div 
       className='tli'
@@ -54,7 +82,7 @@ const TournamentListItem = ({record, onAdd }) => {
               justifyContent: 'center'
             }}>
             <div style={{ lineHeight: '1.1em', fontWeight: 500}}>
-                { isFilled() && <Badge bg="success" style={{marginRight: '10px'}}>FILLED</Badge> }
+                { getStatusBadge(record.status) }
                 <a href={ record.Url }>{ record.Name }</a>
                 <br></br>
                 <span
@@ -79,7 +107,7 @@ const TournamentListItem = ({record, onAdd }) => {
             </div>
           </div>
           <div style={{width: '50px'}}>
-            <Button color='red' disabled={ isFilled() } onClick={ (e) => onAdd(record) }><i className="bi bi-plus-circle"></i></Button>
+            <Button color='red' disabled={ isDisabled(record.status) } onClick={ (e) => onAdd(record) }><i className="bi bi-plus-circle"></i></Button>
           </div>
         </div>
         { record.interested && 
