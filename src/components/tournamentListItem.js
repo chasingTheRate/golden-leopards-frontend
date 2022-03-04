@@ -39,7 +39,7 @@ const TournamentListItem = ({record, onAdd }) => {
       case 'registered':
         return <Badge className='tli-status-badge' bg="info">REGISTERED</Badge>
       case 'not attending':
-        return <Badge className='tli-status-badge' bg="secondary">NOT ATTENDING</Badge>
+        return <Badge className='tli-status-badge' bg="warning">NOT ATTENDING</Badge>
       default:
         return null
     }
