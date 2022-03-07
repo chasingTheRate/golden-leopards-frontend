@@ -7,7 +7,52 @@ import moment from "moment";
 
 import './glScheduleListItem.css';
 
-const GLScheduleListItem = ({record, onAdd }) => {
+const GLScheduleListItem = ({ record }) => {
+
+  console.log(record);
+
+  const getDate = (timestamp) => {
+    return (moment.utc(timestamp).format('MMM D'));
+  };
+
+  const getTime = (timestamp) => {
+    return (moment.utc(timestamp).local().format('h:mma'));
+  }
+
+  const getHomeAwayBadge = (homeTeam) => {
+    if ((homeTeam === 'Dash Woodlands 2010/11 - Johnson 1') || (homeTeam === 'Dash Woodlands 2010/11 - Johnson 2')) {
+        return <Badge className="sli-badge-home">HOME</Badge>
+    } else {
+      return <Badge className="sli-badge-away" bg="light" text="dark">AWAY</Badge>
+    }
+  }
+
+  const getOpponentName = () => {
+    const { recordedGame, opponent, veoLink } = record;
+
+    if (recordedGame) {
+      return <a href={ veoLink }>{ opponent }</a>
+    } else {
+      return <span>{ opponent }</span>
+    }
+  }
+
+  const getScore = () => {
+    const { ourScore, opponentScore } = record;
+    
+    if (Number.isInteger(ourScore) && Number.isInteger(opponentScore)) {
+      if (ourScore > opponentScore) {
+        return <span className='sli-score-win'>{`W ${ourScore} - ${opponentScore}`}</span>
+      } else if (ourScore < opponentScore) {
+        return <span className='sli-score-loss'>{`L ${ourScore} - ${opponentScore}`}</span>
+      } else {
+        return <span className='sli-score-tie'>{`T ${ourScore} - ${opponentScore}`}</span>
+      }
+    } else {
+      console.log('tst');
+      return null;
+    }
+  }
 
   return (
     <div 
@@ -31,11 +76,11 @@ const GLScheduleListItem = ({record, onAdd }) => {
                 textAlign: 'start',
                 padding: '0 5px 0 5px'
               }}>
-            <span>Mar 5</span>
+            <span>{ getDate(record.start) }</span>
             <br></br>
-            <span>11:30am</span>
+            <span> { getTime(record.start) }</span>
             <div>
-              <Badge className="sli-badge-away" bg="light" text="dark">AWAY</Badge>
+              { getHomeAwayBadge(record.homeTeam) }
             </div>
           </div>
           <div style={{
@@ -45,15 +90,15 @@ const GLScheduleListItem = ({record, onAdd }) => {
               justifyContent: 'center',
               padding: '0 5px 0 5px'
             }}>
-            <div style={{ lineHeight: '1.1em', fontWeight: 500, color: '#4f68b1'}}>
-                <span>Dash Woodlands 2008/09 - Cumbie</span>
+            <div className='sli-opponent-text' style={{ lineHeight: '1.1em' }}>
+                { getOpponentName() }
                 <div className='sli-location-text'>
-                  <span href="">Bear Branch Sportsfields (BB) Field # 1B Recreational</span>
+                  <span>{ record.field }</span>
                 </div>
             </div>
           </div>
             <div className="sli-score-container">
-                <span>L 0-6</span>
+                { getScore() }
             </div>
         </div>
       </div>

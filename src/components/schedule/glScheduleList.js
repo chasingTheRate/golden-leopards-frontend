@@ -4,7 +4,7 @@ import {
 
 import GLScheduleListItem from './glScheduleListItem';
 
-const GLScheduleList = () => {
+const GLScheduleList = ({ data = [] }) => {
   return (
     <Container 
       fluid 
@@ -12,7 +12,10 @@ const GLScheduleList = () => {
         padding: 3, 
       }}>
       <div style={{ display: 'flex', flexDirection: 'column'}}>
-        <GLScheduleListItem></GLScheduleListItem>
+        { data.map((d, i) => <GLScheduleListItem 
+          key={ `sli-${i}` } 
+          record={ d }
+        ></GLScheduleListItem>)}
       </div>
     </Container>
   );
