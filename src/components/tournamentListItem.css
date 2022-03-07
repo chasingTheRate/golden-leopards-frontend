@@ -2,3 +2,8 @@
   background-color: #4f68b1 !important;
   border-color: #4f68b1 !important;
 }
+
+.tli-status-badge {
+  margin-right: 8px;
+  font-size: 0.6em;
+}
