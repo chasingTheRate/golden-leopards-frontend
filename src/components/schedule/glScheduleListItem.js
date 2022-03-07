@@ -85,7 +85,7 @@ const GLScheduleListItem = ({ record }) => {
               flexGrow: 1,
               flexDirection: 'column',
               justifyContent: 'center',
-              padding: '0 5px 0 5px'
+              padding: '3px 5px 3px 5px'
             }}>
             <div className='sli-opponent-text' style={{ lineHeight: '1.1em' }}>
                 { getOpponentName() }
