@@ -14,6 +14,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 import GLNavBar from './components/glNavBar';
 import GLHome from "./components/glHome";
+import GLSchedule from "./components/schedule/glSchedule";
+
 
 function App() {
   return (
@@ -25,6 +27,9 @@ function App() {
             <Switch>
               <Route exact path="/">
                 <GLHome></GLHome>
+              </Route>
+              <Route exact path="/schedule">
+                <GLSchedule></GLSchedule>
               </Route>
             </Switch>
           </Container>

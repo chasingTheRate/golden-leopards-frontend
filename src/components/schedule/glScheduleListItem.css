@@ -1,0 +1,52 @@
+
+.sli-badge-home {
+  background-color: #4f68b1 !important;
+  color: #ffd700 !important;
+}
+
+.sli-badge-away {
+  background-color: white !important;
+  color: #4f68b1 !important;
+  border-color: #4f68b1 !important;
+  border-style: solid !important;
+}
+
+.sli-location-text span{
+  font-size: 0.8em;
+  color: rgb(150,150,150) !important;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1em;
+  padding: 5px 0 5px 0;
+}
+
+
+.sli-score-container {
+  width: 80px;
+  display: 'flex';
+  flex-grow: 1;
+  flex-direction: 'column';
+  color: rgb(125 125 125);
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.sli-opponent-text {
+  font-Weight: 500;
+}
+
+.sli-opponent-text span {
+  color: rgb(75, 75, 75);
+}
+
+.sli-opponent-text a {
+  color: #4f68b1 !important;
+}
+
+.sli-score-win {
+  color: limegreen
+}
+
+.sli-score-loss {
+  color: salmon !important;
+}
