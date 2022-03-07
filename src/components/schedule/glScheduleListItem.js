@@ -9,8 +9,6 @@ import './glScheduleListItem.css';
 
 const GLScheduleListItem = ({ record }) => {
 
-  console.log(record);
-
   const getDate = (timestamp) => {
     return (moment.utc(timestamp).format('MMM D'));
   };
@@ -49,7 +47,6 @@ const GLScheduleListItem = ({ record }) => {
         return <span className='sli-score-tie'>{`T ${ourScore} - ${opponentScore}`}</span>
       }
     } else {
-      console.log('tst');
       return null;
     }
   }
