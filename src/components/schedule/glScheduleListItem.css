@@ -9,6 +9,7 @@
   color: #4f68b1 !important;
   border-color: #4f68b1 !important;
   border-style: solid !important;
+  border-width: thin;
 }
 
 .sli-location-text span{
@@ -33,6 +34,7 @@
 
 .sli-opponent-text {
   font-Weight: 500;
+  font-size: 0.9em;
 }
 
 .sli-opponent-text span {
