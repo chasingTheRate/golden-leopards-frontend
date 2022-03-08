@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Badge
@@ -8,6 +8,13 @@ import moment from "moment";
 import './tournamentListItem.css';
 
 const TournamentListItem = ({record, onAdd }) => {
+
+  const [notAttending, setNotAttending] = useState(false);
+
+  useEffect(() => {
+    const { status } = record;
+    setNotAttending(status === 'not attending');
+  }, []);
 
   const formatDate = (record) => {
     let { ['Start Date']: startDate, ['End Date']: endDate } = record;
@@ -46,7 +53,7 @@ const TournamentListItem = ({record, onAdd }) => {
   }
 
   const isDisabled = (status) => {
-    console.log(status);
+    
     let isDisabled = false;
     switch (status) {
       case 'accepted':
@@ -60,18 +67,10 @@ const TournamentListItem = ({record, onAdd }) => {
     return isDisabled;
   }
 
+  const getClassName = () => notAttending ? 'tli not-attending' : 'tli';
+
   return (
-    <div 
-      className='tli'
-      style={{ 
-        display: 'flex',
-        flexDirection: 'column',
-        padding: 12,
-        marginBottom: '12px',
-        borderRadius: '5px',
-        boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
-        backgroundColor: 'white'
-      }}>
+    <div className={ getClassName() }>
         <div style={{ 
           display: 'flex',
         }}>
@@ -110,7 +109,7 @@ const TournamentListItem = ({record, onAdd }) => {
             <Button color='red' disabled={ isDisabled(record.status) } onClick={ (e) => onAdd(record) }><i className="bi bi-plus-circle"></i></Button>
           </div>
         </div>
-        { record.interested && 
+        { (record.interested && !notAttending) && 
         
           <div>
             <div style={{display: 'flex', alignItems: 'center', height: '20px', marginTop: '5px' }}>
