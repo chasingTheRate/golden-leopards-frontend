@@ -14,6 +14,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 import GLNavBar from './components/glNavBar';
 import GLHome from "./components/glHome";
+import GLTournaments from "./components/glTournaments";
 import GLSchedule from "./components/schedule/glSchedule";
 
 
@@ -30,6 +31,9 @@ function App() {
               </Route>
               <Route exact path="/schedule">
                 <GLSchedule></GLSchedule>
+              </Route>
+              <Route exact path="/tournaments">
+                <GLTournaments></GLTournaments>
               </Route>
             </Switch>
           </Container>
