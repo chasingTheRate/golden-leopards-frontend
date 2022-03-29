@@ -1,0 +1,66 @@
+.ngli {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: white;
+}
+
+.ngli-badge-home {
+  background-color: #4f68b1 !important;
+  color: #ffd700 !important;
+}
+
+.ngli-badge-away {
+  background-color: white !important;
+  color: #4f68b1 !important;
+  border-color: #4f68b1 !important;
+  border-style: solid !important;
+  border-width: thin;
+}
+
+.ngli-location-text {
+  text-align: center;
+  line-height: 1em;
+  padding: 5px 0 5px 0;
+  margin: 8px 0 0 0;
+  font-weight: 500;
+  font-size: 0.8em;
+}
+.ngli-location-text span{
+  color: rgb(150,150,150) !important;
+}
+
+
+.ngli-score-container {
+  width: 75px;
+  display: flex;
+  color: rgb(125 125 125);
+  font-size: 0.9em;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+}
+
+.ngli-opponent-text {
+  font-Weight: 500;
+  font-size: 0.9em;
+}
+
+.ngli-opponent-text span {
+  color: rgb(75, 75, 75);
+}
+
+.ngli-opponent-text a {
+  color: #4f68b1 !important;
+}
+
+.ngli-score-win {
+  color: limegreen
+}
+
+.ngli-score-loss {
+  color: salmon !important;
+}
