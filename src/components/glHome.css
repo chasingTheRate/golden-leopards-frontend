@@ -25,3 +25,26 @@ a {
 .spinner-border {
   color: #4f68b1 !important;
 }
+
+.gl-home {
+  text-align: left;
+  color: rgb(125 125 125);
+  margin-top: 50px;
+  padding: 12px;
+  z-index: 100;
+}
+.next-game-container {
+  display: flex;
+  padding: 0px;
+  flex-direction: column;
+  background-color: white;
+}
+
+.logo-container {
+  position: fixed;
+  bottom: 0;
+  left: calc(50% - 50px);
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}

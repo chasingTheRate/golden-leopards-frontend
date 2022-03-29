@@ -58,3 +58,9 @@ export const updateTournament = async (id, tournament) => {
   };
   await fetch(`${goldenLeopardApiBasePath}/api/schedules/tournaments/${id}`, requestOptions);
 }
+
+export const getNextGames = async () => {
+  const results = await (await fetch(`${goldenLeopardApiBasePath}/api/schedules/nextgames`)).json();
+  console.log(results);
+  return results ? results : [];
+}
