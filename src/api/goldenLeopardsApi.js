@@ -1,29 +1,4 @@
 
-// export const getSeasons = async () => {
-//   const results = await (await fetch(`https://golden-leopards-backend.herokuapp.com/api/seasons`)).json();
-//   return results ? results : [];
-// }
-
-// export const getGames = async () => {
-//   const results = await (await fetch(`https://golden-leopards-backend.herokuapp.com/api/games`)).json();
-//   return results ? results : [];
-// }
-
-// export const getPlayers = async () => {
-//   const results = await (await fetch(`https://golden-leopards-backend.herokuapp.com/api/players`)).json();
-//   return results ? results : [];
-// }
-
-// export const getPlayersStats = async () => {
-//   const results = await (await fetch(`https://golden-leopards-backend.herokuapp.com/api/stats/players`)).json();
-//   return results ? results : [];
-// }
-
-// export const getTeamRecord = async () => {
-//   const results = await (await fetch(`https://golden-leopards-backend.herokuapp.com/api/stats/teamRecord`)).json();
-//   return results ? results : [];
-// }
-
 const goldenLeopardApiBasePath = process.env.REACT_APP_GL_API_BASE_PATH;
 
 export const getTournamentSchedule = async () => {
@@ -61,6 +36,5 @@ export const updateTournament = async (id, tournament) => {
 
 export const getNextGames = async () => {
   const results = await (await fetch(`${goldenLeopardApiBasePath}/api/schedules/nextgames`)).json();
-  console.log(results);
   return results ? results : [];
 }
