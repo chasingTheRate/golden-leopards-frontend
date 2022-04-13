@@ -27,12 +27,16 @@ a {
 }
 
 .gl-home {
-  text-align: left;
   color: rgb(125 125 125);
   margin-top: 25px;
   padding: 12px;
   z-index: 100;
 }
+
+.next-game-title-container {
+  text-align: left;
+}
+
 .next-game-container {
   display: flex;
   padding: 0px;
