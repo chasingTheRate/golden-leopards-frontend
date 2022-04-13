@@ -33,7 +33,9 @@ const GLHome = () => {
         <NextGameList data={ nextGames }></NextGameList>
       </Container>
       <div className="logo-container">
+        <div>
           <img src={logo} alt="Logo" height="75px"/>
+        </div>
       </div>
     </Container>
   );
