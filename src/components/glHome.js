@@ -26,7 +26,9 @@ const GLHome = () => {
 
   return (
     <Container className="gl-home" fluid>
-      <h5>Next Game</h5>
+      <div className="next-game-title-container">
+        <h5>Next Game</h5>
+      </div>
       <Container className="next-game-container">
         <NextGameList data={ nextGames }></NextGameList>
       </Container>
