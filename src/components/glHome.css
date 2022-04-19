@@ -29,8 +29,7 @@ a {
 .gl-home {
   height: 100%;
   color: rgb(125 125 125);
-  margin-top: 25px;
-  padding: 12px;
+  padding: 35px 12px 0 12px;
   z-index: 100;
   display: flex;
   flex-direction: column;
@@ -53,5 +52,4 @@ a {
   flex-direction: row;
   align-items: flex-end;
   justify-content: center;
-  padding: 12px;
 }
