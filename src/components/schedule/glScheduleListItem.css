@@ -1,13 +1,13 @@
 
 .sli-badge-home {
-  background-color: #4f68b1 !important;
+  background-color: var(--primary-team-color) !important;
   color: #ffd700 !important;
 }
 
 .sli-badge-away {
   background-color: white !important;
-  color: #4f68b1 !important;
-  border-color: #4f68b1 !important;
+  color: var(--primary-team-color) !important;
+  border-color: var(--primary-team-color) !important;
   border-style: solid !important;
   border-width: thin;
 }
@@ -45,7 +45,7 @@
 }
 
 .sli-opponent-text a {
-  color: #4f68b1 !important;
+  color: var(--primary-team-color) !important;
 }
 
 .sli-score-win {

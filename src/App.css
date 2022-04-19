@@ -1,17 +1,19 @@
+
+:root {
+  height: 100%;
+  --primary-team-color: #4f68b1;
+}
+
 .App {
   height: 100%;
   text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.app-page-container {
+  flex-grow: 1;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  background-color: #fff;
 }
 
 

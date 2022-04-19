@@ -1,15 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
-  Button,
-  Modal,
-  Form,
-  Spinner
 } from 'react-bootstrap';
-import _ from 'lodash';
-import moment from 'moment';
-import { getSeasonSchedule } from '../../api/goldenLeopardsApi';
 
+import { getSeasonSchedule } from '../../api/goldenLeopardsApi';
+import './glSchedule.css';
 import GLScheduleList from "./glScheduleList";
 
 
@@ -25,13 +20,11 @@ const GLSchedule = () => {
   }, []);
 
   return (
-    <Container fluid style={{ padding: 0, zIndex: 100}}>
-      <Container style={{overflowX: 'scroll', padding: 0}}>
-        <div style={{color: 'rgb(100, 100, 100)', textAlign: 'center', padding: '0 0 0 3px', marginTop: '30px', marginBottom: '15px', fontWeight: 700 }}>
+    <Container fluid className="gl-schedule-container">
+        <div className="gl-schedule-title-container">
           <span>Spring 2022</span>
         </div>
         <GLScheduleList data={ seasonSchedule }></GLScheduleList>
-      </Container>
     </Container>
   );
 }

@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  background-color: var(--primary-team-color);
 }
 
 body {
@@ -10,7 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgb(245,245,245);
+  background-color: transparent !important;
 }
 
 code {

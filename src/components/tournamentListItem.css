@@ -14,8 +14,8 @@
 }
 
 .tli button {
-  background-color: #4f68b1 !important;
-  border-color: #4f68b1 !important;
+  background-color: var(--primary-team-color) !important;
+  border-color: var(--primary-team-color) !important;
 }
 
 .tli-status-badge {
