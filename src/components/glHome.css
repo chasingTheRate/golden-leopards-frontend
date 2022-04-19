@@ -54,4 +54,5 @@ a {
   flex-direction: row;
   align-items: flex-end;
   justify-content: center;
+  padding: 12px;
 }
