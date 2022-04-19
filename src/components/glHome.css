@@ -1,5 +1,5 @@
 a {
-  color: #4f68b1;
+  color: var(--primary-team-color);
 }
 
 .gl-select {
@@ -8,22 +8,22 @@ a {
 }
 
 .modal-header {
-  background-color: #4f68b1 !important;
+  background-color: var(--primary-team-color) !important;
   color: white;
 }
 
 .modal-footer button {
-  background-color: #4f68b1 !important;
-  border-color: #4f68b1 !important;
+  background-color: var(--primary-team-color) !important;
+  border-color: var(--primary-team-color) !important;
 }
 
 .form-check-input:checked{
-  background-color: #4f68b1 !important;
-  border-color: #4f68b1 !important;
+  background-color: var(--primary-team-color) !important;
+  border-color: var(--primary-team-color) !important;
 }
 
 .spinner-border {
-  color: #4f68b1 !important;
+  color: var(--primary-team-color) !important;
 }
 
 .gl-home {
@@ -34,7 +34,6 @@ a {
   z-index: 100;
   display: flex;
   flex-direction: column;
-
 }
 
 .next-game-title-container {

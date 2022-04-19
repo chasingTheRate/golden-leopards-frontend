@@ -154,7 +154,7 @@ const GLTournaments = () => {
   }
 
   return (
-    <Container fluid style={{ height: '100%', padding: 0, zIndex: 100}}>
+    <Container fluid style={{ height: 'auto', padding: 0, zIndex: 100}}>
       <Container style={{ height: '100%', overflowX: 'scroll', padding: 0, display: 'flex', flexDirection: 'column'}}>
         <div style={{color: 'rgb(100, 100, 100)', textAlign: 'center', padding: '0 0 0 3px', marginTop: '30px', marginBottom: '15px', fontWeight: 700 }}>
           <span>Upcoming Tournaments</span>

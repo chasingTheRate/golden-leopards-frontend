@@ -24,7 +24,7 @@ function App() {
       <Router>
         <Container fluid className='master-container' style={{height: '100%', padding: 0, display: 'flex', flexDirection: 'column' }}>
           <GLNavBar style={{flexGrow: 1}}></GLNavBar>
-          <Container fluid style={{flexGrow: 1, paddingTop: ".75rem", paddingBottom: ".75rem"}}>
+          <Container fluid className="app-page-container">
             <Switch>
               <Route exact path="/">
                 <GLHome></GLHome>

@@ -8,7 +8,7 @@
 }
 
 .navbar-custom {
-  background-color: #4f68b1 !important;
+  background-color: var(--primary-team-color) !important;
 }
 
 .navbar-logo-container {
