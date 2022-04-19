@@ -1,7 +1,8 @@
 
 :root {
   height: 100%;
-  --primary-team-color: #4f68b1;
+  /* --primary-team-color: #4f68b1; */
+  --primary-team-color: red;
 }
 
 .App {
