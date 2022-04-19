@@ -154,8 +154,8 @@ const GLTournaments = () => {
   }
 
   return (
-    <Container fluid style={{ padding: 0, zIndex: 100}}>
-      <Container style={{overflowX: 'scroll', padding: 0}}>
+    <Container fluid style={{ height: '100%', padding: 0, zIndex: 100}}>
+      <Container style={{ height: '100%', overflowX: 'scroll', padding: 0, display: 'flex', flexDirection: 'column'}}>
         <div style={{color: 'rgb(100, 100, 100)', textAlign: 'center', padding: '0 0 0 3px', marginTop: '30px', marginBottom: '15px', fontWeight: 700 }}>
           <span>Upcoming Tournaments</span>
         </div>
@@ -201,8 +201,8 @@ const GLTournaments = () => {
           data={ filteredTournamentSchedule }
           addPlayerToTournament= { addPlayerToTournament }
         ></TournamentScheduleTable>
-        <div style={{marginTop: '10px', flexBasis: 1, flexGrow: 1 }}>
-          <img src={logo} alt="Logo" height="100px"/>
+        <div style={{ flexGrow: 1, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+          <img src={logo} alt="Logo" height="75px"/>
         </div>
       </Container>
       <Modal
