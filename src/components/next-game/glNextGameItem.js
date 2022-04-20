@@ -70,6 +70,7 @@ const GLNextGameItem = ({ record }) => {
           </div>
           <div style={{
               display: 'flex',
+              textAlign: 'center',
               flexGrow: 1,
               flexDirection: 'column',
               justifyContent: 'center',

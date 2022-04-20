@@ -5,8 +5,6 @@ import {
 } from 'react-bootstrap';
 import moment from "moment";
 
-import './glScheduleListItem.css';
-
 const GLScheduleListItem = ({ record }) => {
 
   const getDate = (timestamp) => {
