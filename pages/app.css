@@ -1,3 +1,10 @@
+
+:root {
+  height: 100%;
+  --primary-team-color: #15469d;
+  --navbar-height: 56px;
+}
+
 html {
   height: 100%;
   background-color: var(--primary-team-color);
@@ -22,3 +29,17 @@ code {
 #root {
   height: 100%;
 }
+
+#__next {
+  height: 100%;
+}
+.app {
+  height: 100%;
+  background-color: #fff;
+}
+
+main {
+  height: calc(100% - var(--navbar-height));
+}
+
+

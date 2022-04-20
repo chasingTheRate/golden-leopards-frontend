@@ -4,7 +4,6 @@ import {
   Container,
 } from 'react-bootstrap';
 
-import './glHome.css'
 import logo from '../assets/images/goldenLeopards.png';
 import NextGameList from './next-game/glNextGameList';
 

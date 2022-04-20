@@ -1,8 +1,4 @@
 
- import {
-  Link,
-} from "react-router-dom";
-
 import {
   Navbar,
   Container,
@@ -10,12 +6,9 @@ import {
 } from 'react-bootstrap';
 
 import React, { useState } from "react";
-import { withRouter } from 'react-router'
+import Image from 'next/image'
 
-import goldenLeopardsTextLogo from '../assets/images/goldenLeopardsTextBlue.png';
-
-
-import './glNavBar.css'
+import goldenLeopardsTextLogo from '../../public/goldenLeopardsTextBlue.png';
 
 const GLNavBar = () => {
 
@@ -30,17 +23,17 @@ const GLNavBar = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <div style={{height: '20px'}}></div>
-              <Nav.Link as={ Link } to="/schedule" onClick={() => setExpanded(false)}>Schedule</Nav.Link>
-              <Nav.Link as={ Link } to="/tournaments" onClick={() => setExpanded(false)}>Tournaments</Nav.Link>
+              <Nav.Link to="/schedule" onClick={() => setExpanded(false)}>Schedule</Nav.Link>
+              <Nav.Link to="/tournaments" onClick={() => setExpanded(false)}>Tournaments</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
       <div className='navbar-logo-container'>
-        <Link to="/"><img src={goldenLeopardsTextLogo} alt="Logo" height="80px"/></Link>
+        <a to="/"><Image src={goldenLeopardsTextLogo} alt="Logo" height="80px" width="138px"/></a>
       </div>
     </div>
   );
 }
 
-export default withRouter(GLNavBar);
+export default GLNavBar;

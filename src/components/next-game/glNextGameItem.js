@@ -4,7 +4,6 @@ import {
 } from 'react-bootstrap';
 import moment from "moment";
 
-import './glNextGameListItem.css';
 
 const GLNextGameItem = ({ record }) => {
 
