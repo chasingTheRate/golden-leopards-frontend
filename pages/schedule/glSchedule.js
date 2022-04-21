@@ -4,10 +4,8 @@ import {
 } from 'react-bootstrap';
 
 import { getSeasonSchedule } from '../../src/api/goldenLeopardsApi';
-import './glSchedule.css';
 import GLScheduleList from "./glScheduleList";
-
-
+ 
 const GLSchedule = () => {
 
   const [seasonSchedule, setSeasonSchedule] = useState([]);
