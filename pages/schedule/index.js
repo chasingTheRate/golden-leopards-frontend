@@ -3,9 +3,9 @@ import {
   Container,
 } from 'react-bootstrap';
 
-import { getSeasonSchedule } from '../src/api/goldenLeopardsApi';
+import { getSeasonSchedule } from '../../src/api/goldenLeopardsApi';
 
-import GLScheduleList from "../src/components/schedule/glScheduleList";
+import GLScheduleList from "./glScheduleList";
 
 export async function getServerSideProps() {
   const data = await getSeasonSchedule();

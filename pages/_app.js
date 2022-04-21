@@ -6,9 +6,11 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import '../src/components/glNavBar.css';
 import '../src/components/glHome.css';
 import '../src/components/next-game/glNextGameListItem.css';
-import '../src/components/schedule/glSchedule.css';
-import '../src/components/schedule/glScheduleListItem.css';
-import '../src/components/tournamentListItem.css';
+import './schedule/glSchedule.css';
+import './schedule/glScheduleListItem.css';
+import './tournaments/tournamentListItem.css';
+import './tournaments/tournaments.css';
+
 
 import './app.css';
 
