@@ -23,7 +23,7 @@ const GLHome = ({ data }) => {
   return (
     <Container className="gl-home" fluid>
       <div className="next-game-title-container">
-        <h5>Next Game</h5>
+        <h5>Next Games</h5>
       </div>
       <Container className="next-game-container">
         <NextGameList data={ data }></NextGameList>
