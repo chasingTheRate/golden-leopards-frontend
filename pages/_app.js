@@ -8,6 +8,7 @@ import '../src/components/glHome.css';
 import '../src/components/next-game/glNextGameListItem.css';
 import '../src/components/schedule/glSchedule.css';
 import '../src/components/schedule/glScheduleListItem.css';
+import '../src/components/tournamentListItem.css';
 
 import './app.css';
 

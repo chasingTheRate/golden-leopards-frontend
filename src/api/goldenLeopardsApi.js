@@ -1,5 +1,5 @@
 
-const goldenLeopardApiBasePath = process.env.REACT_APP_GL_API_BASE_PATH;
+const goldenLeopardApiBasePath = process.env.NEXT_PUBLIC_GL_API_BASE_PATH;
 
 export const getTournamentSchedule = async () => {
   const results = await (await fetch(`${goldenLeopardApiBasePath}/api/schedules/tournaments`)).json();
