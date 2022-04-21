@@ -89,8 +89,8 @@ const GLTournaments = ({ ssTournamentSchedule, ssRoster }) => {
     } catch (e) {
       console.error(e);
     }
-    setIsLoading(false);
     handleClose();
+    setIsLoading(false);
   }
 
   const handleMonthChange = (e) => {
