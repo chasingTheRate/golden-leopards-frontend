@@ -3,7 +3,7 @@ import {
   Container,
 } from 'react-bootstrap';
 
-import { getSeasonSchedule } from '../../api/goldenLeopardsApi';
+import { getSeasonSchedule } from '../../src/api/goldenLeopardsApi';
 import './glSchedule.css';
 import GLScheduleList from "./glScheduleList";
 
