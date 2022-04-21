@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getRoster, getTournamentSchedule, updateTournament} from '../../src/api/goldenLeopardsApi';
+import { getRoster, getTournamentSchedule, updateTournament} from '../src/api/goldenLeopardsApi';
 import {
   Container,
   Button,
@@ -11,8 +11,8 @@ import _ from 'lodash';
 import moment from 'moment';
 import Image from 'next/image';
 
-import logo from '../../public/goldenLeopards.png';
-import TournamentScheduleTable from './tournamentScheduleTable';
+import logo from '../public/goldenLeopards.png';
+import TournamentScheduleTable from '../src/components/tournaments/tournamentScheduleTable';
 
 export async function getServerSideProps() {
   const ssTournamentSchedule = await getTournamentSchedule();
@@ -21,7 +21,7 @@ export async function getServerSideProps() {
   return { props: { ssTournamentSchedule, ssRoster } }
 }
 
-const GLTournaments = ({ ssTournamentSchedule, ssRoster }) => {
+const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
 
   const [tournamentSchedule, setTournamentSchedule] = useState(ssTournamentSchedule);
   const [filteredTournamentSchedule, setFilteredTournamentSchedule] = useState(ssTournamentSchedule);

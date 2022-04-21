@@ -5,7 +5,6 @@ import {
 } from 'react-bootstrap';
 import moment from "moment";
 
-
 const TournamentListItem = ({record, onAdd }) => {
 
   const [notAttending, setNotAttending] = useState(false);

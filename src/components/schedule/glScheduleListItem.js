@@ -1,12 +1,12 @@
 import React from "react";
 import {
-  Button,
   Badge
 } from 'react-bootstrap';
 import moment from "moment";
 
 const GLScheduleListItem = ({ record }) => {
 
+  console.log(`test: ${ record }`);
   const getDate = (timestamp) => {
     return (moment.utc(timestamp).format('MMM D'));
   };

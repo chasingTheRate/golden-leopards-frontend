@@ -3,16 +3,16 @@ import {
   Container,
 } from 'react-bootstrap';
 
-import { getSeasonSchedule } from '../../src/api/goldenLeopardsApi';
+import { getSeasonSchedule } from '../src/api/goldenLeopardsApi';
 
-import GLScheduleList from "./glScheduleList";
+import GLScheduleList from "../src/components/schedule/glScheduleList";
 
 export async function getServerSideProps() {
   const data = await getSeasonSchedule();
   return { props: { data } }
 }
 
-const GLSchedule = ({ data }) => {
+const GLSchedule = ({ data = [] }) => {
   return (
     <Container fluid className="gl-schedule-container">
         <div className="gl-schedule-title-container">
