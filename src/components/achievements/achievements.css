@@ -1,49 +1,21 @@
 
 .achievements-page-container {
+  height: 100%;
   background-color: #fff;
 }
 
-.banner {
-  position: relative;
-}
-
-.banner span{
-
-}
-
-.banner-title {
-  position: absolute;
-  top: 10%;
-  width: 100%;
-  height: auto;
-  text-align: center;
-  line-height: 1.2;
-  color: white;
-  font-weight: 500;
-}
-
-.banner-year {
-  font-size:medium
-}
-
-.banner-season {
-  font-size: x-small;
-}
-
-.banner-conference {
-  margin-top: 8px;
-}
-
-.banner-conference-name {
-  font-size: xx-small;
-}
-
-.banner-conference-place {
-  font-size: medium;
-  color: rgba(251, 214, 4, 1) !important;
+.achievement-section {
+  color: rgb(100, 100, 100);
   font-weight: 700;
+  text-align: center;
 }
 
-.achievement-logo-container {
-  margin-top: 8px;
+.achievement-section-first {
+  padding-top: 30px;
+}
+
+.banners-container {
+  padding: 12px 0 12px 0;
+  display: flex;
+  overflow-x: scroll;
 }

@@ -2,53 +2,44 @@ import React, { useState, useEffect } from "react";
 import {
   Container,
 } from 'react-bootstrap';
-import Image from 'next/image';
 
-import logo from '../public/originalGoldenLeopardLogo.png';
+import Banner from '../src/components/banner/banner';
 
-import { getSeasonSchedule } from '../src/api/goldenLeopardsApi';
+const GLAchievements = () => {
 
-// export async function getServerSideProps() {
-//   const data = await getSeasonSchedule();
-//   return { props: { data } }
-// }
+  const data = [
+    {
+      bannerYear: '2021',
+      bannerSeason: 'FALL', 
+      bannerVersion: 'v3',
+      bannerLeague: 'RECREATION', 
+      bannerPlace: 'CHAMPIONS'
+    },
+    {
+      bannerYear: '2021',
+      bannerSeason: 'SPRING', 
+      bannerVersion: 'v2',
+      bannerLeague: 'RECREATION', 
+      bannerPlace: 'CHAMPIONS'
+    },
+    {
+      bannerYear: '2019',
+      bannerSeason: 'FALL', 
+      bannerVersion: 'v1',
+      bannerLeague: 'RECREATION', 
+      bannerPlace: 'CHAMPIONS'
+    },
+  ]
 
-const GLAchievements = ({ data = [] }) => {
   return (
     <Container fluid className="achievements-page-container">
-        <div>
-          <span>Spring 2022</span>
-        </div>
-        <div>
-          <span>Recreation Division</span>
-          <div className='banner' style={{width: 130, height: 170}}>
-            <div className='banner-title'>
-              <div className='banner-year'>
-                <span>2018</span>
-              </div>
-              <div className='banner-season'>
-                <span>FALL</span>
-              </div>
-              <div className='banner-conference'>
-                <div className='banner-conference-name'>
-                  <span>RECREATION</span>
-                </div>
-                <div className='banner-conference-place'>
-                  <span>CHAMPIONS</span>
-                </div>
-              </div>
-              <div className="achievement-logo-container">
-                <div>
-                  <Image src={logo} alt="Logo" height="52px" width="40px"/>
-                </div>
-              </div>
-            </div>
-            <svg style={{width: 130, height: 170}}>
-              <polygon points="10,10 10,140 65,160 120,140 120,10" style={{fill:'black', stroke:'darkGrey', strokeWidth:7}} />
-            </svg>
+        <div className='achievement-section achievement-section-first'>
+          <span>Dash Recreation League</span>
+          <div className="banners-container">
+            { data.map((d) => <Banner data={ d }></Banner>) }
           </div>
         </div>
-        <div>
+        <div className='achievement-section'>
           <span>Tournaments</span>
         </div>
     </Container>

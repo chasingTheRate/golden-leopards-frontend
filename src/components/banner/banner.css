@@ -1,0 +1,58 @@
+.banner {
+  position: relative;
+}
+
+.banner span{
+
+}
+
+.banner-title {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.banner-title-v1 {
+  color: white;
+}
+
+.banner-title-v2 {
+  color: white;
+}
+
+.banner-year {
+  font-size:medium
+}
+
+.banner-season {
+  font-size: x-small;
+}
+
+.banner-league {
+  margin-top: 8px;
+}
+
+.banner-league-name {
+  font-size: xx-small;
+}
+
+.banner-league-place {
+  font-size: medium;
+  font-weight: 700;
+}
+
+.banner-league-place-v1 {
+  color: rgba(251, 214, 4, 1) !important;
+}
+
+.banner-league-place-v2 {
+  color: rgba(251, 214, 4, 1) !important;
+}
+
+.banner-logo-container {
+  margin-top: 8px;
+}
