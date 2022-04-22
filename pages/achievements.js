@@ -36,7 +36,7 @@ const GLAchievements = () => {
         <div className='achievement-section achievement-section-first'>
           <span>Dash Recreation League</span>
           <div className="banners-container">
-            { data.map((d) => <Banner data={ d }></Banner>) }
+            { data.map((d, i) => <Banner key={ `banner-${i}` } data={ d }></Banner>) }
           </div>
         </div>
         <div className='achievement-section'>
