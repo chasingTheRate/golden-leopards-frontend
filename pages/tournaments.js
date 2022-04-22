@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getRoster, getTournamentSchedule, updateTournament} from '../api/goldenLeopardsApi';
+import { getRoster, getTournamentSchedule, updateTournament} from '../src/api/goldenLeopardsApi';
 import {
   Container,
   Button,
@@ -9,16 +9,23 @@ import {
 } from 'react-bootstrap';
 import _ from 'lodash';
 import moment from 'moment';
+import Image from 'next/image';
 
-import './glHome.css'
-import logo from '../assets/images/goldenLeopards.png';
-import TournamentScheduleTable from '../components/tournamentScheduleTable';
+import logo from '../public/goldenLeopards.png';
+import TournamentScheduleTable from '../src/components/tournaments/tournamentScheduleTable';
 
-const GLTournaments = () => {
+export async function getServerSideProps() {
+  const ssTournamentSchedule = await getTournamentSchedule();
+  const ssRoster = await getRoster();
+  //  ss = Server Side
+  return { props: { ssTournamentSchedule, ssRoster } }
+}
 
-  const [tournamentSchedule, setTournamentSchedule] = useState([]);
-  const [filteredTournamentSchedule, setFilteredTournamentSchedule] = useState([]);
-  const [roster, setRoster] = useState([]);
+const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
+
+  const [tournamentSchedule, setTournamentSchedule] = useState(ssTournamentSchedule);
+  const [filteredTournamentSchedule, setFilteredTournamentSchedule] = useState(ssTournamentSchedule);
+  const [roster, setRoster] = useState(ssRoster);
   const [show, setShow] = useState(false);
   const [selectedTournament, setSelectedTournament] = useState({});
   const [selectedMonth, setSelectedMonth] = useState();
@@ -28,17 +35,6 @@ const GLTournaments = () => {
 
   const ref = useRef(null)
 
-
-
-  useEffect(() => {
-    const fetchData = async () => {
-      await getSchedule();
-      const roster = await getRoster();
-      setRoster(roster);
-    }
-    fetchData();
-  }, []);
- 
   const getSchedule = async () => {
     const tournamentSchedule = await getTournamentSchedule();
     setTournamentSchedule(tournamentSchedule);
@@ -48,6 +44,7 @@ const GLTournaments = () => {
   const handleClose = () => {
     setSelectedTournament({});
     setShow(false)
+    setIsLoading(false);
   };
 
   const handleShow = () => {
@@ -93,7 +90,6 @@ const GLTournaments = () => {
     } catch (e) {
       console.error(e);
     }
-    setIsLoading(false);
     handleClose();
   }
 
@@ -154,20 +150,15 @@ const GLTournaments = () => {
   }
 
   return (
-    <Container fluid style={{ height: 'auto', padding: 0, zIndex: 100}}>
-      <Container style={{ height: '100%', overflowX: 'scroll', padding: 0, display: 'flex', flexDirection: 'column'}}>
-        <div style={{color: 'rgb(100, 100, 100)', textAlign: 'center', padding: '0 0 0 3px', marginTop: '30px', marginBottom: '15px', fontWeight: 700 }}>
+    <Container fluid className='tournaments-page-container'>
+      <Container className='tournament-list-container'>
+        <div className='tournament-title-container'>
           <span>Upcoming Tournaments</span>
         </div>
-        <div style={{ margin: '15px 0 15px 0', textAlign: 'left' }}>
-          <span style={{
-                  fontSize: '0.7em',
-                  color: 'rgb(100 100 100)',
-                  fontWeight: 600
-                }}
-                >&nbsp; FILTER &nbsp;</span>
-          <div style={{display: 'flex' }}>
-            <div style={{margin: '0 8px 0 0', flexGrow: 1}}>
+        <div className='tournaments-filter-container'>
+          <span>&nbsp; FILTER &nbsp;</span>
+          <div className="tournaments-filter-select-group-container">
+            <div className="tournaments-filter-1st-select-container">
               <Form.Select className='gl-select' aria-label="Tournament Month" onChange={ handleMonthChange } value={ selectedMonth }>
                 <option>Month</option>
                 <option value="Jan">January</option>
@@ -186,7 +177,7 @@ const GLTournaments = () => {
               </Form.Select>
             </div>
           
-            <div style={{flexGrow: 1}}>
+            <div className="tournaments-filter-select-container">
               <Form.Select className='gl-select' aria-label="Tournament Location" onChange={ handleLocationChange } value={ selectedLocation }>
                 <option>Location</option>
                 <option value="local">Local Only</option>
@@ -201,13 +192,13 @@ const GLTournaments = () => {
           data={ filteredTournamentSchedule }
           addPlayerToTournament= { addPlayerToTournament }
         ></TournamentScheduleTable>
-        <div style={{ flexGrow: 1, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
-          <img src={logo} alt="Logo" height="75px"/>
+        <div className='tournaments-footer-image-container'>
+          <Image src={logo} alt="Logo" height="75px" width="75px"/>
         </div>
       </Container>
       <Modal
         show={show}
-        onHide={handleClose}
+        onExited={handleClose}
         onShow= { handleOnShow }
         backdrop="static"
         keyboard={false}
@@ -218,7 +209,7 @@ const GLTournaments = () => {
         </Modal.Header>
         <Modal.Body>
             {isLoading 
-              ? <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: `${modalBodyHeight}px` }}>
+              ? <div className='tournament-modal-loading-container' style={{ height: `${modalBodyHeight}px` }}>
                   <Spinner animation="border" role="status">
                     <span className="visually-hidden">Loading...</span>
                   </Spinner>

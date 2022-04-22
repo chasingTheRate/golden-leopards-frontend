@@ -9,6 +9,7 @@
 
 .navbar-custom {
   background-color: var(--primary-team-color) !important;
+  text-align: center;
 }
 
 .navbar-logo-container {

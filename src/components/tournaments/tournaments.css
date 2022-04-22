@@ -1,0 +1,68 @@
+
+.tournaments-page-container {
+  background-color: #fff;
+  height: 100%;
+  padding: 12px;
+  z-index: 100;
+}
+
+.tournament-list-container {
+  height: 100%;
+  overflow-x: scroll;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.tournament-title-container {
+  color: rgb(100, 100, 100);
+  text-align: center;
+  padding: 0 0 0 3px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.tournaments-filter-container {
+  margin: 15px 0 15px 0;
+  text-align: left;
+}
+
+.tournaments-filter-container span {
+  font-size: 0.7em;
+  color: rgb(100 100 100);
+  font-weight: 600;
+}
+
+.tournaments-filter-select-group-container {
+  display: flex;
+}
+
+.tournaments-filter-1st-select-container {
+  margin: 0 8px 0 0;
+  flex-grow: 1
+}
+
+.tournaments-filter-select-container {
+  margin: 0 8px 0 0;
+  flex-grow: 1
+}
+
+.tournaments-footer-image-container {
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center
+}
+
+.tournament-modal-loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tournaments-schedule-list-container {
+  padding: 3;
+  display: flex;
+  flex-direction: column
+}

@@ -5,8 +5,6 @@ import {
 } from 'react-bootstrap';
 import moment from "moment";
 
-import './tournamentListItem.css';
-
 const TournamentListItem = ({record, onAdd }) => {
 
   const [notAttending, setNotAttending] = useState(false);
@@ -78,7 +76,8 @@ const TournamentListItem = ({record, onAdd }) => {
               display: 'flex',
               flexGrow: 1,
               flexDirection: 'column',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              textAlign: 'center'
             }}>
             <div style={{ lineHeight: '1.1em', fontWeight: 500}}>
                 { getStatusBadge(record.status) }

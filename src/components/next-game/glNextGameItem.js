@@ -4,7 +4,6 @@ import {
 } from 'react-bootstrap';
 import moment from "moment";
 
-import './glNextGameListItem.css';
 
 const GLNextGameItem = ({ record }) => {
 
@@ -71,6 +70,7 @@ const GLNextGameItem = ({ record }) => {
           </div>
           <div style={{
               display: 'flex',
+              textAlign: 'center',
               flexGrow: 1,
               flexDirection: 'column',
               justifyContent: 'center',
