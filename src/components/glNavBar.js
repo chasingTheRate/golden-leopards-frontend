@@ -30,6 +30,9 @@ const GLNavBar = () => {
                 <Link href="/tournaments" passHref>
                   <Nav.Link onClick={() => setExpanded(false)}>Tournaments</Nav.Link>
                 </Link>
+                <Link href="/achievements" passHref>
+                  <Nav.Link onClick={() => setExpanded(false)}>Achievements</Nav.Link>
+                </Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
