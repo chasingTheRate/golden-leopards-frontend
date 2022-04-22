@@ -1,0 +1,21 @@
+
+.achievements-page-container {
+  height: 100%;
+  background-color: #fff;
+}
+
+.achievement-section {
+  color: rgb(100, 100, 100);
+  font-weight: 700;
+  text-align: center;
+}
+
+.achievement-section-first {
+  padding-top: 30px;
+}
+
+.banners-container {
+  padding: 12px 0 12px 0;
+  display: flex;
+  overflow-x: scroll;
+}
