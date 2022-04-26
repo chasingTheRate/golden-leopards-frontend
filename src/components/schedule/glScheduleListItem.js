@@ -6,7 +6,6 @@ import moment from "moment";
 
 const GLScheduleListItem = ({ record }) => {
 
-  console.log(`test: ${ record }`);
   const getDate = (timestamp) => {
     return (moment.utc(timestamp).format('MMM D'));
   };
@@ -51,15 +50,11 @@ const GLScheduleListItem = ({ record }) => {
 
   return (
     <div 
-      className='tli'
+      className='sli'
       style={{ 
         display: 'flex',
         flexDirection: 'column',
-        padding: 12,
-        marginBottom: '12px',
-        borderRadius: '5px',
-        boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
-        backgroundColor: 'white'
+        backgroundColor: '#fff'
       }}>
         <div style={{ 
           display: 'flex',
@@ -83,7 +78,8 @@ const GLScheduleListItem = ({ record }) => {
               flexGrow: 1,
               flexDirection: 'column',
               justifyContent: 'center',
-              padding: '3px 5px 3px 5px'
+              padding: '3px 5px 3px 5px',
+              textAlign: 'center'
             }}>
             <div className='sli-opponent-text' style={{ lineHeight: '1.1em' }}>
                 { getOpponentName() }
@@ -96,6 +92,7 @@ const GLScheduleListItem = ({ record }) => {
                 { getScore() }
             </div>
         </div>
+        <hr style={{flexGrow: 1}}></hr>
       </div>
       );
 }

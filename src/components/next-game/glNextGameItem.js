@@ -87,6 +87,7 @@ const GLNextGameItem = ({ record }) => {
                 { getScore() }
             </div>
         </div>
+        <hr style={{flexGrow: 1}}></hr>
       </div>
       );
 }

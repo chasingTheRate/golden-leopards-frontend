@@ -9,10 +9,10 @@ const GLNextGameList = ({ data = [] }) => {
     <Container 
       fluid 
       style={{ 
-        padding: 0,
-        width: '100%' 
+        padding: '12px',
+        width: '100%',
       }}>
-      <div style={{ display: 'flex', flexDirection: 'column'}}>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
         { data.map((d, i) => <GLNextGameItem 
           key={ `ngli-${i}` } 
           record={ d }

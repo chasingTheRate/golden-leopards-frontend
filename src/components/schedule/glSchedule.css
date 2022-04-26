@@ -1,16 +1,20 @@
 
 
 .gl-schedule-container {
-  padding: 12px;
+  padding: 40px 12px 12px 12px;
   z-index: 100;
   background-color: #fff;
 }
 
 .gl-schedule-title-container {
-  color: rgb(100, 100, 100);
-  text-align: 'center';
-  padding-top: 30px; 
-  padding-bottom: 15px;
+  /* color: rgb(100, 100, 100); */
+  color: rgba(251, 214, 4, 1) !important;
   font-weight: 700;
   text-align: center;
+  padding-bottom: 10px;
+  font-size: small;
+}
+
+.gl-schedule-list-container {
+  padding-top: 15px;
 }

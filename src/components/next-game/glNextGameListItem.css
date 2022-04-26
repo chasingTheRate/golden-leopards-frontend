@@ -1,10 +1,9 @@
 .ngli {
   display: flex;
   flex-direction: column;
-  padding: 12px;
-  margin-bottom: 12px;
+  /* padding: 12px; */
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   background-color: white;
 }
 
