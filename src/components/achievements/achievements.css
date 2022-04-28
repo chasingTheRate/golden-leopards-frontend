@@ -5,13 +5,15 @@
 }
 
 .achievement-section {
-  color: rgb(100, 100, 100);
+  /* color: rgb(100, 100, 100); */
+  color: rgba(251, 214, 4, 1) !important;
   font-weight: 700;
   text-align: center;
+  font-size: small;
 }
 
 .achievement-section-first {
-  padding-top: 30px;
+  padding: 40px 12px 12px 12px;
 }
 
 .banners-container {

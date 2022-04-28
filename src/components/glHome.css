@@ -33,6 +33,17 @@
   display: flex;
   flex-direction: column;
   background-color: #fff;
+  padding: 40px 12px 12px 12px;
+}
+
+.gl-next-game-title-container {
+  color: rgba(251, 214, 4, 1) !important;
+  /* color: rgb(100, 100, 100); */
+  text-align: center;
+  padding-bottom: 5px;
+  font-weight: 700;
+  font-size: small;
+  
 }
 
 .next-game-title-container {

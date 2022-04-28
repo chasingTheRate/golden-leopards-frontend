@@ -9,7 +9,7 @@ const GLScheduleList = ({ data = [] }) => {
     <Container 
       fluid 
       style={{ 
-        padding: 3, 
+        padding: '12px', 
       }}>
       <div style={{ display: 'flex', flexDirection: 'column'}}>
         { data.map((d, i) => <GLScheduleListItem 

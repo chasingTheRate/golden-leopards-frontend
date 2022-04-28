@@ -7,7 +7,8 @@ import {
 } from 'react-bootstrap';
 
 import logo from '../public/goldenLeopards.png';
-import NextGameList from '../src/components/next-game/glNextGameList';
+import GLNextGameContainer from '../src/components/next-game/glNextGameContainer';
+
 
 // This gets called on every request
 export async function getServerSideProps() {
@@ -22,12 +23,7 @@ const GLHome = ({ data }) => {
 
   return (
     <Container className="gl-home" fluid>
-      <div className="next-game-title-container">
-        <h5>Next Games</h5>
-      </div>
-      <Container className="next-game-container">
-        <NextGameList data={ data }></NextGameList>
-      </Container>
+      <GLNextGameContainer data={ data }></GLNextGameContainer>
       <div className="logo-container">
         <div>
           <Image src={logo} alt="Logo" height="75px" width="75"/>
