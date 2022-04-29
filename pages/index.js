@@ -20,7 +20,6 @@ export async function getServerSideProps() {
 }
 
 const GLHome = ({ data }) => {
-
   return (
     <Container className="gl-home" fluid>
       <div className='last-game-container' style={{ paddingBottom: '30px'}}>
