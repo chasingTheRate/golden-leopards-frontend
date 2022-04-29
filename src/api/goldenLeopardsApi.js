@@ -38,3 +38,8 @@ export const getNextGames = async () => {
   const results = await (await fetch(`${goldenLeopardApiBasePath}/api/schedules/nextgames`)).json();
   return results ? results : [];
 }
+
+export const getLastGameResults = async () => {
+  const results = await (await fetch(`${goldenLeopardApiBasePath}/api/schedules/last-game-results`)).json();
+  return results ? results : [];
+}
