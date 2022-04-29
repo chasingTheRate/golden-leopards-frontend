@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Image from 'next/image';
 
-import { getNextGames } from '../src/api/goldenLeopardsApi';
+import { getNextGames, getLastGameResults } from '../src/api/goldenLeopardsApi';
 import {
   Container,
 } from 'react-bootstrap';
 
 import logo from '../public/goldenLeopards.png';
 import GLNextGameContainer from '../src/components/next-game/glNextGameContainer';
+import GLGameResultContainer from '../src/components/game-result/gameResultContainer';
 
-
-// This gets called on every request
 export async function getServerSideProps() {
-
-  // Fetch data from external API
   const data = await getNextGames();
-  // Pass data to the page via props
-  return { props: { data } }
+  const lastGameResultsData = await getLastGameResults();
+  return { props: { data, lastGameResultsData } }
 }
 
-const GLHome = ({ data }) => {
+const GLHome = ({ data, lastGameResultsData }) => {
 
   return (
     <Container className="gl-home" fluid>
+      <GLGameResultContainer data={ lastGameResultsData }></GLGameResultContainer>
       <GLNextGameContainer data={ data }></GLNextGameContainer>
       <div className="logo-container">
         <div>

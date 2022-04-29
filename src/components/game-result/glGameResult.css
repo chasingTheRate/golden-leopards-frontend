@@ -1,0 +1,83 @@
+.gl-game-result-container {
+  color: rgba(251, 214, 4, 1) !important;
+  /* color: rgb(100, 100, 100); */
+  text-align: center;
+  padding-bottom: 5px;
+  font-weight: 700;
+  font-size: small;
+  
+}
+
+.game-result-title-container {
+  padding-top: 35px;
+  text-align: left;
+}
+
+.game-result-container {
+  display: flex;
+  padding: 0px;
+  flex-direction: column;
+  background-color: white;
+}
+
+.grli {
+  display: flex;
+  flex-direction: column;
+  /* padding: 12px; */
+  border-radius: 5px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  background-color: white;
+}
+
+.grli-score-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.grli-logo-top-container {
+  flex-grow: 1;
+  display: flex;
+}
+
+.grli-opp-logo-container {
+  flex-direction: row-reverse;
+}
+
+.grli-logo-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.grli-team-name-text-container {
+  text-align: center;
+  font-size: x-small;
+  font-weight: 700;
+  line-height: 0.8;
+  color: black
+}
+
+.grli-logo-placeholder {
+  height: 40px;
+  width: 40px;
+  background-color: orange;
+  border-radius: 50%;
+  margin-bottom: 6px;
+}
+
+.grli-score-text-container {
+  flex-grow: 1;
+  text-align: center;
+  color: black;
+  font-weight: 800;
+  font-size: x-large;
+}
+
+.grli-half-text-container {
+  flex-grow: 1;
+  text-align: center;
+  color: black;
+  font-weight: 400;
+  font-size: small;
+}

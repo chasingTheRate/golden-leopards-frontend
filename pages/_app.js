@@ -14,6 +14,7 @@ import '../src/components/tournaments/tournaments.css';
 import '../src/components/achievements/achievements.css';
 import '../src/components/banner/banner.css';
 
+import '../src/components/game-result/glGameResult.css';
 
 import './app.css';
 
