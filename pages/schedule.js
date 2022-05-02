@@ -3,27 +3,52 @@ import {
   Container,
 } from 'react-bootstrap';
 
-import { getSeasonSchedule, getNextGames } from '../src/api/goldenLeopardsApi';
+import { getSeasonSchedule, getNextGames, getLeagues } from '../src/api/goldenLeopardsApi';
 
 import GLScheduleList from "../src/components/schedule/glScheduleList";
 import GLNextGameContainer from '../src/components/next-game/glNextGameContainer';
+import { VALID_LOADERS } from "next/dist/shared/lib/image-config";
 
 export async function getServerSideProps() {
-  const data = await getSeasonSchedule();
+  const schedules = await getSeasonSchedule();
+  const leagues = await getLeagues();
   const nextGameData = await getNextGames();
-  return { props: { data, nextGameData } }
+
+  return { props: { schedules, nextGameData, leagues } }
 }
 
-const GLSchedule = ({ data = [], nextGameData = [] }) => {
+const GLSchedule = ({ schedules = [], leagues, nextGameData = [] }) => {
+
+  const getLeague = (id) => leagues.find(l => l.id === id);
+
+  const getLeagues = () => {
+
+    const leagues = [];
+    var count = 0;
+
+    for (const [key, value] of Object.entries(schedules)) {
+
+      count++;
+      const league = getLeague(key);
+  
+      leagues.push(
+        <div key={`league_${count}`} className="gl-schedule-list-container">
+          <div className="gl-schedule-title-container">
+            <span>{ league.displayName }</span>
+          </div>
+          <GLScheduleList data={ value }></GLScheduleList>
+        </div>
+      )
+    }
+
+    return leagues;
+
+  }
+
   return (
     <Container fluid className="gl-schedule-container">
       <GLNextGameContainer data={ nextGameData } ></GLNextGameContainer>
-      <div className="gl-schedule-list-container">
-        <div className="gl-schedule-title-container">
-          <span>Spring 2022</span>
-        </div>
-        <GLScheduleList data={ data }></GLScheduleList>
-      </div>
+      { getLeagues() }
     </Container>
   );
 }

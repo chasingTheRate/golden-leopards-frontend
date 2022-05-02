@@ -22,11 +22,6 @@ const GLHome = ({ data, lastGameResultsData }) => {
     <Container className="gl-home" fluid>
       <GLGameResultContainer data={ lastGameResultsData }></GLGameResultContainer>
       <GLNextGameContainer data={ data }></GLNextGameContainer>
-      <div className="logo-container">
-        <div>
-          <Image src={logo} alt="Logo" height="75px" width="75"/>
-        </div>
-      </div>
     </Container>
   );
 }

@@ -8,8 +8,6 @@ import Image from 'next/image';
 import logo from '../../../public/goldenLeopards.png';
 
 const GLGameResultItem = ({ record }) => {
-
-  console.log(record);
   const { 
     ourScore, 
     opponentScore, 
@@ -30,13 +28,13 @@ const GLGameResultItem = ({ record }) => {
                 </div>
               </div>
             </div>
-            <div class='grli-score-text-container'>
+            <div className='grli-score-text-container'>
               <span>{ ourScore }</span>
             </div>
-            <div class='grli-half-text-container'>
+            <div className='grli-half-text-container'>
               <span>FT</span>
             </div>
-            <div class='grli-score-text-container'>
+            <div className='grli-score-text-container'>
               <span>{ opponentScore }</span>
             </div>
             <div className='grli-logo-top-container grli-opp-logo-container'>
