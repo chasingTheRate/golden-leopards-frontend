@@ -7,7 +7,6 @@ import { getSeasonSchedule, getNextGames, getLeagues } from '../src/api/goldenLe
 
 import GLScheduleList from "../src/components/schedule/glScheduleList";
 import GLNextGameContainer from '../src/components/next-game/glNextGameContainer';
-import { VALID_LOADERS } from "next/dist/shared/lib/image-config";
 
 export async function getServerSideProps() {
   const schedules = await getSeasonSchedule();
@@ -30,12 +29,18 @@ const GLSchedule = ({ schedules = [], leagues, nextGameData = [] }) => {
 
       count++;
       const league = getLeague(key);
-  
+
+      let leagueTitle = league.scheduleLink
+        ? <div className="gl-schedule-link-title-container">
+            <a href={ league.scheduleLink }>{ league.displayName }</a>
+          </div>
+        : <div className="gl-schedule-title-container">
+                <span>{ league.displayName }</span>
+          </div>
+
       leagues.push(
         <div key={`league_${count}`} className="gl-schedule-list-container">
-          <div className="gl-schedule-title-container">
-            <span>{ league.displayName }</span>
-          </div>
+          { leagueTitle }
           <GLScheduleList data={ value }></GLScheduleList>
         </div>
       )

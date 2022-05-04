@@ -6,9 +6,17 @@
   background-color: #fff;
 }
 
+
 .gl-schedule-title-container {
-  /* color: rgb(100, 100, 100); */
   color: rgba(251, 214, 4, 1) !important;
+  font-weight: 700;
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: small;
+}
+
+.gl-schedule-link-title-container {
+  color: var(--primary-team-color) !important;
   font-weight: 700;
   text-align: center;
   padding-bottom: 10px;
