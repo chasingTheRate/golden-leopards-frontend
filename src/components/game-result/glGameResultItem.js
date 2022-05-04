@@ -15,6 +15,8 @@ const GLGameResultItem = ({ record }) => {
     opponentLogoLink
   } = record;
 
+  console.log('test');
+
   return (
     <div className='grli'>
         <div className='grli-score-container'>
