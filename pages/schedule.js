@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   Container,
 } from 'react-bootstrap';
+import Image from 'next/image';
 
 import { getSeasonSchedule, getNextGames, getLeagues } from '../src/api/goldenLeopardsApi';
 
@@ -29,18 +30,33 @@ const GLSchedule = ({ schedules = [], leagues, nextGameData = [] }) => {
 
       count++;
       const league = getLeague(key);
+      const {
+        logoFileName,
+        logoHeight = 60,
+        logoWidth = 60,
+        scheduleLink,
+      } = league
 
-      let leagueTitle = league.scheduleLink
+      let leagueTitle = scheduleLink
         ? <div className="gl-schedule-link-title-container">
-            <a href={ league.scheduleLink }>{ league.displayName }</a>
+            <a href={ scheduleLink }>{ league.displayName }</a>
           </div>
         : <div className="gl-schedule-title-container">
                 <span>{ league.displayName }</span>
           </div>
 
+      let leagueLogo = league.logoFileName
+      ? <div>
+          <Image src={ `https://d33nclgf902cx6.cloudfront.net/assets/leagues/${ logoFileName }` } alt="leagueLogo" height={ logoHeight } width={ logoWidth }/>
+        </div>
+      : null
+
       leagues.push(
         <div key={`league_${count}`} className="gl-schedule-list-container">
-          { leagueTitle }
+          <Container style={{display: 'flex', flexDirection: 'column', alignItems: "center", justifyContent: 'center'}}>
+            { leagueLogo }
+            { leagueTitle }
+          </Container>
           <GLScheduleList data={ value }></GLScheduleList>
         </div>
       )
