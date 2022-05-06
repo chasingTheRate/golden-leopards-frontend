@@ -12,7 +12,9 @@ const GLGameResultItem = ({ record }) => {
     ourScore, 
     opponentScore, 
     opponentShortName = 'OPP',
-    opponentLogoLink
+    teamLogoFileName,
+    teamLogoHeight,
+    teamLogoWidth,
   } = record;
 
 
@@ -41,8 +43,8 @@ const GLGameResultItem = ({ record }) => {
             <div className='grli-logo-top-container grli-opp-logo-container'>
               <div className='grli-logo-container'>
                 <div>
-                  { opponentLogoLink 
-                    ? <Image src={logo} alt="Logo" height="40px" width="40"/>
+                  { teamLogoFileName 
+                    ? <Image src={ `https://d33nclgf902cx6.cloudfront.net/assets/teams/${ teamLogoFileName }` }  alt="Logo" height={ teamLogoHeight } width={ teamLogoWidth }/>
                     : <div className='grli-logo-placeholder'></div>
                   }
                 </div>

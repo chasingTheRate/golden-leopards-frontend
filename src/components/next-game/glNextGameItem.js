@@ -4,8 +4,12 @@ import {
 } from 'react-bootstrap';
 import moment from "moment";
 
+import Image from 'next/image';
+
 
 const GLNextGameItem = ({ record }) => {
+
+  const { gameStatus = 'scheduled', teamLogoFileName, teamLogoHeight = 40, teamLogoWidth = 40 } = record;
 
   const getDate = (timestamp) => {
     return (moment.utc(timestamp).format('MMM D'));
@@ -49,6 +53,30 @@ const GLNextGameItem = ({ record }) => {
     }
   }
 
+  const getScoreOrLogo = () => {
+  
+    if (gameStatus === 'final') {
+
+      return <div className="ngli-score-container">
+        { getScore() }
+      </div>
+
+    } else {
+
+      return (
+        <div className="ngli-logo-container">
+          { teamLogoFileName &&
+            <Image 
+              src={ `https://d33nclgf902cx6.cloudfront.net/assets/teams/${ teamLogoFileName }` } 
+              alt="Logo" 
+              height={ teamLogoHeight } 
+              width= { teamLogoWidth }
+            /> }
+        </div>
+      )
+    }     
+  }
+
   return (
     <div className='ngli'>
         <div style={{ 
@@ -83,9 +111,7 @@ const GLNextGameItem = ({ record }) => {
                 </div>
             </div>
           </div>
-            <div className="ngli-score-container">
-                { getScore() }
-            </div>
+          { getScoreOrLogo() }
         </div>
         <hr style={{flexGrow: 1}}></hr>
       </div>

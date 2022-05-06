@@ -26,7 +26,17 @@
 
 
 .sli-score-container {
-  width: 75px;
+  min-width: 50px;
+  display: flex;
+  color: rgb(125 125 125);
+  font-size: 0.9em;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+}
+
+.sli-logo-container {
+  min-width: 50px;
   display: flex;
   color: rgb(125 125 125);
   font-size: 0.9em;
