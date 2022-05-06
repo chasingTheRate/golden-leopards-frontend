@@ -9,8 +9,6 @@ import Image from 'next/image';
 const GLScheduleListItem = ({ record }) => {
 
   const { gameStatus = 'scheduled', teamLogoFileName, teamLogoHeight = 40, teamLogoWidth = 40 } = record;
-  
-  console.log(teamLogoFileName);
 
   const getDate = (timestamp) => {
     return (moment.utc(timestamp).format('MMM D'));

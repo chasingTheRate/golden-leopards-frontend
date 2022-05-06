@@ -16,11 +16,14 @@
 }
 
 .gl-schedule-link-title-container {
-  color: var(--primary-team-color) !important;
   font-weight: 700;
   text-align: center;
   padding-bottom: 10px;
   font-size: small;
+}
+
+.gl-schedule-link-title-container a {
+  color: var(--primary-team-color) !important;
 }
 
 .gl-schedule-list-container {
