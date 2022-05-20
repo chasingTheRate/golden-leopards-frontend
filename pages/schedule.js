@@ -3,6 +3,7 @@ import {
   Container,
 } from 'react-bootstrap';
 import Image from 'next/image';
+import _ from 'lodash';
 
 import { getSeasonSchedule, getNextGames, getLeagues } from '../src/api/goldenLeopardsApi';
 
@@ -68,7 +69,9 @@ const GLSchedule = ({ schedules = [], leagues, nextGameData = [] }) => {
 
   return (
     <Container fluid className="gl-schedule-container">
-      <GLNextGameContainer data={ nextGameData } ></GLNextGameContainer>
+      { _.size(nextGameData) > 0 && 
+        <GLNextGameContainer data={ nextGameData } ></GLNextGameContainer>
+      }
       { getLeagues() }
     </Container>
   );

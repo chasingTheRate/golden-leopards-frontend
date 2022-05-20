@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import Image from 'next/image';
+import React from "react";
+import _ from 'lodash';
 
 import { getNextGames, getLastGameResults } from '../src/api/goldenLeopardsApi';
 import {
   Container,
 } from 'react-bootstrap';
 
-import logo from '../public/goldenLeopards.png';
 import GLNextGameContainer from '../src/components/next-game/glNextGameContainer';
 import GLGameResultContainer from '../src/components/game-result/gameResultContainer';
 
@@ -21,7 +20,9 @@ const GLHome = ({ data, lastGameResultsData }) => {
   return (
     <Container className="gl-home" fluid>
       <GLGameResultContainer data={ lastGameResultsData }></GLGameResultContainer>
-      <GLNextGameContainer data={ data }></GLNextGameContainer>
+      { _.size(data) > 0 &&
+        <GLNextGameContainer data={ data }></GLNextGameContainer>
+      }
     </Container>
   );
 }

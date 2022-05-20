@@ -153,7 +153,7 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
     <Container fluid className='tournaments-page-container'>
       <Container className='tournament-list-container'>
         <div className='tournament-title-container'>
-          <span>Upcoming Tournaments</span>
+          <span style={{fontSize: 'medium'}}>Upcoming Tournaments</span>
         </div>
         <div className='tournaments-filter-container'>
           <span>&nbsp; FILTER &nbsp;</span>
