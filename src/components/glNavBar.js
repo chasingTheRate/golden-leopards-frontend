@@ -15,8 +15,7 @@ import goldenLeopardsTextLogo from '../../public/goldenLeopardsTextBlue.png';
 const GLNavBar = ({ user, isLoggedIn, handleLogin }) => {
 
   const [expanded, setExpanded] = useState(false);
-  console.log(isLoggedIn);
-  
+
   return (
     <div style={{position: 'relative', width: '100%'}}>
       <Navbar className="navbar-custom" bg="light" expand="lg" expanded={expanded}>
