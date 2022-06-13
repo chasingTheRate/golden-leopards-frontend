@@ -1,9 +1,10 @@
 import GlNavbar from '../glNavBar'
 
-export default function Layout({ children }) {
+export default function Layout({ children, user, isLoggedIn, handleLogin }) {
+
   return (
     <>
-      <GlNavbar />
+      <GlNavbar isLoggedIn={ isLoggedIn } user={ user } handleLogin={ handleLogin } />
       <main>{children}</main>
     </>
   )

@@ -2,7 +2,8 @@
 import {
   Navbar,
   Container,
-  Nav
+  Nav,
+  Button,
 } from 'react-bootstrap';
 
 import React, { useState } from "react";
@@ -11,10 +12,11 @@ import Link from 'next/link'
 
 import goldenLeopardsTextLogo from '../../public/goldenLeopardsTextBlue.png';
 
-const GLNavBar = () => {
+const GLNavBar = ({ user, isLoggedIn, handleLogin }) => {
 
   const [expanded, setExpanded] = useState(false);
-
+  console.log(isLoggedIn);
+  
   return (
     <div style={{position: 'relative', width: '100%'}}>
       <Navbar className="navbar-custom" bg="light" expand="lg" expanded={expanded}>
@@ -33,6 +35,11 @@ const GLNavBar = () => {
                 <Link href="/achievements" passHref>
                   <Nav.Link onClick={() => setExpanded(false)}>Achievements</Nav.Link>
                 </Link>
+            </Nav>
+            <Nav className='justify-content-end'>
+              <div>
+                <Button className='login-button' onClick={ handleLogin }>{ isLoggedIn ? 'Logout' : 'Login'}</Button>
+              </div>
             </Nav>
           </Navbar.Collapse>
         </Container>

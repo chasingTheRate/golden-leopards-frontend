@@ -48,3 +48,8 @@ export const getLeagues = async () => {
   const results = await (await fetch(`${goldenLeopardApiBasePath}/api/leagues`)).json();
   return results ? results : [];
 }
+
+export const getUser = async (access_token) => {
+  const results = await (await fetch(`${goldenLeopardApiBasePath}/api/user?access_token=${access_token}`)).json();
+  return results ? results : [];
+}
