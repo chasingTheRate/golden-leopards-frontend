@@ -16,6 +16,7 @@ const GLGameResultList = ({ data = [] }) => {
         { data.map((d, i) => <GLGameResultItem 
           key={ `grli-${i}` } 
           record={ d }
+          eventKey={ i.toString() }
         ></GLGameResultItem>)}
       </div>
     </Container>
