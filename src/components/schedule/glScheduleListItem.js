@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 const GLScheduleListItem = ({ record }) => {
 
-  const { gameStatus = 'scheduled', teamLogoFileName, teamLogoHeight = 40, teamLogoWidth = 40 } = record;
+  const { gamestatus = 'scheduled', logofilename, logoheight = 40, logowidth = 40 } = record;
 
   const getDate = (timestamp) => {
     return (moment.utc(timestamp).format('MMM D'));
@@ -18,8 +18,8 @@ const GLScheduleListItem = ({ record }) => {
     return (moment.utc(timestamp).local().format('h:mma'));
   }
 
-  const getHomeAwayBadge = (homeTeam) => {
-    if ((homeTeam === 'Dash Woodlands 2010/11 - Johnson 1') || (homeTeam === 'Dash Woodlands 2010/11 - Johnson 2')) {
+  const getHomeAwayBadge = (hometeam) => {
+    if ((hometeam === 'Dash Woodlands 2010/11 - Johnson 1') || (hometeam === 'Dash Woodlands 2010/11 - Johnson 2')) {
         return <Badge className="sli-badge-home">HOME</Badge>
     } else {
       return <Badge className="sli-badge-away" bg="light" text="dark">AWAY</Badge>
@@ -27,10 +27,10 @@ const GLScheduleListItem = ({ record }) => {
   }
 
   const getOpponentName = () => {
-    const { recordedGame, opponent, veoLink } = record;
+    const { recordgame, opponent, veolink } = record;
 
-    if (recordedGame) {
-      return <a href={ veoLink }>{ opponent }</a>
+    if (recordgame) {
+      return <a href={ veolink }>{ opponent }</a>
     } else {
       return <span>{ opponent }</span>
     }
@@ -38,15 +38,15 @@ const GLScheduleListItem = ({ record }) => {
 
   const getScore = () => {
 
-    const { ourScore, opponentScore } = record;
+    const { ourscore, opponentscore } = record;
     
-    if (Number.isInteger(ourScore) && Number.isInteger(opponentScore)) {
-      if (ourScore > opponentScore) {
-        return <span className='sli-score-win'>{`W ${ourScore} - ${opponentScore}`}</span>
-      } else if (ourScore < opponentScore) {
-        return <span className='sli-score-loss'>{`L ${ourScore} - ${opponentScore}`}</span>
+    if (Number.isInteger(ourscore) && Number.isInteger(opponentscore)) {
+      if (ourscore > opponentscore) {
+        return <span className='sli-score-win'>{`W ${ourscore} - ${opponentscore}`}</span>
+      } else if (ourscore < opponentscore) {
+        return <span className='sli-score-loss'>{`L ${ourscore} - ${opponentscore}`}</span>
       } else {
-        return <span className='sli-score-tie'>{`T ${ourScore} - ${opponentScore}`}</span>
+        return <span className='sli-score-tie'>{`T ${ourscore} - ${opponentscore}`}</span>
       }
     } else {
       return null;
@@ -55,7 +55,7 @@ const GLScheduleListItem = ({ record }) => {
 
   const getScoreOrLogo = () => {
   
-    if (gameStatus === 'final') {
+    if (gamestatus === 'final') {
 
       return <div className="sli-score-container">
         { getScore() }
@@ -65,12 +65,12 @@ const GLScheduleListItem = ({ record }) => {
 
       return (
         <div className="sli-logo-container">
-          { teamLogoFileName &&
+          { logofilename &&
             <Image 
-              src={ `https://d33nclgf902cx6.cloudfront.net/assets/teams/${ teamLogoFileName }` } 
+              src={ `https://d33nclgf902cx6.cloudfront.net/assets/teams/${ logofilename }` } 
               alt="Logo" 
-              height={ teamLogoHeight } 
-              width= { teamLogoWidth }
+              height={ logoheight } 
+              width= { logowidth }
             /> }
         </div>
       )
@@ -99,7 +99,7 @@ const GLScheduleListItem = ({ record }) => {
             <br></br>
             <span> { getTime(record.start) }</span>
             <div>
-              { getHomeAwayBadge(record.homeTeam) }
+              { getHomeAwayBadge(record.hometeam) }
             </div>
           </div>
           <div style={{

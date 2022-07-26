@@ -58,12 +58,12 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
 
   const handleCheckboxChange = (e, player) => {
     const updatedTournament = Object.assign({}, selectedTournament);
-    const existingPlayers = updatedTournament.players ? updatedTournament.players : [];
+    const existingPlayers = updatedTournament.player_ids ? updatedTournament.player_ids : [];
 
     if (existingPlayers.includes(player.id)) {
-      updatedTournament.players = existingPlayers.filter(e => e !== player.id);
+      updatedTournament.player_ids = existingPlayers.filter(e => e !== player.id);
     } else {
-      updatedTournament.players = [ ...existingPlayers, player.id];
+      updatedTournament.player_ids = [ ...existingPlayers, player.id];
     }
     
     setSelectedTournament(updatedTournament);
@@ -78,7 +78,7 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
 
     const previousTournament = tournamentSchedule.find(t => t.id === selectedTournament.id);
 
-    if (_.isEqual(previousTournament.players, selectedTournament.players)) {
+    if (_.isEqual(previousTournament.player_ids, selectedTournament.player_ids)) {
       handleClose();
       return;
     }
@@ -105,7 +105,7 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
     filterTournamentSchedule(e.target.value, null);
   }
 
-  const isValidLocation = ({ isLocal = false, isOutOfState = false }, location) => {
+  const isValidLocation = ({ islocal = false, isoutofstate = false }, location) => {
   
     let isValid = false;
 
@@ -116,13 +116,13 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
       case 'all':
         return true;
       case 'local':
-        isValid = isLocal;
+        isValid = islocal;
         break;
       case 'inState':
-        isValid = !isOutOfState
+        isValid = !isoutofstate
         break;
       case 'outOfState':
-        isValid = isOutOfState;
+        isValid = isoutofstate;
         break;
       default:
         return true;
@@ -131,13 +131,13 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
     return isValid;
   }
 
-  const isValidMonth = ({ ['Start Date']: startDate }, month) => {
+  const isValidMonth = ({ ['Start Date']: startdate }, month) => {
 
     if (!month || month === 'Month' || month === 'all') {
       return true;
     }
 
-    return month ? moment(startDate, 'YYYY-MM-DD').format('MMM').toString() === month : true;
+    return month ? moment(startdate, 'YYYY-MM-DD').format('MMM').toString() === month : true;
   };
 
   const filterTournamentSchedule = (location, month) => {
@@ -220,9 +220,9 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
                   key={`roster-checkbox-${r.id}`} 
                   type={'checkbox'}
                   id={`default-checkbox-${r.id}`}
-                  label={ r.displayName }
+                  label={ r.displayname }
                   inline
-                  checked={ selectedTournament.players ? selectedTournament.players.includes(r.id) : false }
+                  checked={ selectedTournament.player_ids ? selectedTournament.player_ids.includes(r.id) : false }
                   onChange={ (e) => handleCheckboxChange(e, r) }
                   style={{width: '85px'}}
                 />

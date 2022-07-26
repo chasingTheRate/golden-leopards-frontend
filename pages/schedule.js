@@ -30,25 +30,25 @@ const GLSchedule = ({ schedules = [], leagues, nextGameData = [] }) => {
     for (const [key, value] of Object.entries(schedules)) {
 
       count++;
-      const league = getLeague(key);
+      const { league, games } = value;
       const {
-        logoFileName,
-        logoHeight = 60,
-        logoWidth = 60,
-        scheduleLink,
+        logofilename,
+        logoheight = 60,
+        logowidth = 60,
+        scheduleurl,
       } = league
 
-      let leagueTitle = scheduleLink
+      let leagueTitle = scheduleurl
         ? <div className="gl-schedule-link-title-container">
-            <a href={ scheduleLink }>{ league.displayName }</a>
+            <a href={ scheduleurl }>{ league.displayname }</a>
           </div>
         : <div className="gl-schedule-title-container">
-                <span>{ league.displayName }</span>
+                <span>{ league.displayname }</span>
           </div>
 
-      let leagueLogo = league.logoFileName
+      let leagueLogo = league.logofilename
       ? <div>
-          <Image src={ `https://d33nclgf902cx6.cloudfront.net/assets/leagues/${ logoFileName }` } alt="leagueLogo" height={ logoHeight } width={ logoWidth }/>
+          <Image src={ `https://d33nclgf902cx6.cloudfront.net/assets/leagues/${ logofilename }` } alt="leagueLogo" height={ logoheight } width={ logowidth }/>
         </div>
       : null
 
@@ -58,7 +58,7 @@ const GLSchedule = ({ schedules = [], leagues, nextGameData = [] }) => {
             { leagueLogo }
             { leagueTitle }
           </Container>
-          <GLScheduleList data={ value }></GLScheduleList>
+          <GLScheduleList data={ games }></GLScheduleList>
         </div>
       )
     }
