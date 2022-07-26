@@ -15,21 +15,21 @@ const TournamentListItem = ({record, onAdd }) => {
   }, []);
 
   const formatDate = (record) => {
-    let { ['Start Date']: startDate, ['End Date']: endDate } = record;
+    let { startdate, enddate } = record;
 
-    startDate = moment(startDate, 'YYYY-MM-DD').format('MMM D');
-    const startMonth = moment(startDate, 'MMM D').format('MMM');
-    const startDay = moment(startDate, 'MMM D').format('DD');
+    startdate = moment(startdate, 'YYYY-MM-DD').format('MMM D');
+    const startMonth = moment(startdate, 'MMM D').format('MMM');
+    const startDay = moment(startdate, 'MMM D').format('DD');
 
-    endDate = moment(endDate, 'YYYY-MM-DD').format('MMM D');
-    const endMonth = moment(endDate, 'MMM D').format('MMM');
-    const endDay = moment(endDate, 'MMM D').format('D');
+    enddate = moment(enddate, 'YYYY-MM-DD').format('MMM D');
+    const endMonth = moment(enddate, 'MMM D').format('MMM');
+    const endDay = moment(enddate, 'MMM D').format('D');
 
-    if (startDate === endDate) {
-      return startDate;
+    if (startdate === enddate) {
+      return startdate;
     }
 
-    return `${startDate}-${endDay}`;
+    return `${startdate}-${endDay}`;
   }
 
   const isFilled = () => {
@@ -81,7 +81,7 @@ const TournamentListItem = ({record, onAdd }) => {
             }}>
             <div style={{ lineHeight: '1.1em', fontWeight: 500}}>
                 { getStatusBadge(record.status) }
-                <a href={ record.Url }>{ record.Name }</a>
+                <a href={ record.url }>{ record.name }</a>
                 <br></br>
                 <span
                   style={{
@@ -101,14 +101,14 @@ const TournamentListItem = ({record, onAdd }) => {
                     color: '#ffd700',
                     fontWeight: 600
                 }}
-                >{ record.Location }</span>
+                >{ record.location }</span>
             </div>
           </div>
           <div style={{width: '50px'}}>
             <Button color='red' disabled={ isDisabled(record.status) } onClick={ (e) => onAdd(record) }><i className="bi bi-plus-circle"></i></Button>
           </div>
         </div>
-        { (record.interested && !notAttending) && 
+        { (record.players && !notAttending) && 
         
           <div>
             <div style={{display: 'flex', alignItems: 'center', height: '20px', marginTop: '5px' }}>
@@ -118,7 +118,7 @@ const TournamentListItem = ({record, onAdd }) => {
                 color: 'rgb(100 100 100)',
                 fontWeight: 600
               }}
-              >&nbsp; INTERESTED &nbsp;</span>
+              >&nbsp; Intrested &nbsp;</span>
               <hr style={{flexGrow: 1}}></hr>
             </div>
             <div>
@@ -129,8 +129,8 @@ const TournamentListItem = ({record, onAdd }) => {
                 alignItems: 'center',
                 overflowX: 'scroll'
               }}>
-                { record.interested && record.interested.map((i, index) => (
-                  <div key={`interested-badge-${index}`} style={{ marginRight: '3px'}}>
+                { record.players && record.players.map((i, index) => (
+                  <div key={`players-badge-${index}`} style={{ marginRight: '3px'}}>
                     <Badge bg="secondary">{ i }</Badge>
                   </div>
                 ))}

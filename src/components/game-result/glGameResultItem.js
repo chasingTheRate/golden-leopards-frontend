@@ -28,18 +28,18 @@ const GLGameResultItem = ({ record, eventKey }) => {
   const router = useRouter()
 
   const { 
-    ourScore, 
-    opponentScore, 
-    opponentShortName = 'OPP',
-    teamLogoFileName,
-    teamLogoHeight,
-    teamLogoWidth,
-    recordedGame,
-    veoLink
+    ourscore, 
+    opponentscore, 
+    opponentshortname = 'OPP',
+    logofilename,
+    logoheight,
+    logowidth,
+    recordgame,
+    veolink
   } = record;
 
   const handleVideoClick = () => {
-    router.push(veoLink);
+    router.push(veolink);
   }
 
   return (
@@ -60,24 +60,24 @@ const GLGameResultItem = ({ record, eventKey }) => {
                 </div>
               </div>
               <div className='grli-score-text-container'>
-                <span>{ ourScore }</span>
+                <span>{ ourscore }</span>
               </div>
               <div className='grli-half-text-container'>
                 <span>FT</span>
               </div>
               <div className='grli-score-text-container'>
-                <span>{ opponentScore }</span>
+                <span>{ opponentscore }</span>
               </div>
               <div className='grli-logo-top-container grli-opp-logo-container'>
                 <div className='grli-logo-container'>
                   <div>
-                    { teamLogoFileName 
-                      ? <Image src={ `https://d33nclgf902cx6.cloudfront.net/assets/teams/${ teamLogoFileName }` }  alt="Logo" height={ teamLogoHeight } width={ teamLogoWidth }/>
+                    { logofilename 
+                      ? <Image src={ `https://d33nclgf902cx6.cloudfront.net/assets/teams/${ logofilename }` }  alt="Logo" height={ logoheight } width={ logowidth }/>
                       : <div className='grli-logo-placeholder'></div>
                     }
                   </div>
                   <div className='grli-team-name-text-container'>
-                    <span>{ opponentShortName }</span>
+                    <span>{ opponentshortname }</span>
                   </div>
                 </div>
               </div>
@@ -91,7 +91,7 @@ const GLGameResultItem = ({ record, eventKey }) => {
               <div style={{paddingTop: '5px'}}>
                 <Button
                   size="sm"
-                  disabled={ !recordedGame }
+                  disabled={ !recordgame }
                   onClick={ handleVideoClick }
                 ><i className="bi bi-camera-video"></i></Button>
               </div>
