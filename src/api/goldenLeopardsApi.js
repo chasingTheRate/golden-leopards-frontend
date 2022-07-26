@@ -22,10 +22,6 @@ export const updateTournament = async (id, tournament) => {
 
   //  Remove airtable computed & id fields
 
-  delete modifiedTournaments.recordNumber;
-  delete modifiedTournaments.interested;
-  delete modifiedTournaments.id;
-
   const requestOptions = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
