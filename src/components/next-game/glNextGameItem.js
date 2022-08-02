@@ -9,7 +9,7 @@ import Image from 'next/image';
 
 const GLNextGameItem = ({ record }) => {
 
-  const { gameStatus = 'scheduled', teamLogoFileName, teamLogoHeight = 40, teamLogoWidth = 40 } = record;
+  const { gameStatus = 'scheduled', logofilename, logoheight = 40, logowidth = 40 } = record;
 
   const getDate = (timestamp) => {
     return (moment.utc(timestamp).format('MMM D'));
