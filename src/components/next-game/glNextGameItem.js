@@ -65,12 +65,12 @@ const GLNextGameItem = ({ record }) => {
 
       return (
         <div className="ngli-logo-container">
-          { teamLogoFileName &&
+          { logoFileName &&
             <Image 
-              src={ `https://d33nclgf902cx6.cloudfront.net/assets/teams/${ teamLogoFileName }` } 
+              src={ `https://d33nclgf902cx6.cloudfront.net/assets/teams/${ logoFileName }` } 
               alt="Logo" 
-              height={ teamLogoHeight } 
-              width= { teamLogoWidth }
+              height={ logoHeight } 
+              width= { logoWidth }
             /> }
         </div>
       )

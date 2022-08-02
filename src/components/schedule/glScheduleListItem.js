@@ -1,12 +1,26 @@
 import React from "react";
 import {
-  Badge
+  Badge,
+  Accordion,
+  useAccordionButton,
+  Card,
+  Button
 } from 'react-bootstrap';
 import moment from "moment";
-
 import Image from 'next/image';
 
-const GLScheduleListItem = ({ record }) => {
+function CustomToggle({ children, eventKey }) {
+  const decoratedOnClick = useAccordionButton(eventKey);
+  return (
+    <div
+      onClick={decoratedOnClick}
+    >
+      {children}
+    </div>
+  );
+}
+
+const GLScheduleListItem = ({ record, eventKey, onEditGame }) => {
 
   const { gamestatus = 'scheduled', logofilename, logoheight = 40, logowidth = 40 } = record;
 
@@ -78,50 +92,49 @@ const GLScheduleListItem = ({ record }) => {
   }
   
   return (
-    <div 
-      className='sli'
-      style={{ 
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: '#fff'
-      }}>
-        <div style={{ 
-          display: 'flex',
-        }}>
-          <div style={{
-                color: 'rgb(75 75 75)',
-                fontWeight: 600, 
-                fontSize: '0.8em',
-                textAlign: 'start',
-                padding: '0 5px 0 5px'
-              }}>
-            <span>{ getDate(record.start) }</span>
-            <br></br>
-            <span> { getTime(record.start) }</span>
-            <div>
-              { getHomeAwayBadge(record.hometeam) }
-            </div>
-          </div>
-          <div style={{
-              display: 'flex',
-              flexGrow: 1,
-              flexDirection: 'column',
-              justifyContent: 'center',
-              padding: '3px 5px 3px 5px',
-              textAlign: 'center'
-            }}>
-            <div className='sli-opponent-text' style={{ lineHeight: '1.1em' }}>
-                { getOpponentName() }
-                <div className='sli-location-text'>
-                  <span>{ record.field }</span>
+    <Accordion>
+      <Card style={{border: 0 }}>
+        <Card.Header style={{ padding: 0, border: 0 }}>
+          <div className='sli'>
+            <CustomToggle eventKey={ eventKey }>
+              <div className="sli-container">
+                <div className="sli-time-location-container">
+                  <span>{ getDate(record.start) }</span>
+                  <br></br>
+                  <span> { getTime(record.start) }</span>
+                  <div>
+                    { getHomeAwayBadge(record.hometeam) }
+                  </div>
                 </div>
-            </div>
+                <div className="sli-opponent-field-container">
+                  <div className='sli-opponent-text'>
+                      { getOpponentName() }
+                      <div className='sli-location-text'>
+                        <span>{ record.field }</span>
+                      </div>
+                  </div>
+                </div>
+                { getScoreOrLogo() }
+              </div>
+            </CustomToggle>
           </div>
-            { getScoreOrLogo() }
-        </div>
+        </Card.Header>
+        <Accordion.Collapse eventKey={ eventKey }>
+          <Card.Body className="sli-card-container">
+            <div className="sli-action-container">
+              <div className="sli-action-button-container">
+                <Button
+                  size="sm"
+                  onClick= { (e) =>  onEditGame(record) }
+                ><i className="bi bi-pencil"></i></Button>
+              </div>
+            </div>
+          </Card.Body>
+        </Accordion.Collapse>
         <hr style={{flexGrow: 1}}></hr>
-      </div>
-      );
+      </Card>
+    </Accordion>
+  );
 }
 
 export default GLScheduleListItem;

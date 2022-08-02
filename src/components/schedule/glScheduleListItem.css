@@ -1,3 +1,28 @@
+.sli {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.sli-container {
+  display: flex;
+}
+
+.sli-time-location-container {
+  color: rgb(75 75 75);
+  font-weight: 600;
+  font-size: 0.8em;
+  text-align: start;
+}
+
+.sli-opponent-field-container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3px 5px 3px 5px;
+  text-align: center;
+}
 
 .sli-badge-home {
   background-color: var(--primary-team-color) !important;
@@ -48,6 +73,7 @@
 .sli-opponent-text {
   font-Weight: 500;
   font-size: 0.9em;
+  line-height: 1.1em;
 }
 
 .sli-opponent-text span {
@@ -64,4 +90,21 @@
 
 .sli-score-loss {
   color: salmon !important;
+}
+
+.sli-card-container {
+  padding: 12px 0 0 0;
+}
+
+.sli-action-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.sli-action-container button {
+  background-color: var(--primary-team-color) !important;
+}
+
+.sli-action-button-container {
+  padding-top: 5px;
 }

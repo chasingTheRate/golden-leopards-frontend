@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Container,
 } from 'react-bootstrap';
@@ -9,8 +9,10 @@ import { getSeasonSchedule, getNextGames, getLeagues } from '../src/api/goldenLe
 
 import GLScheduleList from "../src/components/schedule/glScheduleList";
 import GLNextGameContainer from '../src/components/next-game/glNextGameContainer';
+import EditGameModal from '../src/components/modals/editGameModal';
 
 export async function getServerSideProps() {
+
   const schedules = await getSeasonSchedule();
   const leagues = await getLeagues();
   const nextGameData = await getNextGames();
@@ -20,7 +22,33 @@ export async function getServerSideProps() {
 
 const GLSchedule = ({ schedules = [], leagues, nextGameData = [] }) => {
 
-  const getLeague = (id) => leagues.find(l => l.id === id);
+  const [showEditGameModal, setShowEditGameModal] = useState(false);
+  const [selectedGame, setSelectedGame] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [modalBodyHeight, setModalBodyHeight] = useState(0);
+
+  const modalRef = useRef(null)
+
+
+  const handleOnShowEditGameModal = () => {
+    const div = Object.assign( {}, modalRef);
+    setModalBodyHeight(div.current.clientHeight);
+  }
+
+  const handleShowEditGameModal = () => {
+    setShowEditGameModal(true)
+  }
+
+  const handleCloseEditGameModal = () => {
+    setSelectedGame({});
+    setShowEditGameModal(false)
+  }
+
+  const handleEditGame = (game) => {
+    console.log(game);
+    setSelectedGame(game);
+    handleShowEditGameModal();
+  }
 
   const getLeagues = () => {
 
@@ -58,7 +86,7 @@ const GLSchedule = ({ schedules = [], leagues, nextGameData = [] }) => {
             { leagueLogo }
             { leagueTitle }
           </Container>
-          <GLScheduleList data={ games }></GLScheduleList>
+          <GLScheduleList data={ games } onEditGame={ handleEditGame }></GLScheduleList>
         </div>
       )
     }
@@ -73,6 +101,16 @@ const GLSchedule = ({ schedules = [], leagues, nextGameData = [] }) => {
         <GLNextGameContainer data={ nextGameData } ></GLNextGameContainer>
       }
       { getLeagues() }
+      <EditGameModal
+        modalRef= { modalRef }
+        show={ showEditGameModal }
+        onHide={ handleCloseEditGameModal }
+        onShow= { handleOnShowEditGameModal }
+        backdrop="static"
+        keyboard={false}
+        centered
+        selectedGame={ selectedGame }
+      ></EditGameModal>
     </Container>
   );
 }
