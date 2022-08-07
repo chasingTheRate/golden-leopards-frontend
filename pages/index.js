@@ -9,20 +9,20 @@ import {
 import GLNextGameContainer from '../src/components/next-game/glNextGameContainer';
 import GLGameResultContainer from '../src/components/game-result/gameResultContainer';
 
-export async function getServerSideProps() {
-  const data = await getNextGames();
-  const lastGameResultsData = await getLastGameResults();
-  return { props: { data, lastGameResultsData } }
-}
+// export async function getServerSideProps() {
+//   const data = await getNextGames();
+//   const lastGameResultsData = await getLastGameResults();
+//   return { props: { data, lastGameResultsData } }
+// }
 
-const GLHome = ({ data, lastGameResultsData }) => {
+const GLHome = () => { //({ data, lastGameResultsData }) => {
 
   return (
     <Container className="gl-home" fluid>
       {/* <GLGameResultContainer data={ lastGameResultsData }></GLGameResultContainer> */}
-      { _.size(data) > 0 &&
+      {/* { _.size(data) > 0 &&
         <GLNextGameContainer data={ data }></GLNextGameContainer>
-      }
+      } */}
     </Container>
   );
 }
