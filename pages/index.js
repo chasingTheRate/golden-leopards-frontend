@@ -19,10 +19,10 @@ const GLHome = () => ({ data, lastGameResultsData }) => {
 
   return (
     <Container className="gl-home" fluid>
-      {/* <GLGameResultContainer data={ lastGameResultsData }></GLGameResultContainer>
+      <GLGameResultContainer data={ lastGameResultsData }></GLGameResultContainer>
       { _.size(data) > 0 &&
         <GLNextGameContainer data={ data }></GLNextGameContainer>
-      } */}
+      }
     </Container>
   );
 }
