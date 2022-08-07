@@ -15,7 +15,7 @@ export async function getServerSideProps() {
   return { props: { data, lastGameResultsData } }
 }
 
-const GLHome = () => ({ data, lastGameResultsData }) => {
+const GLHome = ({ data, lastGameResultsData }) => {
 
   return (
     <Container className="gl-home" fluid>
