@@ -53,6 +53,7 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
 
   const handleOnShow = () => {
     const div = Object.assign( {}, ref);
+    console.log(div);
     setModalBodyHeight(div.current.clientHeight);
   }
 
