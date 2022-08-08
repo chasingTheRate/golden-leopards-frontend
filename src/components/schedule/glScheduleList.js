@@ -4,7 +4,7 @@ import {
 
 import GLScheduleListItem from './glScheduleListItem';
 
-const GLScheduleList = ({ data = [] }) => {
+const GLScheduleList = ({ data = [], onEditGame }) => {
   return (
     <Container 
       fluid 
@@ -15,6 +15,8 @@ const GLScheduleList = ({ data = [] }) => {
         { data.map((d, i) => <GLScheduleListItem 
           key={ `sli-${i}` } 
           record={ d }
+          eventKey={ i.toString() }
+          onEditGame= { onEditGame }
         ></GLScheduleListItem>)}
       </div>
     </Container>

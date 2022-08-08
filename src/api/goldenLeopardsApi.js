@@ -44,3 +44,14 @@ export const getLeagues = async () => {
   const results = await (await fetch(`${goldenLeopardApiBasePath}/api/leagues`)).json();
   return results ? results : [];
 }
+
+export const updateGame = async (game) => {
+ 
+  const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(game)
+  };
+
+  await fetch(`${goldenLeopardApiBasePath}/api/schedules/games/${game.id}`, requestOptions);
+}

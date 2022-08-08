@@ -53,6 +53,7 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
 
   const handleOnShow = () => {
     const div = Object.assign( {}, ref);
+    console.log(div);
     setModalBodyHeight(div.current.clientHeight);
   }
 
@@ -208,26 +209,26 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
           <Modal.Title>Add/Remove Interested Player(s)</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            {isLoading 
+            { isLoading 
               ? <div className='tournament-modal-loading-container' style={{ height: `${modalBodyHeight}px` }}>
                   <Spinner animation="border" role="status">
                     <span className="visually-hidden">Loading...</span>
                   </Spinner>
                 </div>
               : <div ref={ref} key={`default-checkbox`} style={{color: 'rgb(100, 100, 100)'}}>
-              {roster.map(r => (
-                <Form.Check
-                  key={`roster-checkbox-${r.id}`} 
-                  type={'checkbox'}
-                  id={`default-checkbox-${r.id}`}
-                  label={ r.displayname }
-                  inline
-                  checked={ selectedTournament.player_ids ? selectedTournament.player_ids.includes(r.id) : false }
-                  onChange={ (e) => handleCheckboxChange(e, r) }
-                  style={{width: '85px'}}
-                />
-              ))}
-            </div>}
+                  {roster.map(r => (
+                    <Form.Check
+                      key={`roster-checkbox-${r.id}`} 
+                      type={'checkbox'}
+                      id={`default-checkbox-${r.id}`}
+                      label={ r.displayname }
+                      inline
+                      checked={ selectedTournament.player_ids ? selectedTournament.player_ids.includes(r.id) : false }
+                      onChange={ (e) => handleCheckboxChange(e, r) }
+                      style={{width: '85px'}}
+                    />
+                  ))}
+                </div>  }
             
         </Modal.Body>
         <Modal.Footer>
