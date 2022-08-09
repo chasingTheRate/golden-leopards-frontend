@@ -4,6 +4,7 @@ import {
 } from 'react-bootstrap';
 import Image from 'next/image';
 import _ from 'lodash';
+import moment from "moment";
 
 import { getSeasonSchedule, getNextGames, getLeagues, updateGame } from '../src/api/goldenLeopardsApi';
 
@@ -36,12 +37,12 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [] }) => {
   }
 
   const handleCloseEditGameModal = () => {
-    setSelectedGame({});
     setShowEditGameModal(false);
   }
 
    const handleOnExit = () => {
     setIsLoading(false);
+    setSelectedGame({});
    }
 
   const handleEditGame = (game) => {
