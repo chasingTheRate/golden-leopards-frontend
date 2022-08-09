@@ -7,26 +7,40 @@ import {
   Spinner,
   FloatingLabel
 } from 'react-bootstrap';
-
 import moment from "moment";
+
+import gameProperties from "../schedule/gameProperties";
 
 const EditGameModal = ({ modalRef, show, onHide, onShow, selectedGame, onSubmit, isLoading, onExit }) => {
   
   const [game, setGame] = useState({});
+  const [validationResults, setValidationResults] = useState({});
   const [modalBodyHeight, setModalBodyHeight] = useState(0);
+
+  
   
   React.useEffect(() => {
-      setGame(selectedGame);
+    const tempGame = Object.assign({}, selectedGame);
+    tempGame.start = moment.utc(tempGame.start, 'YYYY-MM-DDTHH:mm:ss.sssZ').local().format('M/D/YYYY h:mma').toString();
+    setGame(tempGame);
   }, [selectedGame])
 
   const handleOnShow = () => {
     const div = Object.assign( {}, modalRef);
     setModalBodyHeight(div.current.clientHeight);
   }
-  
-  const inputBoxDidChange = (e) => {
+ 
+
+  const validationCheck = (property, value) => {
+    const valid = isValid(property, value);
+    setValidationResults({...validationResults, [property.controlId]: valid});
+  }
+
+  const inputBoxDidChange = (e, p) => {
+    console.log(p);
     const updatedGame = Object.assign({}, game);
     updatedGame[e.target.id] = e.target.value;
+    validationCheck(p, e.target.value);
     setGame(updatedGame);
   }
 
@@ -43,8 +57,80 @@ const EditGameModal = ({ modalRef, show, onHide, onShow, selectedGame, onSubmit,
   }
 
   const updateGame = (e) => {
-    onSubmit(game);
+    const tempGame = Object.assign({}, game);
+    tempGame.start = moment(game.start, 'M/D/YYYY h:mma').toISOString();
+    onSubmit(tempGame);
   }
+
+  const isValid = (property, newValue) => {
+    
+    let valid = true;
+
+    if (!property.requiresValidation) {
+      return valid;
+    }
+
+    if (property.validationRegex) {
+      
+    }
+
+    if (property.validationFunction) {
+      valid = property.validationFunction(newValue ? newValue : game[property.controlId]);
+    }
+
+    return valid
+  }
+
+  const getValue = (controlId) => {
+    let value = '';
+
+    try {
+      value = game[controlId].toString();
+    } catch (e) {
+      // do nothing
+    }
+
+    return value;
+  }
+
+  const isDisabled = Object.values(validationResults).includes(false);
+
+  const gamePropertiesList = gameProperties.map(p => {
+
+    let control = [];
+
+    switch (p.type) {
+      case 'date':
+      case 'text':
+        control = (
+          <Form.Group key={ p.controlId } style={{paddingBottom: '8px'}} controlId={ p.controlId }>
+            <Form.Label>{ p.displayName }</Form.Label>
+            <Form.Control type="text" value={ getValue(p.controlId) } onChange={ (e) => inputBoxDidChange(e, p) }/>
+            { isValid(p) 
+              ? <Form.Text className="text-muted">&nbsp;</Form.Text>
+              : <Form.Text className="text-muted">{ p.validationMsg }</Form.Text>
+            }
+          </Form.Group>
+        )
+      break;
+      case 'checkbox':
+        control = (
+          <Form.Group key={ p.controlId } style={{paddingBottom: '8px'}} controlId={ p.controlId }>
+            <Form.Check 
+              type="checkbox" 
+              label={ p.displayName } 
+              checked={ game[p.controlId] || false } 
+              onChange={ (e, p) => checkboxDidChange(e, p) }
+            />
+          </Form.Group>
+        )
+        break;
+      default:
+        break;
+    }
+
+    return control;
+  })
 
   return (
       <Modal
@@ -70,63 +156,7 @@ const EditGameModal = ({ modalRef, show, onHide, onShow, selectedGame, onSubmit,
                 </div>
               :
                 <div style={{ maxHeight: '300px', overflowY: 'scroll'}}>
-                  <Form.Group className="mb-3" controlId="opponent">
-                    <Form.Label>Opponent</Form.Label>
-                    <Form.Control type="text" value={ game.opponent || '' } onChange={ inputBoxDidChange }/>
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="start">
-                    <Form.Label>Time</Form.Label>
-                    <Form.Control 
-                      type="text" 
-                      value={ moment.utc(game.start).local().format('M/D/YYYY h:mma') || '' } 
-                      onChange={ inputBoxDidChange }
-                      disabled
-                    />
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="field">
-                    <Form.Label>Field</Form.Label>
-                    <Form.Control type="text" value={ game.field || '' } onChange={ inputBoxDidChange } />
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="hometeam">
-                    <Form.Label>Home Team</Form.Label>
-                    <Form.Control type="text" value={ game.hometeam || '' } onChange={ inputBoxDidChange } disabled/>
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="gamestatus">
-                    <Form.Label>Game Status</Form.Label>
-                    <Form.Control type="text" value={ game.gamestatus || '' } onChange={ inputBoxDidChange } />
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="ourscore">
-                    <Form.Label>Our Score</Form.Label>
-                    <Form.Control type="text" value={ game.ourscore || '' } onChange={ numberInputBoxDidChange } />
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="opponentscore">
-                    <Form.Label>Opponent Score</Form.Label>
-                    <Form.Control type="number" value={ game.opponentscore || '' } onChange={ numberInputBoxDidChange } />
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="opponentshortname">
-                    <Form.Label>Opponent Shortname</Form.Label>
-                    <Form.Control type="text" value={ game.opponentshortname || '' } onChange={ inputBoxDidChange } />
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="hide">
-                    <Form.Check 
-                      type="checkbox" 
-                      label="Hide" 
-                      checked={ game.hide || false } 
-                      onChange={ checkboxDidChange }
-                    />
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="recordgame">
-                    <Form.Check 
-                      type="checkbox" 
-                      label="Recorded Game" 
-                      checked={ game.recordgame || false } 
-                      onChange={ checkboxDidChange }
-                    />
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="veolink">
-                    <Form.Label>Veo Link</Form.Label>
-                    <Form.Control type="url" value={ game.veolink || '' } onChange={ inputBoxDidChange } />
-                  </Form.Group>
+                  { gamePropertiesList }
                 </div>
           }
         </Modal.Body>
@@ -134,7 +164,7 @@ const EditGameModal = ({ modalRef, show, onHide, onShow, selectedGame, onSubmit,
           <Button variant="secondary" onClick={ onHide }>
             Close
           </Button>
-          <Button variant="primary" onClick={ updateGame }>OK</Button>
+          <Button variant="primary" onClick={ updateGame } disabled={ isDisabled }>OK</Button>
         </Modal.Footer>
       </Modal>
   );
