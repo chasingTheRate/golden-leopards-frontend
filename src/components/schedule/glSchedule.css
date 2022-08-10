@@ -29,3 +29,14 @@
 .gl-schedule-list-container {
   padding-top: 15px;
 }
+
+.league-action-bar-container {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 5px 12px 12px 12px;
+}
+
+.league-action-bar-container button {
+  color: var(--primary-team-color) !important;
+  border-color: var(--primary-team-color) !important;
+}

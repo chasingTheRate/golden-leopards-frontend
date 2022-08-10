@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   Container,
+  Button,
 } from 'react-bootstrap';
 import Image from 'next/image';
 import _ from 'lodash';
 import moment from "moment";
 
-import { getSeasonSchedule, getNextGames, getLeagues, updateGame } from '../src/api/goldenLeopardsApi';
+import { getSeasonSchedule, getNextGames, getLeagues, updateGame, createGame } from '../src/api/goldenLeopardsApi';
 
 import GLScheduleList from "../src/components/schedule/glScheduleList";
 import GLNextGameContainer from '../src/components/next-game/glNextGameContainer';
 import EditGameModal from '../src/components/modals/editGameModal';
+import CreateGameModal from '../src/components/modals/createGameModal';
 
 export async function getServerSideProps() {
 
@@ -25,7 +27,9 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [] }) => {
 
   const [schedule, setSchedule] = useState(ssSchedules);
   const [showEditGameModal, setShowEditGameModal] = useState(false);
+  const [showCreateGameModal, setShowCreateGameModal] = useState(false);
   const [selectedGame, setSelectedGame] = useState({});
+  const [selectedLeagueId, setSelectedLeagueId] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [modalBodyHeight, setModalBodyHeight] = useState(0);
 
@@ -33,11 +37,20 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [] }) => {
 
 
   const handleShowEditGameModal = () => {
-    setShowEditGameModal(true)
+    setShowEditGameModal(true);
+  }
+
+  const handleShowCreateGameModal = () => {
+    setShowCreateGameModal(true);
   }
 
   const handleCloseEditGameModal = () => {
     setShowEditGameModal(false);
+    setShowCreateGameModal(false);
+  }
+
+  const handleCloseCreateGameModal = () => {
+    setShowCreateGameModal(false);
   }
 
    const handleOnExit = () => {
@@ -50,10 +63,27 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [] }) => {
     handleShowEditGameModal();
   }
 
+  const handleCreateGame = (leagueid) => {
+    setSelectedLeagueId(leagueid);
+    handleShowCreateGameModal(true);
+  }
+
   const handleOnSubmit = async (game) => {
     try {
       setIsLoading(true);
       await updateGame(game);
+      await refreshSchedule();
+    } catch (e) {
+      console.error(e);
+    }
+    handleCloseEditGameModal();
+  }
+
+  const handleOnCreateGameSubmit = async (game) => {
+    try {
+      setIsLoading(true);
+      game.leagueid = selectedLeagueId;
+      await createGame(game);
       await refreshSchedule();
     } catch (e) {
       console.error(e);
@@ -76,10 +106,10 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [] }) => {
       count++;
       const { league, games } = value;
       const {
-        logofilename,
+        logofilename = '',
         logoheight = 60,
         logowidth = 60,
-        scheduleurl,
+        scheduleurl = '',
       } = league
 
       let leagueTitle = scheduleurl
@@ -103,6 +133,15 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [] }) => {
             { leagueTitle }
           </Container>
           <GLScheduleList data={ games } onEditGame={ handleEditGame }></GLScheduleList>
+          <div className="league-action-bar-container">
+            <Button
+              variant="outline-primary"
+              size="sm"
+              onClick={ (e) => handleCreateGame(league.id) }
+            >
+              <i className="bi bi-plus-lg"></i>
+            </Button>
+          </div>
         </div>
       )
     }
@@ -129,6 +168,17 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [] }) => {
         onSubmit={ handleOnSubmit }
         isLoading={ isLoading }
       ></EditGameModal>
+      <CreateGameModal
+        modalRef= { modalRef }
+        show={ showCreateGameModal }
+        onHide={ handleCloseCreateGameModal }
+        onExit={ handleOnExit }
+        backdrop="static"
+        keyboard={false}
+        centered
+        onSubmit={ handleOnCreateGameSubmit }
+        isLoading={ isLoading }
+      ></CreateGameModal>
     </Container>
   );
 }

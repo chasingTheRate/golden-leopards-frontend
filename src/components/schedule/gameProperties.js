@@ -5,8 +5,9 @@ export default [
     controlId: 'opponent',
     displayName: 'Opponent',
     type: 'text',
-    requiresValidation: false,
-    validationMsg: ''
+    requiresValidation: true,
+    validationRegex: /^\s*\S+.*/,
+    validationMsg: 'Required'
   },
   {
     controlId: 'start',
@@ -20,6 +21,13 @@ export default [
   {
     controlId: 'field',
     displayName: 'Field',
+    type: 'text',
+    requiresValidation: false,
+    validationMsg: ''
+  },
+  {
+    controlId: 'gamestatus',
+    displayName: 'Status',
     type: 'text',
     requiresValidation: false,
     validationMsg: ''
