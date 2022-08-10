@@ -1,28 +1,30 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  Container,
   Button,
   Modal,
   Form,
   Spinner,
-  FloatingLabel
 } from 'react-bootstrap';
 import moment from "moment";
 
 import gameProperties from "../schedule/gameProperties";
 
-const EditGameModal = ({ modalRef, show, onHide, onShow, selectedGame, onSubmit, isLoading, onExit }) => {
+const CreateGameModal = ({ modalRef, show, onHide, onSubmit, isLoading, onExit }) => {
   
   const [game, setGame] = useState({});
   const [validationResults, setValidationResults] = useState({});
 
-  React.useEffect(() => {
-    const tempGame = Object.assign({}, selectedGame);
-    tempGame.start = moment.utc(tempGame.start, 'YYYY-MM-DDTHH:mm:ss.sssZ').local().format('M/D/YYYY h:mma').toString();
-    setGame(tempGame);
-  }, [selectedGame])
+  const handleOnShow = () => {
+    
+    const initialValidationCheck = {}
+    
+    gameProperties.forEach(p => {
+      initialValidationCheck[p.controlId] = isValid(p, game[p.controlId])
+    });
 
-  
+    setValidationResults(initialValidationCheck);
+  }
+
   const validationCheck = (property, value) => {
     const valid = isValid(property, value);
     setValidationResults({...validationResults, [property.controlId]: valid});
@@ -48,7 +50,7 @@ const EditGameModal = ({ modalRef, show, onHide, onShow, selectedGame, onSubmit,
   }
 
   const isValid = (property, newValue) => {
-    
+
     let valid = true;
 
     if (!property.requiresValidation) {
@@ -56,7 +58,7 @@ const EditGameModal = ({ modalRef, show, onHide, onShow, selectedGame, onSubmit,
     }
 
     if (property.validationRegex) {
-      
+      valid = property.validationRegex.test(newValue ? newValue : game[property.controlId]);
     }
 
     if (property.validationFunction) {
@@ -120,6 +122,7 @@ const EditGameModal = ({ modalRef, show, onHide, onShow, selectedGame, onSubmit,
   return (
       <Modal
         show={ show }
+        onShow={ handleOnShow }
         onHide= { onHide }
         onExit = { onExit }
         backdrop="static"
@@ -154,4 +157,4 @@ const EditGameModal = ({ modalRef, show, onHide, onShow, selectedGame, onSubmit,
   );
 }
 
-export default EditGameModal;
+export default CreateGameModal;

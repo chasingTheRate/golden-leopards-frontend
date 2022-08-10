@@ -9,7 +9,7 @@ const GLScheduleList = ({ data = [], onEditGame }) => {
     <Container 
       fluid 
       style={{ 
-        padding: '12px', 
+        padding: '12px 12px 0px 12px', 
       }}>
       <div style={{ display: 'flex', flexDirection: 'column'}}>
         { data.map((d, i) => <GLScheduleListItem 
