@@ -19,8 +19,8 @@ const GLNextGameItem = ({ record }) => {
     return (moment.utc(timestamp).local().format('h:mma'));
   }
 
-  const getHomeAwayBadge = (homeTeam) => {
-    if ((homeTeam === 'Dash Woodlands 2010/11 - Johnson 1') || (homeTeam === 'Dash Woodlands 2010/11 - Johnson 2')) {
+  const getHomeAwayBadge = (isHomeTeam) => {
+    if (isHomeTeam) {
         return <Badge className="ngli-badge-home">HOME</Badge>
     } else {
       return <Badge className="ngli-badge-away" bg="light" text="dark">AWAY</Badge>
@@ -93,7 +93,7 @@ const GLNextGameItem = ({ record }) => {
             <br></br>
             <span> { getTime(record.start) }</span>
             <div>
-              { getHomeAwayBadge(record.homeTeam) }
+              { getHomeAwayBadge(record.is_homeTeam) }
             </div>
           </div>
           <div style={{
