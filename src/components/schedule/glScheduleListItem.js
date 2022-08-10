@@ -32,8 +32,8 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame }) => {
     return (moment.utc(timestamp).local().format('h:mma'));
   }
 
-  const getHomeAwayBadge = (hometeam) => {
-    if ((hometeam === 'Dash Woodlands 2010/11 - Johnson 1') || (hometeam === 'Dash Woodlands 2010/11 - Johnson 2')) {
+  const getHomeAwayBadge = (isHomeTeam) => {
+    if (isHomeTeam) {
         return <Badge className="sli-badge-home">HOME</Badge>
     } else {
       return <Badge className="sli-badge-away" bg="light" text="dark">AWAY</Badge>
@@ -103,7 +103,7 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame }) => {
                   <br></br>
                   <span> { getTime(record.start) }</span>
                   <div>
-                    { getHomeAwayBadge(record.hometeam) }
+                    { getHomeAwayBadge(record.is_hometeam) }
                   </div>
                 </div>
                 <div className="sli-opponent-field-container">

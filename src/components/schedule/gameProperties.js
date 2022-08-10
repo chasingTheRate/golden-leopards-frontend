@@ -25,20 +25,6 @@ export default [
     validationMsg: ''
   },
   {
-    controlId: 'hometeam',
-    displayName: 'Home Team',
-    type: 'text',
-    requiresValidation: false,
-    validationMsg: ''
-  },
-  {
-    controlId: 'gamestatus',
-    displayName: 'Status',
-    type: 'text',
-    requiresValidation: false,
-    validationMsg: ''
-  },
-  {
     controlId: 'ourscore',
     displayName: 'Our Score',
     type: 'text',
@@ -56,6 +42,13 @@ export default [
     controlId: 'opponentshortname',
     displayName: 'Opponent Shortname',
     type: 'text',
+    requiresValidation: false,
+    validationMsg: ''
+  },
+  {
+    controlId: 'is_hometeam',
+    displayName: 'Home Team',
+    type: 'checkbox',
     requiresValidation: false,
     validationMsg: ''
   },
