@@ -4,7 +4,9 @@ import {
   Accordion,
   useAccordionButton,
   Card,
-  Button
+  Button,
+  Tab,
+  Tabs,
 } from 'react-bootstrap';
 import moment from "moment";
 import Image from 'next/image';
@@ -121,6 +123,39 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame }) => {
         </Card.Header>
         <Accordion.Collapse eventKey={ eventKey }>
           <Card.Body className="sli-card-container">
+            <div style={{ paddingBottom: '8px'}}>
+            <Tabs
+              defaultActiveKey="game-stats"
+              id="justify-tab-example"
+              className="mb-3"
+              justify
+              style={{fontSize: 'small'}}
+            >
+              <Tab eventKey="game-stats" title="Game Stats" style={{fontSize: 'x-small'}}>
+                <div>
+                  <div>
+                    <span style={{ fontWeight: 500, color: 'grey'}}>Goals: </span>
+                    <span style={{ fontWeight: 600, color: 'black'}}>Jackie (2), Mckenna, Katelyn</span>
+                  </div>
+                  <div>
+                    <span style={{ fontWeight: 500, color: 'grey'}}>Assists: </span>
+                    <span style={{ fontWeight: 600, color: 'black'}}>Jackie (2), Mckenna, Katelyn</span>
+                  </div>
+                  <div>
+                    <span style={{ fontWeight: 500, color: 'grey'}}>Saves: </span>
+                    <span style={{ fontWeight: 600, color: 'black'}}>Remi (2), Jackie</span>
+                  </div>
+                  <div>
+                    <span style={{ fontWeight: 500, color: 'grey'}}>Def Tackles: </span>
+                    <span style={{ fontWeight: 600, color: 'black'}}>Remi (2), Jackie</span>
+                  </div>
+                </div>
+              </Tab>
+              <Tab eventKey="roster" title="Roster" style={{fontSize: 'x-small'}}>
+              
+              </Tab>
+            </Tabs>
+            </div>
             <div className="sli-action-container">
               <div className="sli-action-button-container">
                 <Button
