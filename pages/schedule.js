@@ -14,6 +14,8 @@ import GLNextGameContainer from '../src/components/next-game/glNextGameContainer
 import EditGameModal from '../src/components/modals/editGameModal';
 import CreateGameModal from '../src/components/modals/createGameModal';
 
+import { defaultGame } from "../src/components/schedule/gameProperties";
+
 export async function getServerSideProps() {
 
   const ssSchedules = await getSeasonSchedule();
@@ -23,7 +25,7 @@ export async function getServerSideProps() {
   return { props: { ssSchedules, nextGameData, leagues } }
 }
 
-const GLSchedule = ({ ssSchedules = [], nextGameData = [] }) => {
+const GLSchedule = ({ ssSchedules = [], nextGameData = [], leagues = [] }) => {
 
   const [schedule, setSchedule] = useState(ssSchedules);
   const [showEditGameModal, setShowEditGameModal] = useState(false);
@@ -31,10 +33,8 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [] }) => {
   const [selectedGame, setSelectedGame] = useState({});
   const [selectedLeagueId, setSelectedLeagueId] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [modalBodyHeight, setModalBodyHeight] = useState(0);
 
   const modalRef = useRef(null)
-
 
   const handleShowEditGameModal = () => {
     setShowEditGameModal(true);
@@ -149,7 +149,7 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [] }) => {
     return leagues;
 
   }
-
+  
   return (
     <Container fluid className="gl-schedule-container">
       { _.size(nextGameData) > 0 && 
@@ -167,6 +167,7 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [] }) => {
         selectedGame={ selectedGame }
         onSubmit={ handleOnSubmit }
         isLoading={ isLoading }
+        leagues={ leagues }
       ></EditGameModal>
       <CreateGameModal
         modalRef= { modalRef }
@@ -176,8 +177,10 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [] }) => {
         backdrop="static"
         keyboard={false}
         centered
+        selectedGame={ defaultGame }
         onSubmit={ handleOnCreateGameSubmit }
         isLoading={ isLoading }
+        leagues={ leagues }
       ></CreateGameModal>
     </Container>
   );
