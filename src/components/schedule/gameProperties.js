@@ -1,5 +1,20 @@
 import moment from "moment";
 
+export const defaultGame = {
+  start: "",
+  opponent: "",
+  is_hometeam: false,
+  field: "",
+  recordgame: false,
+  veolink: "",
+  ourscore: 0,
+  hide: false,
+  opponentscore: 0,
+  gamestatus: "scheduled",
+  league_id: "",
+  opponentshortname: "",
+}
+
 export default [
   {
     controlId: 'opponent',
@@ -80,5 +95,16 @@ export default [
     type: 'text',
     requiresValidation: false,
     validationMsg: ''
+  },
+  {
+    controlId: 'league_id',
+    displayName: 'League',
+    type: 'select',
+    defaultValue: 'Select league',
+    values: 'leagues',
+    valueKey: 'displayname',
+    requiresValidation: true,
+    validationRegex: /^\s*\S+.*/,
+    validationMsg: 'Required'
   },
 ]
