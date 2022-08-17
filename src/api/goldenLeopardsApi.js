@@ -45,6 +45,11 @@ export const getLeagues = async () => {
   return results ? results : [];
 }
 
+export const getLogos = async () => {
+  const results = await (await fetch(`${goldenLeopardApiBasePath}/api/logos`)).json();
+  return results ? results : [];
+}
+
 export const updateGame = async (game) => {
  
   const requestOptions = {

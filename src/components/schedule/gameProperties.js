@@ -12,6 +12,7 @@ export const defaultGame = {
   opponentscore: 0,
   gamestatus: "scheduled",
   league_id: "",
+  logoid: "",
   opponentshortname: "",
 }
 
@@ -104,6 +105,17 @@ export default [
     values: 'leagues',
     valueKey: 'displayname',
     requiresValidation: true,
+    validationRegex: /^\s*\S+.*/,
+    validationMsg: 'Required'
+  },
+  {
+    controlId: 'logoid',
+    displayName: 'Logo',
+    type: 'select',
+    defaultValue: 'Select logo',
+    values: 'logos',
+    valueKey: 'display_name',
+    requiresValidation: false,
     validationRegex: /^\s*\S+.*/,
     validationMsg: 'Required'
   },
