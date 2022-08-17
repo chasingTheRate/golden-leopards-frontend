@@ -5,9 +5,15 @@ import {
 } from 'react-bootstrap';
 import Image from 'next/image';
 import _ from 'lodash';
-import moment from "moment";
 
-import { getSeasonSchedule, getNextGames, getLeagues, updateGame, createGame } from '../src/api/goldenLeopardsApi';
+import {
+  getSeasonSchedule,
+  getNextGames,
+  getLeagues,
+  getLogos,
+  updateGame,
+  createGame 
+} from '../src/api/goldenLeopardsApi';
 
 import GLScheduleList from "../src/components/schedule/glScheduleList";
 import GLNextGameContainer from '../src/components/next-game/glNextGameContainer';
@@ -21,17 +27,17 @@ export async function getServerSideProps() {
   const ssSchedules = await getSeasonSchedule();
   const leagues = await getLeagues();
   const nextGameData = await getNextGames();
+  const logos = await getLogos();
 
-  return { props: { ssSchedules, nextGameData, leagues } }
+  return { props: { ssSchedules, nextGameData, leagues, logos } }
 }
 
-const GLSchedule = ({ ssSchedules = [], nextGameData = [], leagues = [] }) => {
+const GLSchedule = ({ ssSchedules = [], nextGameData = [], leagues = [], logos = [] }) => {
 
   const [schedule, setSchedule] = useState(ssSchedules);
   const [showEditGameModal, setShowEditGameModal] = useState(false);
   const [showCreateGameModal, setShowCreateGameModal] = useState(false);
   const [selectedGame, setSelectedGame] = useState({});
-  const [selectedLeagueId, setSelectedLeagueId] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const modalRef = useRef(null)
@@ -64,7 +70,6 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [], leagues = [] }) => {
   }
 
   const handleCreateGame = (leagueid) => {
-    setSelectedLeagueId(leagueid);
     handleShowCreateGameModal(true);
   }
 
@@ -82,7 +87,6 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [], leagues = [] }) => {
   const handleOnCreateGameSubmit = async (game) => {
     try {
       setIsLoading(true);
-      game.leagueid = selectedLeagueId;
       await createGame(game);
       await refreshSchedule();
     } catch (e) {
@@ -149,7 +153,7 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [], leagues = [] }) => {
     return leagues;
 
   }
-  
+
   return (
     <Container fluid className="gl-schedule-container">
       { _.size(nextGameData) > 0 && 
@@ -168,6 +172,7 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [], leagues = [] }) => {
         onSubmit={ handleOnSubmit }
         isLoading={ isLoading }
         leagues={ leagues }
+        logos={ logos }
       ></EditGameModal>
       <CreateGameModal
         modalRef= { modalRef }
@@ -181,6 +186,7 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [], leagues = [] }) => {
         onSubmit={ handleOnCreateGameSubmit }
         isLoading={ isLoading }
         leagues={ leagues }
+        logos={ logos }
       ></CreateGameModal>
     </Container>
   );

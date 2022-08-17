@@ -7,7 +7,7 @@ import {
 import gameProperties from "../schedule/gameProperties";
 
 const GameForm = (props) => {
-  
+
   const { 
     isLoading, 
     game,
@@ -18,20 +18,22 @@ const GameForm = (props) => {
 
   
   useEffect(() => {
+    let validationResult = {}
     gameProperties.forEach(p => {
-      validationCheck(p, game[p.controlId]);
+      validationResult = { ...validationResult, ...validationCheck(p, game[p.controlId])}
     });
-  }, []);
+    onValidationChange(validationResult)
+  }, [game]);
 
   const validationCheck = (property, value) => {
     const valid = isValid(property, value);
-    onValidationChange({ [property.controlId]: valid });
+    return {[property.controlId]: valid };
   }
 
   const inputBoxDidChange = (e, p) => {
     const updatedGame = Object.assign({}, game);
     updatedGame[e.target.id] = e.target.value;
-    validationCheck(p, e.target.value);
+    onValidationChange(validationCheck(p, e.target.value));
     onChange(updatedGame);
   }
 
@@ -43,7 +45,7 @@ const GameForm = (props) => {
 
   const selectDidChange = (e, p) => {
     const updatedGame = Object.assign({}, game);
-    updatedGame.league_id = e.target.value;
+    updatedGame[p.controlId] = e.target.value;
     validationCheck(p, e.target.value);
     onChange(updatedGame);
   }
@@ -125,7 +127,7 @@ const GameForm = (props) => {
             <Form.Select 
               aria-label={ `${p.controlId}-select` }
               onChange={(e) => selectDidChange(e, p)}
-              value={ game[p.controlId] }
+              value={ game[p.controlId] || '' }
             >
               <option value="">{ p.defaultValue }</option>
               { props[p.values].map(l => (<option key={ l.id } value={ l.id }>{ l[p.valueKey] }</option>)) }
