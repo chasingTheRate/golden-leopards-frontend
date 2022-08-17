@@ -17,6 +17,7 @@ const CreateGameModal = ({
   isLoading,
   onExit,
   leagues,
+  logos,
   selectedGame,
 }) => {
   
@@ -38,8 +39,8 @@ const CreateGameModal = ({
     setGame(updatedGame);
   }
 
-  const handleValidationChange = (validationResult) => {
-    setValidationResults({ ...validationResults, ...validationResult });
+  const handleValidationChange = (newValidationResults) => {
+    setValidationResults({...validationResults, ...newValidationResults});
   }
 
   const updateGame = (e) => {
@@ -47,7 +48,6 @@ const CreateGameModal = ({
     tempGame.start = moment(game.start, 'M/D/YYYY h:mma').toISOString();
     onSubmit(tempGame);
   }
-
 
   const isDisabled = Object.values(validationResults).includes(false);
 
@@ -67,6 +67,7 @@ const CreateGameModal = ({
           <GameForm 
               game={ game }
               leagues={ leagues }
+              logos={ logos }
               onChange = { handleGameChange }
               validationResults = { validationResults }
               onValidationChange = { handleValidationChange }

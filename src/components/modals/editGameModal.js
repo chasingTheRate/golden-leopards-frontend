@@ -17,7 +17,8 @@ const EditGameModal = (props) => {
     onSubmit, 
     isLoading, 
     onExit,
-    leagues 
+    leagues,
+    logos
   } = props;
 
   const [game, setGame] = useState({});
@@ -61,6 +62,7 @@ const EditGameModal = (props) => {
           <GameForm 
             game={ game }
             leagues={ leagues }
+            logos={ logos }
             onChange = { handleGameChange }
             validationResults = { validationResults }
             onValidationChange = { handleValidationChange }
