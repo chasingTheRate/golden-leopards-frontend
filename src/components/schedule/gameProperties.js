@@ -16,6 +16,16 @@ export const defaultGame = {
   opponentshortname: "",
 }
 
+export const gameStatusOptions = [
+  {
+    value: 'scheduled',
+    displayName: 'Scheduled'
+  },
+  {
+    value: 'final',
+    displayName: 'Final'
+  }
+]
 export default [
   {
     controlId: 'opponent',
@@ -44,9 +54,14 @@ export default [
   {
     controlId: 'gamestatus',
     displayName: 'Status',
-    type: 'text',
-    requiresValidation: false,
-    validationMsg: ''
+    type: 'select',
+    defaultValue: 'Select Game Status',
+    values: 'gameStatusOptions',
+    valueKey: 'value',
+    displayKey: 'displayName',
+    requiresValidation: true,
+    validationRegex: /^\s*\S+.*/,
+    validationMsg: 'Required'
   },
   {
     controlId: 'ourscore',
@@ -103,7 +118,8 @@ export default [
     type: 'select',
     defaultValue: 'Select league',
     values: 'leagues',
-    valueKey: 'displayname',
+    valueKey: 'id',
+    displayKey: 'displayname',
     requiresValidation: true,
     validationRegex: /^\s*\S+.*/,
     validationMsg: 'Required'
@@ -114,7 +130,8 @@ export default [
     type: 'select',
     defaultValue: 'Select logo',
     values: 'logos',
-    valueKey: 'display_name',
+    valueKey: 'id',
+    displayKey: 'display_name',
     requiresValidation: false,
     validationRegex: /^\s*\S+.*/,
     validationMsg: 'Required'
