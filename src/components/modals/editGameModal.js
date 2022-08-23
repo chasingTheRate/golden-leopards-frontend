@@ -6,6 +6,7 @@ import {
 import moment from "moment";
 
 import GameForm from "../schedule/gameForm";
+import { gameStatusOptions } from "../schedule/gameProperties";
 
 const EditGameModal = (props) => {
   
@@ -63,6 +64,7 @@ const EditGameModal = (props) => {
             game={ game }
             leagues={ leagues }
             logos={ logos }
+            gameStatusOptions={ gameStatusOptions }
             onChange = { handleGameChange }
             validationResults = { validationResults }
             onValidationChange = { handleValidationChange }
