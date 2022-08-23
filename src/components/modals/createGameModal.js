@@ -5,7 +5,7 @@ import {
 } from 'react-bootstrap';
 import moment from "moment";
 
-import { defaultGame } from "../schedule/gameProperties";
+import { defaultGame, gameStatusOptions } from "../schedule/gameProperties";
 
 import GameForm from "../schedule/gameForm";
 
@@ -68,6 +68,7 @@ const CreateGameModal = ({
               game={ game }
               leagues={ leagues }
               logos={ logos }
+              gameStatusOptions={ gameStatusOptions }
               onChange = { handleGameChange }
               validationResults = { validationResults }
               onValidationChange = { handleValidationChange }

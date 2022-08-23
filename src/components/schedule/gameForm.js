@@ -130,7 +130,7 @@ const GameForm = (props) => {
               value={ game[p.controlId] || '' }
             >
               <option value="">{ p.defaultValue }</option>
-              { props[p.values].map(l => (<option key={ l.id } value={ l.id }>{ l[p.valueKey] }</option>)) }
+              { props[p.values].map(l => (<option key={ l[p.valueKey] } value={ l[p.valueKey] }>{ l[p.displayKey] }</option>)) }
             </Form.Select>
             { controlIsValid(p, p.controlId)
               ? <Form.Text className="text-muted">&nbsp;</Form.Text>
