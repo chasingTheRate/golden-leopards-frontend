@@ -1,5 +1,31 @@
 import moment from "moment";
 
+export const defaultGame = {
+  start: "",
+  opponent: "",
+  is_hometeam: false,
+  field: "",
+  recordgame: false,
+  veolink: "",
+  ourscore: 0,
+  hide: false,
+  opponentscore: 0,
+  gamestatus: "scheduled",
+  league_id: "",
+  logoid: "",
+  opponentshortname: "",
+}
+
+export const gameStatusOptions = [
+  {
+    value: 'scheduled',
+    displayName: 'Scheduled'
+  },
+  {
+    value: 'final',
+    displayName: 'Final'
+  }
+]
 export default [
   {
     controlId: 'opponent',
@@ -28,9 +54,14 @@ export default [
   {
     controlId: 'gamestatus',
     displayName: 'Status',
-    type: 'text',
-    requiresValidation: false,
-    validationMsg: ''
+    type: 'select',
+    defaultValue: 'Select Game Status',
+    values: 'gameStatusOptions',
+    valueKey: 'value',
+    displayKey: 'displayName',
+    requiresValidation: true,
+    validationRegex: /^\s*\S+.*/,
+    validationMsg: 'Required'
   },
   {
     controlId: 'ourscore',
@@ -80,5 +111,29 @@ export default [
     type: 'text',
     requiresValidation: false,
     validationMsg: ''
+  },
+  {
+    controlId: 'league_id',
+    displayName: 'League',
+    type: 'select',
+    defaultValue: 'Select league',
+    values: 'leagues',
+    valueKey: 'id',
+    displayKey: 'displayname',
+    requiresValidation: true,
+    validationRegex: /^\s*\S+.*/,
+    validationMsg: 'Required'
+  },
+  {
+    controlId: 'logoid',
+    displayName: 'Logo',
+    type: 'select',
+    defaultValue: 'Select logo',
+    values: 'logos',
+    valueKey: 'id',
+    displayKey: 'display_name',
+    requiresValidation: false,
+    validationRegex: /^\s*\S+.*/,
+    validationMsg: 'Required'
   },
 ]
