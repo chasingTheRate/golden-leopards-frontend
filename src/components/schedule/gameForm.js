@@ -94,9 +94,17 @@ const GameForm = (props) => {
       case 'date':
       case 'text':
         control = (
-          <Form.Group key={ p.controlId } style={{paddingBottom: '8px'}} controlId={ p.controlId }>
-            <Form.Label>{ p.displayName }</Form.Label>
-            <Form.Control type="text" value={ getValue(p.controlId) } onChange={ (e) => inputBoxDidChange(e, p) }/>
+          <Form.Group
+            className='form-group'
+            key={ p.controlId }
+            controlId={ p.controlId }
+            style={{ 
+              minWidth: p.minWidth,
+              maxWidth: p.maxWidth,
+             }}
+          >
+            <Form.Label className='form-label'>{ p.displayName }</Form.Label>
+            <Form.Control className='form-control' type="text" value={ getValue(p.controlId) } onChange={ (e) => inputBoxDidChange(e, p) }/>
             { controlIsValid(p, p.controlId) 
               ? <Form.Text className="text-muted">&nbsp;</Form.Text>
               : <Form.Text className="text-muted">{ p.validationMsg }</Form.Text>
@@ -106,23 +114,35 @@ const GameForm = (props) => {
       break;
       case 'checkbox':
         control = (
-          <Form.Group key={ p.controlId } controlId={ p.controlId }>
+          <Form.Group
+            className='form-group'
+            style={{ 
+              minWidth: p.minWidth,
+              maxWidth: p.maxWidth,
+             }}
+            key={ p.controlId }
+            controlId={ p.controlId }
+          >
             <Form.Check 
               type="checkbox" 
               label={ p.displayName } 
               checked={ game[p.controlId] || false } 
               onChange={ (e) => checkboxDidChange(e, p) }
             />
-            { controlIsValid(p, p.controlId) 
-              ? <Form.Text className="text-muted">&nbsp;</Form.Text>
-              : <Form.Text className="text-muted">{ p.validationMsg }</Form.Text>
-            }
           </Form.Group>
         )
         break;
       case 'select':
         control = (
-          <Form.Group key={ p.controlId } style={{paddingBottom: '8px'}} controlId={ p.controlId }>
+          <Form.Group 
+            className='form-group'
+            key={ p.controlId }
+            controlId={ p.controlId }
+            style={{
+              minWidth: p.minWidth,
+              maxWidth: p.maxWidth
+            }}
+          >
             <Form.Label>{ p.displayName }</Form.Label>
             <Form.Select 
               aria-label={ `${p.controlId}-select` }
@@ -155,7 +175,7 @@ const GameForm = (props) => {
           </Spinner>
         </div>
       :
-        <div style={{ maxHeight: '300px', overflowY: 'scroll'}}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', maxHeight: '300px', overflowY: 'scroll' }}>
           { gamePropertiesList }
         </div>
       }
