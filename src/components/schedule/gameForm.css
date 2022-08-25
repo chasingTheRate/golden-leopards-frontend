@@ -1,0 +1,30 @@
+
+
+.form-group {
+  padding: 0px 8px 0px 8px;
+}
+
+.form-label {
+  color: rgb(75 75 75);
+  font-weight: 600;
+  font-size: x-small;
+  line-height: 0.8;
+}
+
+.form-check {
+  color: rgb(75 75 75);
+  font-weight: 600;
+  font-size: small;
+}
+
+.form-text {
+  color: red !important;
+  font-weight: 600;
+  font-size: x-small;
+  line-height: 0.8;
+}
+
+.form-control {
+  font-size: medium;
+  background-color: rgb(240 240 255);
+}

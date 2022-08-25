@@ -59,7 +59,7 @@ const EditGameModal = (props) => {
         <Modal.Header closeButton closeVariant='white'>
           <Modal.Title>Edit Game</Modal.Title>
         </Modal.Header>
-        <Modal.Body ref={ modalRef }>
+        <Modal.Body ref={ modalRef } style={{padding: '8px'}}>
           <GameForm 
             game={ game }
             leagues={ leagues }

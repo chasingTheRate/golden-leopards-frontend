@@ -33,7 +33,9 @@ export default [
     type: 'text',
     requiresValidation: true,
     validationRegex: /^\s*\S+.*/,
-    validationMsg: 'Required'
+    validationMsg: 'Required',
+    minWidth: '100%',
+    maxWidth: '100%'
   },
   {
     controlId: 'start',
@@ -42,14 +44,18 @@ export default [
     requiresValidation: true,
     validationRegex: null,
     validationFunction: (date) => moment(date, 'M/D/YYYY h:mma', true).isValid(),
-    validationMsg: 'Must be a valid date (ex: 1/1/2022 12:00pm)'
+    validationMsg: 'Must be a valid date (ex: 1/1/2022 12:00pm)',
+    minWidth: '175px',
+    maxWidth: '100%'
   },
   {
     controlId: 'field',
     displayName: 'Field',
     type: 'text',
     requiresValidation: false,
-    validationMsg: ''
+    validationMsg: '',
+    minWidth: '100%',
+    maxWidth: '100%'
   },
   {
     controlId: 'gamestatus',
@@ -61,56 +67,72 @@ export default [
     displayKey: 'displayName',
     requiresValidation: true,
     validationRegex: /^\s*\S+.*/,
-    validationMsg: 'Required'
+    validationMsg: 'Required',
+    minWidth: '100%',
+    maxWidth: '100%'
   },
   {
     controlId: 'ourscore',
     displayName: 'Our Score',
     type: 'text',
     requiresValidation: false,
-    validationMsg: ''
+    validationMsg: '',
+    minWidth: '80px',
+    maxWidth: '80px'
   },
   {
     controlId: 'opponentscore',
-    displayName: 'Opponent Score',
+    displayName: 'Opp Score',
     type: 'text',
     requiresValidation: false,
-    validationMsg: ''
+    validationMsg: '',
+    minWidth: '80px',
+    maxWidth: '80px'
   },
   {
     controlId: 'opponentshortname',
-    displayName: 'Opponent Shortname',
+    displayName: 'Opp Shortname',
     type: 'text',
     requiresValidation: false,
-    validationMsg: ''
+    validationMsg: '',
+    minWidth: '100px',
+    maxWidth: '100px'
   },
   {
     controlId: 'is_hometeam',
     displayName: 'Home Team',
     type: 'checkbox',
     requiresValidation: false,
-    validationMsg: ''
+    validationMsg: '',
+    minWidth: '100px',
+    maxWidth: '100%'
   },
   {
     controlId: 'hide',
     displayName: 'Hide',
     type: 'checkbox',
     requiresValidation: false,
-    validationMsg: ''
+    validationMsg: '',
+    minWidth: '60px',
+    maxWidth: '100%'
   },
   {
     controlId: 'recordgame',
     displayName: 'Recorded Game',
     type: 'checkbox',
     requiresValidation: false,
-    validationMsg: ''
+    validationMsg: '',
+    minWidth: '120px',
+    maxWidth: '100%'
   },
   {
     controlId: 'veolink',
     displayName: 'Veo Link',
     type: 'text',
     requiresValidation: false,
-    validationMsg: ''
+    validationMsg: '',
+    minWidth: '100%',
+    maxWidth: '100%'
   },
   {
     controlId: 'league_id',
@@ -122,7 +144,9 @@ export default [
     displayKey: 'displayname',
     requiresValidation: true,
     validationRegex: /^\s*\S+.*/,
-    validationMsg: 'Required'
+    validationMsg: 'Required',
+    minWidth: '300px',
+    maxWidth: '100%'
   },
   {
     controlId: 'logoid',
@@ -134,6 +158,8 @@ export default [
     displayKey: 'display_name',
     requiresValidation: false,
     validationRegex: /^\s*\S+.*/,
-    validationMsg: 'Required'
+    validationMsg: 'Required',
+    minWidth: '300px',
+    maxWidth: '100%'
   },
 ]
