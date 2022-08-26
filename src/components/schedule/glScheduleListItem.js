@@ -40,11 +40,16 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame }) => {
     }
   }
 
+  const handleClick = (e) => {
+    e.stopPropagation();
+    return true;
+  }
+
   const getOpponentName = () => {
     const { recordgame, opponent, veolink } = record;
 
     if (recordgame) {
-      return <a href={ veolink }>{ opponent }</a>
+      return <a href={ veolink } onClick={ (e) => handleClick(e) }>{ opponent }</a>
     } else {
       return <span>{ opponent }</span>
     }
@@ -127,6 +132,11 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame }) => {
                   size="sm"
                   onClick= { (e) =>  onEditGame(record) }
                 ><i className="bi bi-pencil"></i></Button>
+              </div>
+              <div className="sli-action-button-container">
+                <Button
+                  size="sm"
+                ><i className="bi bi-clipboard-data"></i></Button>
               </div>
             </div>
           </Card.Body>
