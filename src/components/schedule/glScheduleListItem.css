@@ -98,13 +98,21 @@
 
 .sli-action-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .sli-action-container button {
-  background-color: var(--primary-team-color) !important;
+  color: var(--primary-team-color);
+  border-color: var(--primary-team-color);
+  background-color: white !important;
+}
+
+.sli-action-container button:focus {
+  color: var(--primary-team-color);
+  border-color: var(--primary-team-color);
+  background-color: white !important;
 }
 
 .sli-action-button-container {
-  padding-top: 5px;
+  padding: 5px 10px 0 0;
 }
