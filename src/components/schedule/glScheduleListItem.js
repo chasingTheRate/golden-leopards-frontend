@@ -4,7 +4,9 @@ import {
   Accordion,
   useAccordionButton,
   Card,
-  Button
+  Button,
+  Tab,
+  Tabs,
 } from 'react-bootstrap';
 import moment from "moment";
 import Image from 'next/image';
@@ -20,7 +22,7 @@ function CustomToggle({ children, eventKey }) {
   );
 }
 
-const GLScheduleListItem = ({ record, eventKey, onEditGame }) => {
+const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStats }) => {
 
   const { gamestatus = 'scheduled', logofilename, logoheight = 40, logowidth = 40 } = record;
 
@@ -126,6 +128,26 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame }) => {
         </Card.Header>
         <Accordion.Collapse eventKey={ eventKey }>
           <Card.Body className="sli-card-container">
+            <div style={{ paddingBottom: '8px'}}>
+              {/* <div>
+                <div>
+                  <span style={{ fontWeight: 500, color: 'grey'}}>Goals: </span>
+                  <span style={{ fontWeight: 600, color: 'black'}}>Jackie (2), Mckenna, Katelyn</span>
+                </div>
+                <div>
+                  <span style={{ fontWeight: 500, color: 'grey'}}>Assists: </span>
+                  <span style={{ fontWeight: 600, color: 'black'}}>Jackie (2), Mckenna, Katelyn</span>
+                </div>
+                <div>
+                  <span style={{ fontWeight: 500, color: 'grey'}}>Saves: </span>
+                  <span style={{ fontWeight: 600, color: 'black'}}>Remi (2), Jackie</span>
+                </div>
+                <div>
+                  <span style={{ fontWeight: 500, color: 'grey'}}>Def Tackles: </span>
+                  <span style={{ fontWeight: 600, color: 'black'}}>Remi (2), Jackie</span>
+                </div>
+              </div> */}
+            </div>
             <div className="sli-action-container">
               <div className="sli-action-button-container">
                 <Button
@@ -136,6 +158,7 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame }) => {
               <div className="sli-action-button-container">
                 <Button
                   size="sm"
+                  onClick={( (e) => onEditPlayerGameStats(record)) }
                 ><i className="bi bi-clipboard-data"></i></Button>
               </div>
             </div>

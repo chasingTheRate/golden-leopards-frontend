@@ -11,14 +11,17 @@ import {
   getNextGames,
   getLeagues,
   getLogos,
+  getRoster,
   updateGame,
-  createGame 
+  createGame,
+  updatePlayerGameStats, 
 } from '../src/api/goldenLeopardsApi';
 
 import GLScheduleList from "../src/components/schedule/glScheduleList";
 import GLNextGameContainer from '../src/components/next-game/glNextGameContainer';
 import EditGameModal from '../src/components/modals/editGameModal';
 import CreateGameModal from '../src/components/modals/createGameModal';
+import EditPlayerGameStatsModal from "../src/components/modals/editPlayerGameStatsModal";
 
 import { defaultGame } from "../src/components/schedule/gameProperties";
 
@@ -28,22 +31,36 @@ export async function getServerSideProps() {
   const leagues = await getLeagues();
   const nextGameData = await getNextGames();
   const logos = await getLogos();
+  const roster = await getRoster();
 
-  return { props: { ssSchedules, nextGameData, leagues, logos } }
+  return { props: { ssSchedules, nextGameData, leagues, logos, roster } }
 }
 
-const GLSchedule = ({ ssSchedules = [], nextGameData = [], leagues = [], logos = [] }) => {
+const GLSchedule = ({
+  ssSchedules = [],
+  nextGameData = [],
+  leagues = [],
+  logos = [],
+  roster = [] 
+}) => {
 
   const [schedule, setSchedule] = useState(ssSchedules);
   const [showEditGameModal, setShowEditGameModal] = useState(false);
   const [showCreateGameModal, setShowCreateGameModal] = useState(false);
+  const [showEditPlayerGameStatsModal, setShowEditPlayerGameStatsModal] = useState(false);
   const [selectedGame, setSelectedGame] = useState({});
+  const [selectedPlayerGameStats, setSelectedPlayerGameStats] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const modalRef = useRef(null)
 
   const handleShowEditGameModal = () => {
     setShowEditGameModal(true);
+  }
+
+  const handleShowEditPlayerGameStatsModal = () => {
+    setShowEditPlayerGameStatsModal(true);
   }
 
   const handleShowCreateGameModal = () => {
@@ -59,14 +76,41 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [], leagues = [], logos =
     setShowCreateGameModal(false);
   }
 
+  const handleCloseEditPlayerGameStatsModal = () => {
+    setShowEditPlayerGameStatsModal(false);
+  }
+
    const handleOnExit = () => {
     setIsLoading(false);
     setSelectedGame({});
+    setSelectedPlayerGameStats([]);
    }
 
   const handleEditGame = (game) => {
     setSelectedGame(game);
     handleShowEditGameModal();
+  }
+
+  const handleEditPlayerGameStats = (game) => {
+    const { playerStats } = game;
+    let gamePlayerStats = Object.assign([], roster);
+    gamePlayerStats = gamePlayerStats.map(gps => {
+      const stats = playerStats.find(p => p.player_id === gps.id)
+    
+      if (stats) {
+        gps = {...gps, ...stats}
+        gps.played = true;
+      } else {
+        gps.played = false;
+      }
+      return gps;
+    })
+
+    gamePlayerStats.sort((x, y) => { return (x.played === y.played) ? 0 : x.played ? -1 : 1;});
+    
+    setSelectedPlayerGameStats(gamePlayerStats);
+    setSelectedGame(game);
+    handleShowEditPlayerGameStatsModal();
   }
 
   const handleCreateGame = (leagueid) => {
@@ -82,6 +126,14 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [], leagues = [], logos =
       console.error(e);
     }
     handleCloseEditGameModal();
+  }
+
+  const handleUpdatePlayerGameStats = async (playerGameStats) => {
+    //  Filter out players who didn't play
+    playerGameStats = playerGameStats.filter(pgs => pgs.played);
+    await updatePlayerGameStats(selectedGame.id, playerGameStats);
+    await refreshSchedule();
+    handleCloseEditPlayerGameStatsModal();
   }
 
   const handleOnCreateGameSubmit = async (game) => {
@@ -136,7 +188,11 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [], leagues = [], logos =
             { leagueLogo }
             { leagueTitle }
           </Container>
-          <GLScheduleList data={ games } onEditGame={ handleEditGame }></GLScheduleList>
+          <GLScheduleList
+            data={ games }
+            onEditGame={ handleEditGame }
+            onEditPlayerGameStats={ handleEditPlayerGameStats }
+          ></GLScheduleList>
           <div className="league-action-bar-container">
             <Button
               variant="outline-primary"
@@ -188,6 +244,15 @@ const GLSchedule = ({ ssSchedules = [], nextGameData = [], leagues = [], logos =
         leagues={ leagues }
         logos={ logos }
       ></CreateGameModal>
+      <EditPlayerGameStatsModal
+        modalRef= { modalRef }
+        show={ showEditPlayerGameStatsModal }
+        onHide={ handleCloseEditPlayerGameStatsModal }
+        onExit={ handleOnExit }
+        isLoading={ isLoading }
+        roster={ selectedPlayerGameStats }
+        onSubmit= { handleUpdatePlayerGameStats }
+      ></EditPlayerGameStatsModal>
     </Container>
   );
 }
