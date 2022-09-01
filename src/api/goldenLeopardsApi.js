@@ -71,3 +71,14 @@ export const createGame = async (game) => {
 
   await fetch(`${goldenLeopardApiBasePath}/api/schedules/games`, requestOptions);
 }
+
+export const updatePlayerGameStats = async (gameId, playerGameStats) => {
+ 
+  const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(playerGameStats)
+  };
+
+  await fetch(`${goldenLeopardApiBasePath}/api/schedules/games/${gameId}/updatePlayerGameStats`, requestOptions);
+}
