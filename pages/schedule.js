@@ -130,7 +130,7 @@ const GLSchedule = ({
 
   const handleUpdatePlayerGameStats = async (playerGameStats) => {
     //  Filter out players who didn't play
-    playerGameStats = playerGameStats.filter(pgs => pgs.played);
+    playerGameStats = playerGameStats.filter(pgs => pgs.played === true);
     await updatePlayerGameStats(selectedGame.id, playerGameStats);
     await refreshSchedule();
     handleCloseEditPlayerGameStatsModal();
