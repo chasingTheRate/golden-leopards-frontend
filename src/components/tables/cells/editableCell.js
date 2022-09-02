@@ -33,7 +33,11 @@ const EditableCell = ({
     setValue(initialValue || 0)
   }, [initialValue])
 
-  return <input type="number" value={value} onChange={onChange} onBlur={onBlur} />
+  return (
+    <div className='input-wrap'>
+      <input type="number" value={value} onChange={onChange} onBlur={onBlur} />
+    </div>
+  )
 }
 
 export default EditableCell;
