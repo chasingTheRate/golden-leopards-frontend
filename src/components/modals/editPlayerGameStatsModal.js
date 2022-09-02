@@ -37,18 +37,24 @@ const Styles = styled.div`
       border-bottom: 1px solid black;
       border-right: 1px solid black;
       text-align: center;
-
+      
       :last-child {
         border-right: 0;
       }
 
+      .input-wrap input{
+        width: 100%;
+      }
+
+      .checkbox-wrap input{
+        vertical-align: middle;
+      }
+      
       input {
         font-size: 1rem;
         padding: 0;
         margin: 0;
-        border: 0;
-        width: 100%;
-        text-align: center
+        text-align: center;
       }
     }
   }
