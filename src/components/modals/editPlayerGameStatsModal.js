@@ -43,6 +43,7 @@ const Styles = styled.div`
       }
 
       .input-wrap input{
+        border: 0;
         width: 100%;
       }
 
