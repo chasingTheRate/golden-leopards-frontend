@@ -10,6 +10,7 @@ import {
 } from 'react-bootstrap';
 import moment from "moment";
 import Image from 'next/image';
+import _ from 'lodash';
 
 function CustomToggle({ children, eventKey }) {
   const decoratedOnClick = useAccordionButton(eventKey);
@@ -24,7 +25,24 @@ function CustomToggle({ children, eventKey }) {
 
 const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStats }) => {
 
-  const { gamestatus = 'scheduled', logofilename, logoheight = 40, logowidth = 40 } = record;
+  const { gamestatus = 'scheduled', logofilename, logoheight = 40, logowidth = 40, playerStats = [] } = record;
+
+  const gameStats = {
+    goals: [],
+    assists: [],
+    saves: [],
+    defensive_tackles: []
+  };
+
+  playerStats.forEach(p => {
+    ['goals', 'assists', 'saves', 'defensive_tackles'].forEach(stat => {
+      gameStats[stat].push(({ displayname: p.displayname, value: p[stat] }))
+    })
+  })
+
+  Object.keys(gameStats).forEach(key => {
+    gameStats[key].sort((a, b) => (b.value-a.value))
+  });
 
   const getDate = (timestamp) => {
     return (moment.utc(timestamp).local().format('MMM D'));
@@ -97,7 +115,25 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStat
       )
     }     
   }
-  
+
+  const formatStats = (stats) => {
+
+    let strArray = [];
+    stats.forEach(s => {
+      switch (s.value) {
+        case 0:
+          break;
+        case 1:
+          strArray.push(s.displayname);
+          break;
+        default:
+          strArray.push(`${s.displayname} (${s.value})`);
+          break;
+      }
+    })
+    return strArray.join(', ');
+  }
+
   return (
     <Accordion>
       <Card style={{border: 0 }}>
@@ -128,25 +164,33 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStat
         </Card.Header>
         <Accordion.Collapse eventKey={ eventKey }>
           <Card.Body className="sli-card-container">
-            <div style={{ paddingBottom: '8px'}}>
-              {/* <div>
-                <div>
-                  <span style={{ fontWeight: 500, color: 'grey'}}>Goals: </span>
-                  <span style={{ fontWeight: 600, color: 'black'}}>Jackie (2), Mckenna, Katelyn</span>
-                </div>
-                <div>
-                  <span style={{ fontWeight: 500, color: 'grey'}}>Assists: </span>
-                  <span style={{ fontWeight: 600, color: 'black'}}>Jackie (2), Mckenna, Katelyn</span>
-                </div>
-                <div>
-                  <span style={{ fontWeight: 500, color: 'grey'}}>Saves: </span>
-                  <span style={{ fontWeight: 600, color: 'black'}}>Remi (2), Jackie</span>
-                </div>
-                <div>
-                  <span style={{ fontWeight: 500, color: 'grey'}}>Def Tackles: </span>
-                  <span style={{ fontWeight: 600, color: 'black'}}>Remi (2), Jackie</span>
-                </div>
-              </div> */}
+            <div style={{ paddingBottom: '8px', fontSize: 'x-small'}}>
+              <div>
+                { gameStats.goals.reduce((partialSum, a) => partialSum + a.value, 0) > 0 &&
+                  <div>
+                    <span style={{ fontWeight: 500, color: 'grey'}}>Goals: </span>
+                    <span style={{ fontWeight: 600, color: 'black'}}>{ formatStats(gameStats.goals) }</span>
+                  </div>
+                }
+                { gameStats.assists.reduce((partialSum, a) => partialSum + a.value, 0) > 0 &&
+                  <div>
+                    <span style={{ fontWeight: 500, color: 'grey'}}>Assists: </span>
+                    <span style={{ fontWeight: 600, color: 'black'}}>{ formatStats(gameStats.assists) }</span>
+                  </div>
+                }
+                { gameStats.saves.reduce((partialSum, a) => partialSum + a.value, 0) > 0 &&
+                  <div>
+                    <span style={{ fontWeight: 500, color: 'grey'}}>Saves: </span>
+                    <span style={{ fontWeight: 600, color: 'black'}}>{ formatStats(gameStats.saves) }</span>
+                  </div>
+                }
+                { gameStats.defensive_tackles.reduce((partialSum, a) => partialSum + a.value, 0) > 0 > 0 &&
+                  <div>
+                    <span style={{ fontWeight: 500, color: 'grey'}}>Def Tackles: </span>
+                    <span style={{ fontWeight: 600, color: 'black'}}>{ formatStats(gameStats.defensive_tackles) }</span>
+                  </div>
+                }
+              </div>
             </div>
             <div className="sli-action-container">
               <div className="sli-action-button-container">
