@@ -183,7 +183,7 @@ const GLSchedule = ({
       : null
 
       leagues.push(
-        <div key={`league_${count}`} className="gl-schedule-list-container">
+        <Container key={`league_${count}`} className="gl-schedule-list-container">
           <Container style={{display: 'flex', flexDirection: 'column', alignItems: "center", justifyContent: 'center'}}>
             { leagueLogo }
             { leagueTitle }
@@ -202,7 +202,7 @@ const GLSchedule = ({
               <i className="bi bi-plus-lg"></i>
             </Button>
           </div>
-        </div>
+        </Container>
       )
     }
 
