@@ -27,13 +27,12 @@
 }
 
 .gl-home {
-  height: 100%;
   color: rgb(125 125 125);
   z-index: 100;
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  padding: 40px 12px 12px 12px;
+  padding: 40px 12px 12px 0px;
 }
 
 .gl-next-game-title-container {
