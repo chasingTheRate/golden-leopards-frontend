@@ -11,6 +11,8 @@ import { useRouter } from 'next/router'
 
 import logo from '../../../public/goldenLeopards.png';
 
+import PlayerGameStats from "../multiuse/playerGameStats";
+
 
 function CustomToggle({ children, eventKey }) {
   const decoratedOnClick = useAccordionButton(eventKey);
@@ -25,7 +27,9 @@ function CustomToggle({ children, eventKey }) {
 
 const GLGameResultItem = ({ record, eventKey }) => {
   
-  const router = useRouter()
+  const router = useRouter();
+  
+  const {  playerStats = [] } = record;
 
   const { 
     ourscore, 
@@ -38,12 +42,29 @@ const GLGameResultItem = ({ record, eventKey }) => {
     veolink
   } = record;
 
+  const gameStats = {
+    goals: [],
+    assists: [],
+    saves: [],
+    defensive_tackles: []
+  };
+
+  playerStats.forEach(p => {
+    ['goals', 'assists', 'saves', 'defensive_tackles'].forEach(stat => {
+      gameStats[stat].push(({ displayname: p.displayname, value: p[stat] }))
+    })
+  })
+
+  Object.keys(gameStats).forEach(key => {
+    gameStats[key].sort((a, b) => (b.value-a.value))
+  });
+
   const handleVideoClick = () => {
     router.push(veolink);
   }
 
   return (
-    <Accordion>
+    <Accordion defaultActiveKey={ eventKey }>
       <Card style={{border: 0 }}>
         <Card.Header style={{ padding: 0, border: 0 }}>
           <div className='grli'>
@@ -87,15 +108,19 @@ const GLGameResultItem = ({ record, eventKey }) => {
         </Card.Header>
         <Accordion.Collapse eventKey={ eventKey }>
           <Card.Body style={{ padding: '12px 0 0 0'}}>
-            <div style={{display: 'flex', flexDirection: 'column'}}>
-              <div style={{paddingTop: '5px'}}>
-                <Button
-                  size="sm"
-                  disabled={ !recordgame }
-                  onClick={ handleVideoClick }
-                ><i className="bi bi-camera-video"></i></Button>
+            <PlayerGameStats gameStats={ gameStats }></PlayerGameStats>
+            { recordgame &&
+              <div style={{display: 'flex', flexDirection: 'column'}} className='sli-action-container'>
+                <div style={{paddingTop: '5px'}}>
+                  <Button
+                    style={{backgroundColor: 'red'}}
+                    size="sm"
+                    disabled={ !recordgame }
+                    onClick={ handleVideoClick }
+                  ><i className="bi bi-camera-video"></i></Button>
+                </div>
               </div>
-            </div>
+            }
           </Card.Body>
         </Accordion.Collapse>
         <hr style={{flexGrow: 1}}></hr>

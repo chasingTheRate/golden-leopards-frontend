@@ -12,6 +12,8 @@ import moment from "moment";
 import Image from 'next/image';
 import _ from 'lodash';
 
+import PlayerGameStats from "../multiuse/playerGameStats";
+
 function CustomToggle({ children, eventKey }) {
   const decoratedOnClick = useAccordionButton(eventKey);
   return (
@@ -164,34 +166,7 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStat
         </Card.Header>
         <Accordion.Collapse eventKey={ eventKey }>
           <Card.Body className="sli-card-container">
-            <div style={{ paddingBottom: '8px', fontSize: 'x-small'}}>
-              <div>
-                { gameStats.goals.reduce((partialSum, a) => partialSum + a.value, 0) > 0 &&
-                  <div>
-                    <span style={{ fontWeight: 500, color: 'grey'}}>Goals: </span>
-                    <span style={{ fontWeight: 600, color: 'black'}}>{ formatStats(gameStats.goals) }</span>
-                  </div>
-                }
-                { gameStats.assists.reduce((partialSum, a) => partialSum + a.value, 0) > 0 &&
-                  <div>
-                    <span style={{ fontWeight: 500, color: 'grey'}}>Assists: </span>
-                    <span style={{ fontWeight: 600, color: 'black'}}>{ formatStats(gameStats.assists) }</span>
-                  </div>
-                }
-                { gameStats.saves.reduce((partialSum, a) => partialSum + a.value, 0) > 0 &&
-                  <div>
-                    <span style={{ fontWeight: 500, color: 'grey'}}>Saves: </span>
-                    <span style={{ fontWeight: 600, color: 'black'}}>{ formatStats(gameStats.saves) }</span>
-                  </div>
-                }
-                { gameStats.defensive_tackles.reduce((partialSum, a) => partialSum + a.value, 0) > 0 > 0 &&
-                  <div>
-                    <span style={{ fontWeight: 500, color: 'grey'}}>Def Tackles: </span>
-                    <span style={{ fontWeight: 600, color: 'black'}}>{ formatStats(gameStats.defensive_tackles) }</span>
-                  </div>
-                }
-              </div>
-            </div>
+            <PlayerGameStats gameStats={ gameStats }></PlayerGameStats>
             <div className="sli-action-container">
               <div className="sli-action-button-container">
                 <Button
