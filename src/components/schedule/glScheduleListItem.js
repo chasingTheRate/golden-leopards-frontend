@@ -4,9 +4,7 @@ import {
   Accordion,
   useAccordionButton,
   Card,
-  Button,
-  Tab,
-  Tabs,
+  Button
 } from 'react-bootstrap';
 import moment from "moment";
 import Image from 'next/image';
@@ -111,6 +109,12 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStat
         { getScore() }
       </div>
 
+    } else if (gamestatus === 'canceled') {
+      return (
+        <div className="sli-logo-container">
+          <Badge bg='danger'>CANCELED</Badge>
+        </div>
+      )
     } else {
 
       return (
