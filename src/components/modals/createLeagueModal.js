@@ -18,6 +18,7 @@ const CreateLeagueModal = ({
   leagues,
   logos,
   selectedLeague,
+  isEditing
 }) => {
   
   const [league, setLeague] = useState(selectedLeague);
@@ -42,7 +43,6 @@ const CreateLeagueModal = ({
 
   const updateLeague = (e) => {
     const tempLeague = Object.assign({}, league);
-    console.log(tempLeague);
     onSubmit(tempLeague);
   }
 
@@ -59,7 +59,7 @@ const CreateLeagueModal = ({
         centered
       >
         <Modal.Header closeButton closeVariant='white'>
-          <Modal.Title>Create League</Modal.Title>
+          <Modal.Title>{ isEditing ? 'Edit League' : 'Create League' }</Modal.Title>
         </Modal.Header>
         <Modal.Body ref={ modalRef }>
           <LeagueForm
