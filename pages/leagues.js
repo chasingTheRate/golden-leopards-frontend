@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { 
   getLeagues,
-  createLeague
+  createLeague,
+  updateLeague
 } from '../src/api/goldenLeopardsApi';
 import {
   Container,
@@ -44,6 +45,9 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
   const [leagues, setLeagues] = useState(ssLeagues);
   const [showCreateLeagueModal, setShowCreateLeagueModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedLeague, setSelectedLeague] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+
   
   const modalRef = useRef(null);
 
@@ -53,16 +57,24 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
 
   const handleCloseCreateLeagueModal = () => {
     setShowCreateLeagueModal(false);
+    setSelectedLeague(null);
+    setIsEditing(false);
   }
 
   const handleOnExit = () => {
     setIsLoading(false);
+    setSelectedLeague(null);
+    setIsEditing(false);
   }
 
   const handleOnCreateLeagueSubmit = async (league) => {
     try {
       setIsLoading(true);
-      await createLeague(league);
+      if (isEditing) {
+        await updateLeague(league);
+      } else {
+        await createLeague(league);
+      }
       await refreshLeagues();
     } catch (e) {
       console.error(e);
@@ -75,6 +87,12 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
     setLeagues(leagues)
   }
 
+  const handleEditLeague = async (league) => {
+    setSelectedLeague(league);
+    setIsEditing(true);
+    setShowCreateLeagueModal(true);
+  }
+
   return (
     <Container fluid style={{
       height: '100%',
@@ -85,7 +103,7 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
       }}>
         {
           leagues.map(l => {
-            const eventKey = l.displayname;
+            const eventKey = l.id;
             return (
               <Accordion>
                 <Card style={{border: 0 }}>
@@ -121,7 +139,7 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
                     <Card.Body style={{
                       padding: '12px 0 0 0'
                     }}>
-                      {/* <div>
+                      <div>
                         <Button
                           style={{
                             color: '#15469d',
@@ -129,8 +147,9 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
                             backgroundColor: 'white'
                           }}
                           size="sm"
+                          onClick={ () => handleEditLeague(l) }
                         ><i className="bi bi-pencil"></i></Button>
-                      </div> */}
+                      </div>
                     </Card.Body>
                   </Accordion.Collapse>
                   <hr style={{flexGrow: 1}}></hr>
@@ -161,10 +180,11 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
         backdrop="static"
         keyboard={false}
         centered
-        selectedLeague={ defaultLeague }
+        selectedLeague={ selectedLeague ? selectedLeague : defaultLeague }
         onSubmit={ handleOnCreateLeagueSubmit }
         isLoading={ isLoading }
         leagues={ leagues }
+        isEditing= { isEditing }
         //logos={ logos }
       ></CreateLeagueModal>
     </Container>

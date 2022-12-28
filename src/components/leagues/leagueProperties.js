@@ -25,18 +25,8 @@ export const leagueTypeOptions = [
 
 export default [
   {
-    controlId: 'name',
-    displayName: 'Name',
-    type: 'text',
-    requiresValidation: true,
-    validationRegex: /^\s*\S+.*/,
-    validationMsg: 'Required',
-    minWidth: '100%',
-    maxWidth: '100%'
-  },
-  {
     controlId: 'displayname',
-    displayName: 'Display Name',
+    displayName: 'Name',
     type: 'text',
     validationRegex: /^\s*\S+.*/,
     requiresValidation: true,
