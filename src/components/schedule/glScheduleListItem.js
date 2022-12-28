@@ -54,12 +54,21 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStat
     return (moment.utc(timestamp).local().format('h:mma'));
   }
 
-  const getHomeAwayBadge = (isHomeTeam) => {
-    if (isHomeTeam) {
-        return <Badge className="sli-badge-home">HOME</Badge>
-    } else {
-      return <Badge className="sli-badge-away" bg="light" text="dark">AWAY</Badge>
+  const getHomeAwayBadge = (isHomeTeam, reverseColors) => {
+
+    var badge;
+    
+    if (isHomeTeam && reverseColors) {
+      badge = <Badge className="sli-badge-away" bg="light" text="dark">HOME</Badge>
+    } else if (isHomeTeam && !reverseColors) {
+      badge = <Badge className="sli-badge-home">HOME</Badge>
+    } else if (!isHomeTeam && reverseColors) {
+      badge = <Badge className="sli-badge-home">AWAY</Badge>;
+    } else if (!isHomeTeam && !reverseColors) {
+      badge = <Badge className="sli-badge-away" bg="light" text="dark">AWAY</Badge>
     }
+
+    return badge;
   }
 
   const handleClick = (e) => {
@@ -118,24 +127,6 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStat
     }     
   }
 
-  const formatStats = (stats) => {
-
-    let strArray = [];
-    stats.forEach(s => {
-      switch (s.value) {
-        case 0:
-          break;
-        case 1:
-          strArray.push(s.displayname);
-          break;
-        default:
-          strArray.push(`${s.displayname} (${s.value})`);
-          break;
-      }
-    })
-    return strArray.join(', ');
-  }
-
   return (
     <Accordion>
       <Card style={{border: 0 }}>
@@ -148,7 +139,7 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStat
                   <br></br>
                   <span> { getTime(record.start) }</span>
                   <div>
-                    { getHomeAwayBadge(record.is_hometeam) }
+                    { getHomeAwayBadge(record.is_hometeam, record.reverse_colors) }
                   </div>
                 </div>
                 <div className="sli-opponent-field-container">

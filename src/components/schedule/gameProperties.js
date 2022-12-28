@@ -108,6 +108,15 @@ export default [
     maxWidth: '100%'
   },
   {
+    controlId: 'reverse_colors',
+    displayName: 'Reverse Colors',
+    type: 'checkbox',
+    requiresValidation: false,
+    validationMsg: '',
+    minWidth: '100px',
+    maxWidth: '100%'
+  },
+  {
     controlId: 'hide',
     displayName: 'Hide',
     type: 'checkbox',
