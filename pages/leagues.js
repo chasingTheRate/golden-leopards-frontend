@@ -10,10 +10,14 @@ import {
   Badge,
   Accordion,
   useAccordionButton,
-  Card
+  Card,
+  Nav
 } from 'react-bootstrap';
+
+import Link from 'next/link';
 import _ from 'lodash';
 
+import GLLink from "../src/components/multiuse/glLink";
 import CreateLeagueModal from "../src/components/modals/createLeagueModal";
 
 import { defaultLeague } from "../src/components/leagues/leagueProperties";
@@ -121,15 +125,13 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
                           <span style={{ fontSize: 'x-small'}}>
                             { typeBadges[l.type] }
                           </span>
-                          <span style={{
+                          <div style={{
                             marginLeft: '5px',
-                            color: 'rgb(75, 75, 75)',
-                            fontWeight: '500',
-                            fontSize: '0.9em',
-                            lineHeight: '1.1em',
-                            textAlign: 'center',
                             flexGrow: 1,
-                          }}>{ l.displayname }</span>
+                            textAlign: 'center'
+                          }}>
+                            <GLLink href={`/leagues/${encodeURIComponent(l.id)}`} name={ l.displayname }></GLLink>
+                          </div>
                         </div>
                       </div>
                       </CustomToggle>
