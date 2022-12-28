@@ -24,8 +24,13 @@ export const gameStatusOptions = [
   {
     value: 'final',
     displayName: 'Final'
+  },
+  {
+    value: 'canceled',
+    displayName: 'Canceled'
   }
 ]
+
 export default [
   {
     controlId: 'opponent',
