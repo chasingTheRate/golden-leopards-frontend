@@ -10,6 +10,20 @@ const GLAchievements = () => {
 
   const data = [
     {
+      bannerYear: '2022',
+      bannerSeason: 'FALL', 
+      bannerVersion: 'v3',
+      bannerLeague: '11v11 RECREATION', 
+      bannerPlace: 'CHAMPIONS'
+    },
+    {
+      bannerYear: '2022',
+      bannerSeason: 'FALL', 
+      bannerVersion: 'v3',
+      bannerLeague: '9v9 RECREATION', 
+      bannerPlace: 'CHAMPIONS'
+    },
+    {
       bannerYear: '2021',
       bannerSeason: 'FALL', 
       bannerVersion: 'v3',

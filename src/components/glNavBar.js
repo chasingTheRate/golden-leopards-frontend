@@ -2,7 +2,8 @@
 import {
   Navbar,
   Container,
-  Nav
+  Nav,
+  NavDropdown
 } from 'react-bootstrap';
 
 import React, { useState } from "react";
@@ -29,6 +30,9 @@ const GLNavBar = () => {
                 </Link>
                 <Link href="/tournaments" passHref>
                   <Nav.Link onClick={() => setExpanded(false)}>Tournaments</Nav.Link>
+                </Link>
+                <Link href="/leagues" passHref>
+                  <Nav.Link onClick={() => setExpanded(false)}>Leagues</Nav.Link>
                 </Link>
                 <Link href="/achievements" passHref>
                   <Nav.Link onClick={() => setExpanded(false)}>Achievements</Nav.Link>
