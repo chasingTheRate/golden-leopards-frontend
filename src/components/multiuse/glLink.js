@@ -12,7 +12,7 @@ const StyledLink = styled.a`
 `
 
 export default ({ href, name }) => (
-  <Link prefetch href={href} passHref>
+  <Link href={href} passHref>
     <StyledLink>{name}</StyledLink>
   </Link>
 )

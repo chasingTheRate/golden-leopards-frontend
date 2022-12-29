@@ -99,7 +99,6 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
 
   return (
     <Container fluid style={{
-      height: '100%',
       backgroundColor: 'white'
     }}>
       <Container style={{
@@ -164,7 +163,7 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
       <div style={{
         display: 'flex',
         flexDirection: 'row-reverse',
-        padding: '0 12px 0 12px'
+        padding: '3px 12px 12px 12px'
       }}>
         <Button
           variant="outline-primary"
