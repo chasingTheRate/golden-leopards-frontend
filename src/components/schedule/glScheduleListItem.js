@@ -23,7 +23,7 @@ function CustomToggle({ children, eventKey }) {
   );
 }
 
-const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStats }) => {
+const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStats, displayOnly }) => {
 
   const { gamestatus = 'scheduled', logofilename, logoheight = 40, logowidth = 40, playerStats = [] } = record;
 
@@ -159,25 +159,27 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStat
             </CustomToggle>
           </div>
         </Card.Header>
-        <Accordion.Collapse eventKey={ eventKey }>
-          <Card.Body className="sli-card-container">
-            <PlayerGameStats gameStats={ gameStats }></PlayerGameStats>
-            <div className="sli-action-container">
-              <div className="sli-action-button-container">
-                <Button
-                  size="sm"
-                  onClick= { (e) =>  onEditGame(record) }
-                ><i className="bi bi-pencil"></i></Button>
+        { !displayOnly &&
+          <Accordion.Collapse eventKey={ eventKey }>
+            <Card.Body className="sli-card-container">
+              <PlayerGameStats gameStats={ gameStats }></PlayerGameStats>
+              <div className="sli-action-container">
+                <div className="sli-action-button-container">
+                  <Button
+                    size="sm"
+                    onClick= { (e) =>  onEditGame(record) }
+                  ><i className="bi bi-pencil"></i></Button>
+                </div>
+                <div className="sli-action-button-container">
+                  <Button
+                    size="sm"
+                    onClick={( (e) => onEditPlayerGameStats(record)) }
+                  ><i className="bi bi-clipboard-data"></i></Button>
+                </div>
               </div>
-              <div className="sli-action-button-container">
-                <Button
-                  size="sm"
-                  onClick={( (e) => onEditPlayerGameStats(record)) }
-                ><i className="bi bi-clipboard-data"></i></Button>
-              </div>
-            </div>
-          </Card.Body>
-        </Accordion.Collapse>
+            </Card.Body>
+          </Accordion.Collapse>
+        }
         <hr style={{flexGrow: 1}}></hr>
       </Card>
     </Accordion>

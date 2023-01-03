@@ -50,7 +50,6 @@ const GLSchedule = ({
   const [showEditPlayerGameStatsModal, setShowEditPlayerGameStatsModal] = useState(false);
   const [selectedGame, setSelectedGame] = useState({});
   const [selectedPlayerGameStats, setSelectedPlayerGameStats] = useState([]);
-
   const [isLoading, setIsLoading] = useState(false);
 
   const modalRef = useRef(null)

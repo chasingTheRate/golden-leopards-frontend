@@ -1,41 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
 
+import { getLeagueSchedule } from '../../src/api/goldenLeopardsApi';
+import GLSchedule from '../../src/components/schedule/glSchedule';
+import GLLPageContainer from "../../src/components/multiuse/glPageContainer";
 
-import {
-  Container,
-  Button,
-  Badge,
-  Accordion,
-  useAccordionButton,
-  Card
-} from 'react-bootstrap';
-import _ from 'lodash';
+export async function getServerSideProps(context) {
 
-
-// export async function getServerSideProps() {
-//   //const ssLeagues = await getLeagues();
-//   return {props: {  }};
-// }
-
-const GLLeague = ({ ssLeagues = [], ssRoster = [] }) => {
-
-  const [leagues, setLeagues] = useState(ssLeagues);
-  const [showCreateLeagueModal, setShowCreateLeagueModal] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [selectedLeague, setSelectedLeague] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-
+  const id = context.params.id
+  const ssLeagueSchedule = await getLeagueSchedule(id);
   
-  const modalRef = useRef(null);
+  return { props: { ssLeagueSchedule } }
+}
 
+const GLLeague = ({ ssLeagueSchedule = [] }) => {
   return (
-    <Container fluid style={{
-      height: '100%',
-      backgroundColor: 'white'
-    }}>
-      LEAGUE HERE
-    </Container>
-  );
+    <GLLPageContainer>
+      <GLSchedule schedule={ ssLeagueSchedule }></GLSchedule>
+    </GLLPageContainer>
+    );
 }
 
 export default GLLeague;

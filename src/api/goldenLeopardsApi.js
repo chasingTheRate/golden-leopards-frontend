@@ -45,6 +45,15 @@ export const getLeagues = async () => {
   return results ? results : [];
 }
 
+export const getLeagueSchedule = async (id) => {
+  try {
+    let results = await (await fetch(`${goldenLeopardApiBasePath}/api/leagues/${id}/schedule`)).json();
+    return results ? results : [];
+  } catch (e) {
+    return [];
+  }
+}
+
 export const getLogos = async () => {
   const results = await (await fetch(`${goldenLeopardApiBasePath}/api/logos`)).json();
   return results ? results : [];
