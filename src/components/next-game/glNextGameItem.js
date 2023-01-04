@@ -12,7 +12,7 @@ const GLNextGameItem = ({ record }) => {
   const { gameStatus = 'scheduled', logofilename, logoheight = 40, logowidth = 40, is_hometeam = false } = record;
 
   const getDate = (timestamp) => {
-    return (moment.utc(timestamp).format('MMM D'));
+    return (moment.utc(timestamp).local().format('MMM D'));
   };
 
   const getTime = (timestamp) => {
