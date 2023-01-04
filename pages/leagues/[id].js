@@ -3,6 +3,7 @@ import {
   Tabs,
   Tab,
 } from 'react-bootstrap'
+
 import { getLeagueSchedule } from '../../src/api/goldenLeopardsApi';
 import GLSchedule from '../../src/components/schedule/glSchedule';
 import GLLPageContainer from "../../src/components/multiuse/glPageContainer";
@@ -29,7 +30,7 @@ const GLLeague = ({ ssLeagueSchedule = [] }) => {
       justify
       variant='pills'
     >
-      <Tab style={{color: 'red'}} eventKey="schedule" title="Schedule/Results">
+      <Tab eventKey="schedule" title="Schedule/Results">
         <GLSchedule schedule={ ssLeagueSchedule }></GLSchedule>
       </Tab>
       <Tab eventKey="profile" title="Stats">
