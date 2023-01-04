@@ -109,6 +109,11 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
     setShowCreateLeagueModal(true);
   }
 
+  const handleLinkClick = (e) => {
+    e.stopPropagation();
+    return true;
+  }
+
   return (
     <Container fluid style={{
       backgroundColor: 'white'
@@ -141,7 +146,7 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
                             textAlign: 'center'
                           }}>
                             <div>
-                              <GLLink href={`/leagues/${encodeURIComponent(l.id)}`} name={ l.displayname }></GLLink>
+                              <GLLink href={`/leagues/${encodeURIComponent(l.id)}`} name={ l.displayname } onClick={ handleLinkClick }></GLLink>
                             </div>
                             { l.wins &&
                               <span style={{
