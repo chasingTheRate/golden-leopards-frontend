@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-
+import {
+  Tabs,
+  Tab,
+} from 'react-bootstrap'
 import { getLeagueSchedule } from '../../src/api/goldenLeopardsApi';
 import GLSchedule from '../../src/components/schedule/glSchedule';
 import GLLPageContainer from "../../src/components/multiuse/glPageContainer";
+import GLPlayerGameStats from '../../src/components/leagues/glPlayerGameStats';
 
 export async function getServerSideProps(context) {
 
@@ -13,9 +17,26 @@ export async function getServerSideProps(context) {
 }
 
 const GLLeague = ({ ssLeagueSchedule = [] }) => {
+
+  const { cumlativePlayerGameStats } = ssLeagueSchedule
+
   return (
     <GLLPageContainer>
-      <GLSchedule schedule={ ssLeagueSchedule }></GLSchedule>
+      <Tabs
+      defaultActiveKey="schedule"
+      id="leageue-page-tabs"
+      className="mb-3"
+      justify
+      variant='pills'
+    >
+      <Tab style={{color: 'red'}} eventKey="schedule" title="Schedule/Results">
+        <GLSchedule schedule={ ssLeagueSchedule }></GLSchedule>
+      </Tab>
+      <Tab eventKey="profile" title="Stats">
+        <GLPlayerGameStats stats={ cumlativePlayerGameStats }></GLPlayerGameStats>
+      </Tab>
+    </Tabs>
+      
     </GLLPageContainer>
     );
 }
