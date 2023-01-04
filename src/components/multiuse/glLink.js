@@ -11,8 +11,8 @@ const StyledLink = styled.a`
   line-height: 1.1em;
 `
 
-export default ({ href, name }) => (
+export default ({ href, name, onClick }) => (
   <Link href={href} passHref>
-    <StyledLink>{name}</StyledLink>
+    <StyledLink onClick={(e) => onClick(e)}>{name}</StyledLink>
   </Link>
 )
