@@ -211,9 +211,6 @@ const GLSchedule = ({
 
   return (
     <Container fluid className="gl-schedule-container">
-      { _.size(nextGameData) > 0 && 
-        <GLNextGameContainer data={ nextGameData } ></GLNextGameContainer>
-      }
       { getLeagues() }
       <EditGameModal
         modalRef= { modalRef }
