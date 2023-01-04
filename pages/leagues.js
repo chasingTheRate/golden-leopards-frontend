@@ -138,6 +138,15 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
                             <div>
                               <GLLink href={`/leagues/${encodeURIComponent(l.id)}`} name={ l.displayname }></GLLink>
                             </div>
+                            { l.wins &&
+                              <span style={{
+                                fontWeight: 500,
+                                fontSize: 'small',
+                                color: 'rgb(125, 125, 125)'
+                              }}>
+                                {`(${l.wins}-${l.losses}-${l.ties})`}
+                              </span>
+                            }
                           </div>
                         </div>
                       </div>
