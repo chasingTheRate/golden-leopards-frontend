@@ -23,6 +23,12 @@ export const leagueTypeOptions = [
   }
 ]
 
+export const typeColors = {
+  season: "rgba(251, 214, 4, 1)",
+  tournament: "#15469d",
+  friendly: "PaleGreen",
+}
+
 export default [
   {
     controlId: 'displayname',

@@ -14,23 +14,30 @@ import {
   Nav
 } from 'react-bootstrap';
 
-import Link from 'next/link';
-import _ from 'lodash';
+import styled from 'styled-components';
 
 import GLLink from "../src/components/multiuse/glLink";
 import CreateLeagueModal from "../src/components/modals/createLeagueModal";
 
 import { defaultLeague } from "../src/components/leagues/leagueProperties";
+import { typeColors } from "../src/components/leagues/leagueProperties";
+import GLLeagueLegend from "../src/components/leagues/leagueLegend";
 
 export async function getServerSideProps() {
   const ssLeagues = await getLeagues();
   return {props: { ssLeagues }};
 }
 
-const typeBadges = {
-  season: (<Badge bg="secondary">SEASON</Badge>),
-  tournament: (<Badge bg="warning">TOURNAMENT</Badge>),
-  friendly: (<Badge bg="info">FRIENDLY</Badge>)
+const GLVerticalBar = styled.div`
+  border-left: 3px solid ${props => props.color || 'black'};
+  border-radius: 3px;
+  height: 50px;
+`
+
+const typeIndicator = {
+  season: (<GLVerticalBar color={typeColors.season}></GLVerticalBar>),
+  tournament: (<GLVerticalBar color={ typeColors.tournament }></GLVerticalBar>),
+  friendly: (<GLVerticalBar color={ typeColors.friendly }></GLVerticalBar>)
 }
 
 function CustomToggle({ children, eventKey }) {
@@ -104,11 +111,12 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
       <Container style={{
         padding: '40px 12px 0 12px'
       }}>
+        <GLLeagueLegend></GLLeagueLegend>
         {
           leagues.map(l => {
             const eventKey = l.id;
             return (
-              <Accordion>
+              <Accordion key={ l.id }>
                 <Card style={{border: 0 }}>
                   <Card.Header style={{ padding: 0, border: 0 }}>
                     <div style={{
@@ -121,15 +129,15 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
                           alignItems: 'center',
                           justifyContent: 'center'
                         }}>
-                          <span style={{ fontSize: 'x-small'}}>
-                            { typeBadges[l.type] }
-                          </span>
+                          { typeIndicator[l.type] }
                           <div style={{
                             marginLeft: '5px',
                             flexGrow: 1,
                             textAlign: 'center'
                           }}>
-                            <GLLink href={`/leagues/${encodeURIComponent(l.id)}`} name={ l.displayname }></GLLink>
+                            <div>
+                              <GLLink href={`/leagues/${encodeURIComponent(l.id)}`} name={ l.displayname }></GLLink>
+                            </div>
                           </div>
                         </div>
                       </div>
