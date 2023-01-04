@@ -40,6 +40,11 @@ const typeIndicator = {
   friendly: (<GLVerticalBar color={ typeColors.friendly }></GLVerticalBar>)
 }
 
+const leaguePlacement = {
+  first: <i style={{color: 'gold'}} className="bi bi-trophy-fill"></i>,
+  second: <i style={{color: 'silver'}} className="bi bi-trophy-fill"></i>
+}
+
 function CustomToggle({ children, eventKey }) {
   const decoratedOnClick = useAccordionButton(eventKey);
   return (
@@ -146,6 +151,12 @@ const GLLeagues = ({ ssLeagues = [], ssRoster = [] }) => {
                               }}>
                                 {`(${l.wins}-${l.losses}-${l.ties})`}
                               </span>
+                            }
+                          </div>
+                          <div>
+                            {
+                              l.placement &&
+                              leaguePlacement[l.placement]
                             }
                           </div>
                         </div>
