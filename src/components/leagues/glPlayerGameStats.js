@@ -53,7 +53,7 @@ function GLPlayerGameStats({stats}) {
   )
 
   return (
-    <div style={{ width: '100%', padding: '24px 12px 24px 12px'}}>
+    <div style={{ width: '100%', padding: '12px 12px 24px 12px'}}>
     <table {...getTableProps()} style={{ borderTop: 'solid 1px #d1d2d3', width: '100%' }}>
       <thead>
         {headerGroups.map(headerGroup => (

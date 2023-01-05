@@ -15,7 +15,7 @@ const GLSchedule = ({ schedule }) => {
   } = schedule;
 
   return (
-    <div>
+    <div styled={{ padding: '12px 0 0 0'}}>
       <GLLeagueHeader league={ league }></GLLeagueHeader>
       <Container style={{padding: '15px 12px 0px 12px'}}>
         <GLScheduleList
