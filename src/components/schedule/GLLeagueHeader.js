@@ -35,6 +35,14 @@ const GLSchTitleContainer = styled.div`
   padding-bottom: 10px;
   font-size: medium;
 `
+const GLSchTitleRecordContainer = styled.div`
+  color: #7d7d7d !important;
+  font-weight: 700;
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: small;
+  line-height: .8;
+`
 const GLLeagueTitle = ({
   scheduleurl,
   displayname
@@ -48,6 +56,11 @@ const GLLeagueTitle = ({
       </GLSchTitleContainer>
 )
 
+const GLLeagueRecord = ({wins, losses, ties}) => (
+  <GLSchTitleRecordContainer>
+    <span>{`(${wins}-${losses}-${ties})`}</span>
+  </GLSchTitleRecordContainer>
+)
 
 const GLLeagueHeader = ({ league }) => {
 
@@ -57,6 +70,9 @@ const GLLeagueHeader = ({ league }) => {
     logoheight = 60,
     logowidth = 60,
     scheduleurl = '',
+    wins,
+    losses,
+    ties,
   } = league
 
   return (
@@ -71,6 +87,13 @@ const GLLeagueHeader = ({ league }) => {
         scheduleurl={ scheduleurl }
         displayname={ displayname }
       ></GLLeagueTitle>
+      { wins &&
+        <GLLeagueRecord
+        wins={ wins }
+        losses={ losses }
+        ties={ ties }
+        ></GLLeagueRecord>
+      }
     </Container>
   );
 }
