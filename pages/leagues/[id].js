@@ -19,11 +19,15 @@ export async function getServerSideProps(context) {
 }
 
 const GLTabsWrap = styled.div`
-  font-size: small;
-  
+
   ul {
     padding: 0 12px 0 12px
   }
+
+  .nav-pills {
+    font-size: small;
+  }
+
   .nav-pills .nav-link.active {
     background-color: #15469d;
     color: white;
