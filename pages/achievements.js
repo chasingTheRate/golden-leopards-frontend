@@ -10,6 +10,13 @@ const GLAchievements = () => {
 
   const data = [
     {
+      bannerYear: '2023',
+      bannerSeason: 'SPRING', 
+      bannerVersion: 'v3',
+      bannerLeague: 'EASTERN DIVISION 2', 
+      bannerPlace: 'CHAMPIONS'
+    },
+    {
       bannerYear: '2022',
       bannerSeason: 'FALL', 
       bannerVersion: 'v3',
@@ -49,9 +56,9 @@ const GLAchievements = () => {
   const tournaments = [
     {
       bannerLeague: 'AGGIELAND CLASSIC',
-      bannerYear: '2022',
+      bannerYear: '2023',
       bannerSeason: 'WINTER',
-      bannerPlace: 'CHAMPIONS',
+      bannerPlace: 'FINALIST',
       bannerTitleClass: 'banner-title banner-title-v1',
       bannerLeaguePlaceClass: 'banner-league-place banner-league-place-v1',
       bannerLogo: 'https://d33nclgf902cx6.cloudfront.net/assets/bannerLogos/calvary.png',
@@ -61,6 +68,21 @@ const GLAchievements = () => {
       bannerPlacementTextColor: 'red',
       logoHeight: '52px',
       logoWidth: '40px',
+    },
+    {
+      bannerLeague: 'SPRING SHOWDOWN',
+      bannerYear: '2022',
+      bannerSeason: 'SPRING',
+      bannerPlace: 'CHAMPIONS',
+      bannerTitleClass: 'banner-title banner-title-v1',
+      bannerLeaguePlaceClass: 'banner-league-place banner-league-place-v1',
+      bannerLogo: 'https://d33nclgf902cx6.cloudfront.net/assets/bannerLogos/springShootout.png',
+      bannerFillColor: 'white',
+      bannerStokeColor: '#ff2fa3',
+      bannerTextColorPrimary: '#02b2bb',
+      bannerPlacementTextColor: '#ff2fa3',
+      logoHeight: '60px',
+      logoWidth: '60px',
     },
     {
       bannerLeague: 'SPRING SHOWDOWN',
@@ -78,26 +100,26 @@ const GLAchievements = () => {
       logoWidth: '52px',
     },
     {
-      bannerLeague: 'SPRING SHOWDOWN',
+      bannerLeague: 'AGGIELAND CLASSIC',
       bannerYear: '2022',
-      bannerSeason: 'SPRING',
+      bannerSeason: 'WINTER',
       bannerPlace: 'CHAMPIONS',
       bannerTitleClass: 'banner-title banner-title-v1',
       bannerLeaguePlaceClass: 'banner-league-place banner-league-place-v1',
-      bannerLogo: 'https://d33nclgf902cx6.cloudfront.net/assets/bannerLogos/springShootout.png',
-      bannerFillColor: 'white',
-      bannerStokeColor: '#ff2fa3',
-      bannerTextColorPrimary: '#02b2bb',
-      bannerPlacementTextColor: '#ff2fa3',
-      logoHeight: '60px',
-      logoWidth: '60px',
-    },
+      bannerLogo: 'https://d33nclgf902cx6.cloudfront.net/assets/bannerLogos/calvary.png',
+      bannerFillColor: 'black',
+      bannerStokeColor: 'gray',
+      bannerTextColorPrimary: 'white',
+      bannerPlacementTextColor: 'red',
+      logoHeight: '52px',
+      logoWidth: '40px',
+    }
   ]
 
   return (
     <Container fluid className="achievements-page-container">
         <div className='achievement-section achievement-section-first'>
-          <span>Dash Recreation League</span>
+          <span>Leagues</span>
           <div className="banners-container">
             { data.map((d, i) => <Banner key={ `banner-${i}` } data={ d }></Banner>) }
           </div>
