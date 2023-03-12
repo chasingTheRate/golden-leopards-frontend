@@ -111,7 +111,13 @@ const TournamentListItem = ({record, onAdd }) => {
         { (record.players && !notAttending) && 
         
           <div>
-            <div style={{display: 'flex', alignItems: 'center', height: '20px', marginTop: '5px' }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              height: '20px',
+              margin: '5px',
+              padding: '0 30px 0 30px'
+            }}>
               <hr style={{flexGrow: 1}}></hr>
               <span style={{
                 fontSize: '0.7em',
@@ -126,7 +132,6 @@ const TournamentListItem = ({record, onAdd }) => {
                 display: 'flex',
                 justifyContent: 'start',
                 height: '40px',
-                alignItems: 'center',
                 overflowX: 'scroll'
               }}>
                 { record.players && record.players.map((i, index) => (
@@ -138,6 +143,11 @@ const TournamentListItem = ({record, onAdd }) => {
             </div>
           </div>
         }
+        <div>
+          { !notAttending &&
+              <hr style={{marginTop: 0}}></hr>
+          }
+        </div>
       </div>
       );
 }
