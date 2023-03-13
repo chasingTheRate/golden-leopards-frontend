@@ -13,7 +13,8 @@
 }
 
 .tli button {
-  background-color: var(--primary-team-color) !important;
+  background-color: white !important;
+  color: var(--primary-team-color) !important;
   border-color: var(--primary-team-color) !important;
 }
 

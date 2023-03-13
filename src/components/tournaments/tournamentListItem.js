@@ -104,9 +104,12 @@ const TournamentListItem = ({record, onAdd }) => {
                 >{ record.location }</span>
             </div>
           </div>
-          <div style={{width: '50px'}}>
-            <Button color='red' disabled={ isDisabled(record.status) } onClick={ (e) => onAdd(record) }><i className="bi bi-plus-circle"></i></Button>
-          </div>
+          { 
+            !notAttending &&
+              <div style={{width: '50px'}}>
+                <Button disabled={ isDisabled(record.status) } onClick={ (e) => onAdd(record) }><i className="bi bi-person-add"></i></Button>
+              </div>
+          }
         </div>
         { (record.players && !notAttending) && 
         
