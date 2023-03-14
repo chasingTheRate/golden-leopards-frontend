@@ -5,7 +5,9 @@
   padding: 12px;
   margin-bottom: 12px;
   border-radius: 5px;
-  background-color: white;
+  border-color: rgb(225, 225, 225);
+  border-width: 1px;
+  border-style: solid
 }
 
 .not-attending {

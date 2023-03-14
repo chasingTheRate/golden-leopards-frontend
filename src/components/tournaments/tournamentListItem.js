@@ -146,11 +146,6 @@ const TournamentListItem = ({record, onAdd }) => {
             </div>
           </div>
         }
-        <div>
-          { !notAttending &&
-              <hr style={{marginTop: 0}}></hr>
-          }
-        </div>
       </div>
       );
 }
