@@ -119,7 +119,6 @@ const TournamentListItem = ({record, onAdd }) => {
               alignItems: 'center',
               height: '20px',
               margin: '5px',
-              padding: '0 30px 0 30px'
             }}>
               <hr style={{flexGrow: 1}}></hr>
               <span style={{
