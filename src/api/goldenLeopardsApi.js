@@ -16,6 +16,18 @@ export const getSeasonSchedule = async () => {
   return results ? results : [];
 }
 
+export const updateTournamentPlayers = async (id, tournament) => {
+
+  const modifiedTournaments = Object.assign({}, tournament);
+
+  const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(modifiedTournaments)
+  };
+  await fetch(`${goldenLeopardApiBasePath}/api/schedules/tournaments/${id}/players`, requestOptions);
+}
+
 export const updateTournament = async (id, tournament) => {
 
   const modifiedTournaments = Object.assign({}, tournament);
@@ -26,18 +38,6 @@ export const updateTournament = async (id, tournament) => {
       body: JSON.stringify(modifiedTournaments)
   };
   await fetch(`${goldenLeopardApiBasePath}/api/schedules/tournaments/${id}`, requestOptions);
-}
-
-export const updateTournament_v2 = async (id, tournament) => {
-
-  const modifiedTournaments = Object.assign({}, tournament);
-
-  const requestOptions = {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(modifiedTournaments)
-  };
-  await fetch(`${goldenLeopardApiBasePath}/api/schedules/tournaments/v2/${id}`, requestOptions);
 }
 
 export const getNextGames = async () => {

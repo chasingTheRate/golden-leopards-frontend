@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   getRoster,
   getTournamentSchedule,
-  updateTournament,
-  updateTournament_v2
+  updateTournamentPlayers,
+  updateTournament
 } from '../src/api/goldenLeopardsApi';
 import {
   Container,
@@ -92,7 +92,7 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
 
     try {
       setIsLoading(true);
-      await updateTournament(selectedTournament.id, selectedTournament);
+      await updateTournamentPlayers(selectedTournament.id, selectedTournament);
       await getSchedule();
     } catch (e) {
       console.error(e);
@@ -173,7 +173,7 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
   const handleUpdateTournament = async (updatedTournament) => {
     try {
       setIsLoading(true);
-      await updateTournament_v2(updatedTournament.id, updatedTournament);
+      await updateTournament(updatedTournament.id, updatedTournament);
       await getSchedule();
     } catch (e) {
       console.error(e);
