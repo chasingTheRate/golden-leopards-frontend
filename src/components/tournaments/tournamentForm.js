@@ -118,6 +118,7 @@ const TournamentForm = (props) => {
               options={ tournamentProperties.name }
               getValue={ getValue }
               controlIsValid={ controlIsValid }
+              onChange={ inputBoxDidChange }
             ></GLInputField>
             <GLInputField 
               options={ tournamentProperties.location }

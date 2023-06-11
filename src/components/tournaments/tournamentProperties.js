@@ -1,19 +1,15 @@
 import moment from "moment";
 
 export const defaultTournament = {
-  // start: "",
-  // opponent: "",
-  // is_hometeam: false,
-  // field: "",
-  // recordgame: false,
-  // veolink: "",
-  // ourscore: 0,
-  // hide: false,
-  // opponentscore: 0,
-  // gamestatus: "scheduled",
-  // league_id: "",
-  // logoid: "",
-  // opponentshortname: "",
+  status: "",
+  name: "",
+  hide: false,
+  islocal: false,
+  isoutofstate: false,
+  location: "",
+  startdate: moment().format(),
+  enddate: moment().add(1, 'days').format(),
+  url: ""
 }
 
 export const tournamentStatusOptions = [
@@ -92,7 +88,7 @@ export default {
     values: 'tournamentStatusOptions',
     valueKey: 'value',
     displayKey: 'displayName',
-    requiresValidation: true,
+    requiresValidation: false,
     validationRegex: /^\s*\S+.*/,
     validationMsg: 'Required',
     minWidth: '100%',

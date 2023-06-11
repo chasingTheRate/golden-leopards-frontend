@@ -3,7 +3,8 @@ import {
   getRoster,
   getTournamentSchedule,
   updateTournamentPlayers,
-  updateTournament
+  updateTournament,
+  createTournament
 } from '../src/api/goldenLeopardsApi';
 import {
   Container,
@@ -19,6 +20,8 @@ import Image from 'next/image';
 import logo from '../public/goldenLeopards.png';
 import TournamentScheduleTable from '../src/components/tournaments/tournamentScheduleTable';
 import EditTournamentModal from "../src/components/modals/editTournamentModal";
+import CreateTournamentModal from "../src/components/modals/createTournamentModal";
+import { defaultTournament } from "../src/components/tournaments/tournamentProperties";
 
 export async function getServerSideProps() {
   const ssTournamentSchedule = await getTournamentSchedule();
@@ -34,6 +37,7 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
   const [roster, setRoster] = useState(ssRoster);
   const [show, setShow] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
   const [selectedTournament, setSelectedTournament] = useState({});
   const [selectedMonth, setSelectedMonth] = useState();
   const [selectedLocation, setSelectedLocation] = useState();
@@ -163,6 +167,7 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
 
   const handleEditClose = () => {
     setShowEditModal(false);
+    setShowCreateModal(false);
   }
 
   const handleOnExit = () => {
@@ -174,6 +179,21 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
     try {
       setIsLoading(true);
       await updateTournament(updatedTournament.id, updatedTournament);
+      await getSchedule();
+    } catch (e) {
+      console.error(e);
+    }
+    handleEditClose();
+  }
+
+  const handleAddTournament = () => {
+    setShowCreateModal(true);
+  }
+
+  const handleCreateTournament = async (tournament) => {
+    try {
+      setIsLoading(true);
+      await createTournament(tournament);
       await getSchedule();
     } catch (e) {
       console.error(e);
@@ -225,6 +245,19 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
           addPlayerToTournament= { addPlayerToTournament }
           onEditTournament={ onEditTournament }
         ></TournamentScheduleTable>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'row-reverse',
+          padding: '3px 12px 12px 12px'
+        }}>
+          <Button
+            variant="outline-primary"
+            size="sm"
+            onClick={ () => handleAddTournament()}
+          >
+            <i className="bi bi-plus-lg"></i>
+          </Button>
+        </div>
         <div className='tournaments-footer-image-container'>
           <Image src={logo} alt="Logo" height="75px" width="75px"/>
         </div>
@@ -278,6 +311,14 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
         onExit = { handleOnExit }
         isLoading = { isLoading }
       ></EditTournamentModal>
+      <CreateTournamentModal
+        selectedTournament={ defaultTournament }
+        show={showCreateModal}
+        onHide={ handleEditClose }
+        onSubmit={ handleCreateTournament }
+        onExit = { handleOnExit }
+        isLoading = { isLoading }
+      ></CreateTournamentModal>
     </Container>
   );
 }

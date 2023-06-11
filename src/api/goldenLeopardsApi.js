@@ -16,6 +16,17 @@ export const getSeasonSchedule = async () => {
   return results ? results : [];
 }
 
+export const createTournament = async (tournament) => {
+ 
+  const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(tournament)
+  };
+
+  await fetch(`${goldenLeopardApiBasePath}/api/schedules/tournaments`, requestOptions);
+}
+
 export const updateTournamentPlayers = async (id, tournament) => {
 
   const modifiedTournaments = Object.assign({}, tournament);
