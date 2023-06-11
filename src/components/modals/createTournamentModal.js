@@ -48,8 +48,6 @@ const CreateTournamentModal = (props) => {
 
   const isDisabled = Object.values(validationResults).includes(false);
 
-  console.log(selectedTournament);
-
   return (
       <Modal
         show={ show }
