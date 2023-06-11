@@ -5,7 +5,10 @@ import {
 } from 'react-bootstrap';
 import moment from "moment";
 
-const TournamentListItem = ({record, onAdd }) => {
+import GLExpandableContainer from "../multiuse/glExpandableContainer";
+import TournamentListItemAccordian from "./tournamentListItemAccordian";
+
+const TournamentListItem = ({record, onAdd, onEditTournament }) => {
 
   const [notAttending, setNotAttending] = useState(false);
 
@@ -67,8 +70,8 @@ const TournamentListItem = ({record, onAdd }) => {
 
   const getClassName = () => notAttending ? 'tli not-attending' : 'tli';
 
-  return (
-    <div className={ getClassName() }>
+  const header = (
+    <div>
         <div style={{ 
           display: 'flex',
         }}>
@@ -146,7 +149,20 @@ const TournamentListItem = ({record, onAdd }) => {
           </div>
         }
       </div>
-      );
+  )
+  return (
+    <div className={ getClassName() }>
+      <GLExpandableContainer
+        header= { header }
+        accordion={
+          <TournamentListItemAccordian
+            record= {record}
+            onEdit= {(record) => onEditTournament(record)}
+          ></TournamentListItemAccordian>
+        }
+      ></GLExpandableContainer>
+    </div>
+  );
 }
 
 export default TournamentListItem;

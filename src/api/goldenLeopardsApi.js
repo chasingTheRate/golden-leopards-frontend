@@ -20,14 +20,24 @@ export const updateTournament = async (id, tournament) => {
 
   const modifiedTournaments = Object.assign({}, tournament);
 
-  //  Remove airtable computed & id fields
-
   const requestOptions = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(modifiedTournaments)
   };
   await fetch(`${goldenLeopardApiBasePath}/api/schedules/tournaments/${id}`, requestOptions);
+}
+
+export const updateTournament_v2 = async (id, tournament) => {
+
+  const modifiedTournaments = Object.assign({}, tournament);
+
+  const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(modifiedTournaments)
+  };
+  await fetch(`${goldenLeopardApiBasePath}/api/schedules/tournaments/v2/${id}`, requestOptions);
 }
 
 export const getNextGames = async () => {

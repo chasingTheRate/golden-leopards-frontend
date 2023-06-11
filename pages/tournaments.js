@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getRoster, getTournamentSchedule, updateTournament} from '../src/api/goldenLeopardsApi';
+import {
+  getRoster,
+  getTournamentSchedule,
+  updateTournament,
+  updateTournament_v2
+} from '../src/api/goldenLeopardsApi';
 import {
   Container,
   Button,
@@ -13,6 +18,7 @@ import Image from 'next/image';
 
 import logo from '../public/goldenLeopards.png';
 import TournamentScheduleTable from '../src/components/tournaments/tournamentScheduleTable';
+import EditTournamentModal from "../src/components/modals/editTournamentModal";
 
 export async function getServerSideProps() {
   const ssTournamentSchedule = await getTournamentSchedule();
@@ -27,6 +33,7 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
   const [filteredTournamentSchedule, setFilteredTournamentSchedule] = useState(ssTournamentSchedule);
   const [roster, setRoster] = useState(ssRoster);
   const [show, setShow] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [selectedTournament, setSelectedTournament] = useState({});
   const [selectedMonth, setSelectedMonth] = useState();
   const [selectedLocation, setSelectedLocation] = useState();
@@ -53,7 +60,6 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
 
   const handleOnShow = () => {
     const div = Object.assign( {}, ref);
-    console.log(div);
     setModalBodyHeight(div.current.clientHeight);
   }
 
@@ -150,6 +156,31 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
     setFilteredTournamentSchedule(filtered);
   }
 
+  const onEditTournament = (record) => {
+    setSelectedTournament(record);
+    setShowEditModal(true);
+  }
+
+  const handleEditClose = () => {
+    setShowEditModal(false);
+  }
+
+  const handleOnExit = () => {
+    setIsLoading(false);
+    setSelectedTournament({});
+  }
+
+  const handleUpdateTournament = async (updatedTournament) => {
+    try {
+      setIsLoading(true);
+      await updateTournament_v2(updatedTournament.id, updatedTournament);
+      await getSchedule();
+    } catch (e) {
+      console.error(e);
+    }
+    handleEditClose();
+  }
+
   return (
     <Container fluid className='tournaments-page-container'>
       <Container className='tournament-list-container'>
@@ -192,6 +223,7 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
         <TournamentScheduleTable 
           data={ filteredTournamentSchedule }
           addPlayerToTournament= { addPlayerToTournament }
+          onEditTournament={ onEditTournament }
         ></TournamentScheduleTable>
         <div className='tournaments-footer-image-container'>
           <Image src={logo} alt="Logo" height="75px" width="75px"/>
@@ -238,6 +270,14 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
           <Button variant="primary" onClick={ handleAddPlayerOk }>OK</Button>
         </Modal.Footer>
       </Modal>
+      <EditTournamentModal
+        selectedTournament={selectedTournament}
+        show={showEditModal}
+        onHide={ handleEditClose }
+        onSubmit={ handleUpdateTournament }
+        onExit = { handleOnExit }
+        isLoading = { isLoading }
+      ></EditTournamentModal>
     </Container>
   );
 }
