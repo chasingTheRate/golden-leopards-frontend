@@ -7,7 +7,7 @@ import moment from "moment";
 
 
 import TournamentForm from "../tournaments/tournamentForm";
-import { tournamentStatusOptions } from "../tournaments/tournamentProperties";''
+import { tournamentStatusOptions } from "../tournaments/tournamentProperties";
 
 const EditTournamentModal = (props) => {
   
