@@ -9,7 +9,6 @@ import { gameStatusOptions } from "../schedule/gameProperties";
 import GLInputField from "../multiuse/glInputField";
 import GLCheckbox from "../multiuse/glCheckbox";
 import GLSelect from "../multiuse/glSelect";
-import GLSelectWithAction from "../multiuse/glSelectWithAction";
 
 const GameForm = (props) => {
 
@@ -103,7 +102,6 @@ const GameForm = (props) => {
         </div>
       :
         <div style={{ display: 'flex', flexWrap: 'wrap', maxHeight: '300px', overflowY: 'scroll' }}>
-          {/* //{ gamePropertiesList } */}
           <GLInputField
             options={ gameProperties.opponent }
             getValue={ getValue }

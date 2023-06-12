@@ -9,12 +9,20 @@ import {
 import React, { useState } from "react";
 import Image from 'next/image'
 import Link from 'next/link'
+import Router from "next/router";
 
 import goldenLeopardsTextLogo from '../../public/goldenLeopardsTextBlue.png';
+import { clearCache } from '../api/goldenLeopardsApi';
+
 
 const GLNavBar = () => {
 
   const [expanded, setExpanded] = useState(false);
+
+  const handleClearCache = async () => {
+    await clearCache();
+    Router.reload();
+  }
 
   return (
     <div style={{position: 'relative', width: '100%'}}>
@@ -37,6 +45,9 @@ const GLNavBar = () => {
                 <Link href="/achievements" passHref>
                   <Nav.Link onClick={() => setExpanded(false)}>Achievements</Nav.Link>
                 </Link>
+                <NavDropdown title="Actions" id="basic-nav-dropdown">
+                  <NavDropdown.Item onClick={ handleClearCache }>Clear Cache</NavDropdown.Item>
+                </NavDropdown>
             </Nav>
           </Navbar.Collapse>
         </Container>

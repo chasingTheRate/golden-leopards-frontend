@@ -134,3 +134,7 @@ export const updatePlayerGameStats = async (gameId, playerGameStats) => {
 
   await fetch(`${goldenLeopardApiBasePath}/api/schedules/games/${gameId}/updatePlayerGameStats`, requestOptions);
 }
+
+export const clearCache = async () => {
+  await fetch(`${goldenLeopardApiBasePath}/api/clearCache`);
+}
