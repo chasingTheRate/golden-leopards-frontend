@@ -31,8 +31,8 @@ export const gameStatusOptions = [
   }
 ]
 
-export default [
-  {
+export default {
+  opponent: {
     controlId: 'opponent',
     displayName: 'Opponent',
     type: 'text',
@@ -42,7 +42,7 @@ export default [
     minWidth: '100%',
     maxWidth: '100%'
   },
-  {
+  start: {
     controlId: 'start',
     displayName: 'Time',
     type: 'date',
@@ -53,7 +53,7 @@ export default [
     minWidth: '175px',
     maxWidth: '100%'
   },
-  {
+  field: {
     controlId: 'field',
     displayName: 'Field',
     type: 'text',
@@ -62,7 +62,7 @@ export default [
     minWidth: '100%',
     maxWidth: '100%'
   },
-  {
+  gameStatus: {
     controlId: 'gamestatus',
     displayName: 'Status',
     type: 'select',
@@ -76,7 +76,7 @@ export default [
     minWidth: '100%',
     maxWidth: '100%'
   },
-  {
+  ourScore: {
     controlId: 'ourscore',
     displayName: 'Our Score',
     type: 'text',
@@ -85,7 +85,7 @@ export default [
     minWidth: '80px',
     maxWidth: '80px'
   },
-  {
+  opponentScore: {
     controlId: 'opponentscore',
     displayName: 'Opp Score',
     type: 'text',
@@ -94,7 +94,7 @@ export default [
     minWidth: '80px',
     maxWidth: '80px'
   },
-  {
+  opponentShortName: {
     controlId: 'opponentshortname',
     displayName: 'Opp Shortname',
     type: 'text',
@@ -103,7 +103,7 @@ export default [
     minWidth: '100px',
     maxWidth: '100px'
   },
-  {
+  isHometeam: {
     controlId: 'is_hometeam',
     displayName: 'Home Team',
     type: 'checkbox',
@@ -112,7 +112,7 @@ export default [
     minWidth: '100px',
     maxWidth: '100%'
   },
-  {
+  reverseColors: {
     controlId: 'reverse_colors',
     displayName: 'Reverse Colors',
     type: 'checkbox',
@@ -121,7 +121,7 @@ export default [
     minWidth: '100px',
     maxWidth: '100%'
   },
-  {
+  hide: {
     controlId: 'hide',
     displayName: 'Hide',
     type: 'checkbox',
@@ -130,7 +130,7 @@ export default [
     minWidth: '60px',
     maxWidth: '100%'
   },
-  {
+  recordGame: {
     controlId: 'recordgame',
     displayName: 'Recorded Game',
     type: 'checkbox',
@@ -139,7 +139,7 @@ export default [
     minWidth: '120px',
     maxWidth: '100%'
   },
-  {
+  veoLink: {
     controlId: 'veolink',
     displayName: 'Veo Link',
     type: 'text',
@@ -148,7 +148,7 @@ export default [
     minWidth: '100%',
     maxWidth: '100%'
   },
-  {
+  leagueId: {
     controlId: 'league_id',
     displayName: 'League',
     type: 'select',
@@ -162,7 +162,7 @@ export default [
     minWidth: '300px',
     maxWidth: '100%'
   },
-  {
+  logoId: {
     controlId: 'logoid',
     displayName: 'Logo',
     type: 'select',
@@ -176,4 +176,4 @@ export default [
     minWidth: '300px',
     maxWidth: '100%'
   },
-]
+}

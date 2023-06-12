@@ -5,6 +5,9 @@ import {
 } from 'react-bootstrap';
 
 import leagueProperties from "../leagues/leagueProperties";
+import GLInputField from "../multiuse/glLink";
+import GLCheckbox from "../multiuse/glCheckbox";
+import GLSelectWithAction from "../multiuse/glSelectWithAction";
 
 const LeagueForm = (props) => {
 

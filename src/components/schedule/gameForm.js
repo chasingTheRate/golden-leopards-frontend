@@ -5,12 +5,19 @@ import {
 } from 'react-bootstrap';
 
 import gameProperties from "../schedule/gameProperties";
+import { gameStatusOptions } from "../schedule/gameProperties";
+import GLInputField from "../multiuse/glInputField";
+import GLCheckbox from "../multiuse/glCheckbox";
+import GLSelect from "../multiuse/glSelect";
+import GLSelectWithAction from "../multiuse/glSelectWithAction";
 
 const GameForm = (props) => {
 
   const { 
     isLoading, 
     game,
+    leagues,
+    logos,
     onChange,
     validationResults,
     onValidationChange
@@ -19,8 +26,8 @@ const GameForm = (props) => {
   
   useEffect(() => {
     let validationResult = {}
-    gameProperties.forEach(p => {
-      validationResult = { ...validationResult, ...validationCheck(p, game[p.controlId])}
+    Object.entries(gameProperties).forEach(([key, value]) => {
+      validationResult = { ...validationResult, ...validationCheck(key, value)}
     });
     onValidationChange(validationResult)
   }, [game]);
@@ -86,86 +93,6 @@ const GameForm = (props) => {
     return validationResult ? validationResult : isValid(property, game[ property.controlId]);
   }
 
-  const gamePropertiesList = gameProperties.map(p => {
-
-    let control = [];
-
-    switch (p.type) {
-      case 'date':
-      case 'text':
-        control = (
-          <Form.Group
-            className='form-group'
-            key={ p.controlId }
-            controlId={ p.controlId }
-            style={{ 
-              minWidth: p.minWidth,
-              maxWidth: p.maxWidth,
-             }}
-          >
-            <Form.Label className='form-label'>{ p.displayName }</Form.Label>
-            <Form.Control className='form-control' type="text" value={ getValue(p.controlId) } onChange={ (e) => inputBoxDidChange(e, p) }/>
-            { controlIsValid(p, p.controlId) 
-              ? <Form.Text className="text-muted">&nbsp;</Form.Text>
-              : <Form.Text className="text-muted">{ p.validationMsg }</Form.Text>
-            }
-          </Form.Group>
-        )
-      break;
-      case 'checkbox':
-        control = (
-          <Form.Group
-            className='form-group'
-            style={{ 
-              minWidth: p.minWidth,
-              maxWidth: p.maxWidth,
-             }}
-            key={ p.controlId }
-            controlId={ p.controlId }
-          >
-            <Form.Check 
-              type="checkbox" 
-              label={ p.displayName } 
-              checked={ game[p.controlId] || false } 
-              onChange={ (e) => checkboxDidChange(e, p) }
-            />
-          </Form.Group>
-        )
-        break;
-      case 'select':
-        control = (
-          <Form.Group 
-            className='form-group'
-            key={ p.controlId }
-            controlId={ p.controlId }
-            style={{
-              minWidth: p.minWidth,
-              maxWidth: p.maxWidth
-            }}
-          >
-            <Form.Label>{ p.displayName }</Form.Label>
-            <Form.Select 
-              aria-label={ `${p.controlId}-select` }
-              onChange={(e) => selectDidChange(e, p)}
-              value={ game[p.controlId] || '' }
-            >
-              <option value="">{ p.defaultValue }</option>
-              { props[p.values].map(l => (<option key={ l[p.valueKey] } value={ l[p.valueKey] }>{ l[p.displayKey] }</option>)) }
-            </Form.Select>
-            { controlIsValid(p, p.controlId)
-              ? <Form.Text className="text-muted">&nbsp;</Form.Text>
-              : <Form.Text className="text-muted">{ p.validationMsg }</Form.Text>
-            }
-          </Form.Group>
-        )
-        break;
-      default:
-        break;
-    }
-
-    return control;
-  })
-
   return (
     <Fragment>
       { isLoading
@@ -176,7 +103,84 @@ const GameForm = (props) => {
         </div>
       :
         <div style={{ display: 'flex', flexWrap: 'wrap', maxHeight: '300px', overflowY: 'scroll' }}>
-          { gamePropertiesList }
+          {/* //{ gamePropertiesList } */}
+          <GLInputField
+            options={ gameProperties.opponent }
+            getValue={ getValue }
+            controlIsValid={ controlIsValid }
+            onChange={ inputBoxDidChange }
+          ></GLInputField>
+          <GLInputField
+            options={ gameProperties.start }
+            getValue={ getValue }
+            controlIsValid={ controlIsValid }
+            onChange={ inputBoxDidChange }
+          ></GLInputField>
+          <GLInputField
+            options={ gameProperties.field }
+            getValue={ getValue }
+            controlIsValid={ controlIsValid }
+            onChange={ inputBoxDidChange }
+          ></GLInputField>
+          <GLSelect
+            options={ gameProperties.gameStatus }
+            selectOptions={ gameStatusOptions }
+            value= { game.gamestatus }
+            controlIsValid={ controlIsValid }
+            onChange={ selectDidChange }
+          ></GLSelect>
+          <GLInputField
+            options={ gameProperties.ourScore }
+            getValue={ getValue }
+            controlIsValid={ controlIsValid }
+            onChange={ inputBoxDidChange }
+          ></GLInputField>
+          <GLInputField
+            options={ gameProperties.opponentScore }
+            getValue={ getValue }
+            controlIsValid={ controlIsValid }
+            onChange={ inputBoxDidChange }
+          ></GLInputField>
+          <GLInputField
+            options={ gameProperties.opponentShortName }
+            getValue={ getValue }
+            controlIsValid={ controlIsValid }
+            onChange={ inputBoxDidChange }
+          ></GLInputField>
+          <GLCheckbox
+            options={ gameProperties.isHometeam }
+            value={game.ishometeam}
+            onChange={ checkboxDidChange }
+          ></GLCheckbox>
+          <GLCheckbox
+            options={ gameProperties.reverseColors }
+            value={game.reversecolors}
+            onChange={ checkboxDidChange }
+          ></GLCheckbox>
+          <GLCheckbox
+            options={ gameProperties.hide }
+            value={game.hide}
+            onChange={ checkboxDidChange }
+          ></GLCheckbox>
+          <GLCheckbox
+            options={ gameProperties.recordGame }
+            value={game.recordgame}
+            onChange={ checkboxDidChange }
+          ></GLCheckbox>
+          <GLSelect
+            options={ gameProperties.leagueId }
+            selectOptions={ leagues }
+            value= { game.league_id }
+            controlIsValid={ controlIsValid }
+            onChange={ selectDidChange }
+          ></GLSelect>
+          <GLSelect
+            options={ gameProperties.logoId }
+            selectOptions={ logos }
+            value= { game.logoid }
+            controlIsValid={ controlIsValid }
+            onChange={ selectDidChange }
+          ></GLSelect>
         </div>
       }
     </Fragment>
