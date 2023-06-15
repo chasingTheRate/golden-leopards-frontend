@@ -80,7 +80,8 @@ const GLTournaments = ({ ssTournamentSchedule = [], ssRoster = [] }) => {
     setSelectedTournament(updatedTournament);
   }
 
-  const addPlayerToTournament = (tournament) => {
+  const addPlayerToTournament = (e, tournament) => {
+    e.stopPropagation();
     setSelectedTournament(tournament);
     handleShow();
   }

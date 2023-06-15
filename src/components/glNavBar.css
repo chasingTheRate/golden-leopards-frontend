@@ -12,6 +12,14 @@
   text-align: center;
 }
 
+.navbar-toggler {
+  border: 0;
+}
+
+.navbar-toggler i {
+  color: rgba(251, 214, 4, 1) !important;
+}
+
 .navbar-logo-container {
   position: absolute;
   top: 0;
@@ -21,6 +29,10 @@
 }
 
 .navbar-collapse hr {
+  color: rgba(251, 214, 4, 1) !important;
+}
+
+.navbar-collapse i {
   color: rgba(251, 214, 4, 1) !important;
 }
 

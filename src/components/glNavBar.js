@@ -28,7 +28,7 @@ const GLNavBar = () => {
       <Navbar className="navbar-custom" bg="light" expand="lg" expanded={expanded}>
         <Container>
           <Navbar.Brand></Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(expanded ? false : "expanded")}/>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(expanded ? false : "expanded")}> <i className="bi bi-three-dots"></i></Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <div style={{height: '20px'}}></div>
@@ -46,7 +46,12 @@ const GLNavBar = () => {
               </Link>
               <div className="d-lg-none">
                 <hr></hr>
-                <Nav.Link onClick={ handleClearCache }>Clear Cache</Nav.Link>
+                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                  <div style={{marginRight: '3px'}}>
+                    <i className="bi bi-arrow-clockwise"></i>
+                  </div>
+                  <Nav.Link onClick={ handleClearCache }>Clear Cache</Nav.Link>
+                </div>
               </div>
             </Nav>
           </Navbar.Collapse>

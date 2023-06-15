@@ -70,6 +70,10 @@ const TournamentListItem = ({record, onAdd, onEditTournament }) => {
 
   const getClassName = () => notAttending ? 'tli not-attending' : 'tli';
 
+  const handleOnLinkClick = (e) => {
+    e.stopPropagation();
+  }
+
   const header = (
     <div>
         <div style={{ 
@@ -84,7 +88,7 @@ const TournamentListItem = ({record, onAdd, onEditTournament }) => {
             }}>
             <div style={{ lineHeight: '1.1em', fontWeight: 500}}>
                 { getStatusBadge(record.status) }
-                <a href={ record.url }>{ record.name }</a>
+                <a onClick={ handleOnLinkClick } href={ record.url } target='_blank'>{ record.name }</a>
                 <br></br>
                 <span
                   style={{
@@ -110,7 +114,7 @@ const TournamentListItem = ({record, onAdd, onEditTournament }) => {
           { 
             !notAttending &&
               <div style={{width: '50px'}}>
-                <Button disabled={ isDisabled(record.status) } onClick={ (e) => onAdd(record) }><i className="bi bi-person-add"></i></Button>
+                <Button disabled={ isDisabled(record.status) } onClick={ (e) => onAdd(e, record) }><i className="bi bi-person-add"></i></Button>
               </div>
           }
         </div>
