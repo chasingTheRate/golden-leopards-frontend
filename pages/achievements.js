@@ -55,6 +55,21 @@ const GLAchievements = () => {
 
   const tournaments = [
     {
+      bannerLeague: 'SOUTH TEXAS CUP',
+      bannerYear: '2023',
+      bannerSeason: 'SPRING',
+      bannerPlace: 'CHAMPIONS',
+      bannerTitleClass: 'banner-title banner-title-v1',
+      bannerLeaguePlaceClass: 'banner-league-place banner-league-place-v1',
+      bannerLogo: 'https://d33nclgf902cx6.cloudfront.net/assets/bannerLogos/southTexasCup.jpeg',
+      bannerFillColor: 'white',
+      bannerStokeColor: 'navy',
+      bannerTextColorPrimary: 'navy',
+      bannerPlacementTextColor: 'red',
+      logoHeight: '50px',
+      logoWidth: '50px',
+    },
+    {
       bannerLeague: 'AGGIELAND CLASSIC',
       bannerYear: '2023',
       bannerSeason: 'WINTER',
