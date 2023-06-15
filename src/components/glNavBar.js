@@ -3,7 +3,6 @@ import {
   Navbar,
   Container,
   Nav,
-  NavDropdown
 } from 'react-bootstrap';
 
 import React, { useState } from "react";
@@ -33,21 +32,22 @@ const GLNavBar = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <div style={{height: '20px'}}></div>
-                <Link href="/schedule" passHref>
-                  <Nav.Link onClick={() => setExpanded(false)}>Schedule</Nav.Link>
-                </Link>
-                <Link href="/tournaments" passHref>
-                  <Nav.Link onClick={() => setExpanded(false)}>Tournaments</Nav.Link>
-                </Link>
-                <Link href="/leagues" passHref>
-                  <Nav.Link onClick={() => setExpanded(false)}>Leagues</Nav.Link>
-                </Link>
-                <Link href="/achievements" passHref>
-                  <Nav.Link onClick={() => setExpanded(false)}>Achievements</Nav.Link>
-                </Link>
-                <NavDropdown title="Actions" id="basic-nav-dropdown">
-                  <NavDropdown.Item onClick={ handleClearCache }>Clear Cache</NavDropdown.Item>
-                </NavDropdown>
+              <Link href="/schedule" passHref>
+                <Nav.Link onClick={() => setExpanded(false)}>Schedule</Nav.Link>
+              </Link>
+              <Link href="/tournaments" passHref>
+                <Nav.Link onClick={() => setExpanded(false)}>Tournaments</Nav.Link>
+              </Link>
+              <Link href="/leagues" passHref>
+                <Nav.Link onClick={() => setExpanded(false)}>Leagues</Nav.Link>
+              </Link>
+              <Link href="/achievements" passHref>
+                <Nav.Link onClick={() => setExpanded(false)}>Achievements</Nav.Link>
+              </Link>
+              <div className="d-lg-none">
+                <hr></hr>
+                <Nav.Link onClick={ handleClearCache }>Clear Cache</Nav.Link>
+              </div>
             </Nav>
           </Navbar.Collapse>
         </Container>

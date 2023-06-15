@@ -20,4 +20,7 @@
   justify-content: center;
 }
 
+.navbar-collapse hr {
+  color: rgba(251, 214, 4, 1) !important;
+}
 
