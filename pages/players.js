@@ -41,7 +41,7 @@ const GLPlayers = () => {
                 overflow: 'hidden',}}
               >
                 <Image 
-                  src={ `https://d33nclgf902cx6.cloudfront.net/assets/players/jackie.jpeg` } 
+                  src={ `https://d33nclgf902cx6.cloudfront.net/assets/players/jackie2.jpeg` } 
                   alt="Logo" 
                   height={ 60 } 
                   width= { 60 }
