@@ -27,6 +27,7 @@ const GLNavBar = () => {
     <div style={{position: 'relative', width: '100%'}}>
       <Navbar className="navbar-custom" bg="light" expand="xl" expanded={expanded}>
         <Container>
+          <div style={{height: '40px'}}></div>
           <Navbar.Brand></Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(expanded ? false : "expanded")}> <i className="bi bi-three-dots"></i></Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav">
