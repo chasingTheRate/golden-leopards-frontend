@@ -11,6 +11,11 @@ export const getRoster = async () => {
   return results ? results : [];
 }
 
+export const getPlayersWithCurrentStats = async () => {
+  const results = await (await fetch(`${goldenLeopardApiBasePath}/api/players`)).json();
+  return results ? results : [];
+}
+
 export const getSeasonSchedule = async () => {
   const results = await (await fetch(`${goldenLeopardApiBasePath}/api/schedules/season`)).json();
   return results ? results : [];

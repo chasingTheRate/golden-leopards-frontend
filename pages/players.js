@@ -4,14 +4,14 @@ import {
 } from 'react-bootstrap';
 
 import {
-  getRoster,
+  getPlayersWithCurrentStats,
 } from '../src/api/goldenLeopardsApi';
 
 import GLPlayersList from '../src/components/players/glPlayersList';
 
 export async function getServerSideProps() {
 
-  const players = await getRoster();
+  const players = await getPlayersWithCurrentStats();
 
   return { props: { players } }
 }

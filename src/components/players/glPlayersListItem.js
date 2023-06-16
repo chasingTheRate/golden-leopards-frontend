@@ -94,10 +94,10 @@ const PlayerListItem = ({player }) => {
           <span>{ player.displayname }</span>
         </GLPlayerName>
       <GLPlayerStats>
-          <div><span className="gl-player-stats-title">GOALS: </span><span>1</span></div>
-          <div><span className="gl-player-stats-title">ASSISTS: </span><span>2</span></div>
-          <div><span className="gl-player-stats-title">TACKLES: </span><span>10</span></div>
-          <div><span className="gl-player-stats-title">SAVES: </span><span>3</span></div>
+          <div><span className="gl-player-stats-title">GOALS: </span><span>{player.goals}</span></div>
+          <div><span className="gl-player-stats-title">ASSISTS: </span><span>{player.assists}</span></div>
+          <div><span className="gl-player-stats-title">TACKLES: </span><span>{player.tackles}</span></div>
+          <div><span className="gl-player-stats-title">SAVES: </span><span>{player.saves}</span></div>
         </GLPlayerStats>
       </div>
       <hr></hr>
