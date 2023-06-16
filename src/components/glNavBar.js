@@ -25,7 +25,7 @@ const GLNavBar = () => {
 
   return (
     <div style={{position: 'relative', width: '100%'}}>
-      <Navbar className="navbar-custom" bg="light" expand="lg" expanded={expanded}>
+      <Navbar className="navbar-custom" bg="light" expand="xl" expanded={expanded}>
         <Container>
           <Navbar.Brand></Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(expanded ? false : "expanded")}> <i className="bi bi-three-dots"></i></Navbar.Toggle>
@@ -40,6 +40,9 @@ const GLNavBar = () => {
               </Link>
               <Link href="/leagues" passHref>
                 <Nav.Link onClick={() => setExpanded(false)}>Leagues</Nav.Link>
+              </Link>
+              <Link href="/players" passHref>
+                <Nav.Link onClick={() => setExpanded(false)}>Players</Nav.Link>
               </Link>
               <Link href="/achievements" passHref>
                 <Nav.Link onClick={() => setExpanded(false)}>Achievements</Nav.Link>
