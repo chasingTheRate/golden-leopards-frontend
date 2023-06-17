@@ -297,7 +297,8 @@ const GLPlayer = ({ ssPlayerGameStats = [], id, ssYear, ssLeagueId, ssScale }) =
         padding: '25px 12px 0px 12px',
         display: 'flex',
         justifyContent: 'center',
-        alignContent: 'center'
+        alignContent: 'center',
+        backgroundImage:  `repeating-radial-gradient( circle at 0 0, transparent 0, #15469d 10px ), repeating-linear-gradient( black, rgba(251, 214, 4, 1) )`,
       }}>
         <div style={{display: 'flex'}}>
           <div style={{
@@ -307,7 +308,7 @@ const GLPlayer = ({ ssPlayerGameStats = [], id, ssYear, ssLeagueId, ssScale }) =
             flexDirection: 'column',
             fontSize: '50px',
             padding: '0 8px 0 10px',
-            color: '#15469d',
+            color: 'white',
           }}>
             <div><span style={{fontWeight: 600}}>7</span></div>
           </div>
@@ -318,10 +319,10 @@ const GLPlayer = ({ ssPlayerGameStats = [], id, ssYear, ssLeagueId, ssScale }) =
             flexDirection: 'column',
             fontSize: '25px',
             padding: '0 0 0 10px',
-            color: '#15469d',
+            color: 'white',
           }}>
-            <div><span style={{fontWeight: 300}}>Jackie</span></div>
-            <div><span style={{fontWeight: 600}}>Eaton</span></div>
+            <div><span style={{fontWeight: 500}}>Jackie</span></div>
+            <div><span style={{fontWeight: 700}}>Eaton</span></div>
           </div>
         </div>
         <div style={{
