@@ -5,8 +5,9 @@ import {
 } from 'react-bootstrap';
 import moment from "moment";
 import Image from 'next/image';
-
 import styled from 'styled-components';
+
+import GLLink from "../multiuse/glLink";
 
 const GLPlayerNumber = styled.div`
   display: flex;
@@ -64,6 +65,10 @@ const GLPlayerStats = styled.div`
     font-weight: 700
   }
 `
+const handleLinkClick = (e) => {
+  e.stopPropagation();
+  return true;
+}
 
 const PlayerListItem = ({player }) => {
   return (
@@ -93,7 +98,7 @@ const PlayerListItem = ({player }) => {
         </div>
         <div style={{display: 'flex', flexGrow: 2, flexBasis: 0, justifyContent: 'center', alignItems: 'center', minWidth: 0}}>
           <GLPlayerName>
-            <span>{ player.displayname }</span>
+            <GLLink href={`/players/${encodeURIComponent(player.id)}`} name={ player.displayname } onClick={ handleLinkClick }></GLLink>
           </GLPlayerName>
         </div>
         <div style={{flexGrow: 1, flexBasis: 0}}>

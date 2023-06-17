@@ -16,6 +16,11 @@ export const getPlayersWithCurrentStats = async () => {
   return results ? results : [];
 }
 
+export const getPlayerStatsByPlayerId = async ({id, year, leagueId}) => {
+  const results = await (await fetch(`${goldenLeopardApiBasePath}/api/players/${id}/stats?year=${year}&leagueId=${leagueId}`)).json();
+  return results ? results : [];
+}
+
 export const getSeasonSchedule = async () => {
   const results = await (await fetch(`${goldenLeopardApiBasePath}/api/schedules/season`)).json();
   return results ? results : [];
@@ -139,6 +144,8 @@ export const updatePlayerGameStats = async (gameId, playerGameStats) => {
 
   await fetch(`${goldenLeopardApiBasePath}/api/schedules/games/${gameId}/updatePlayerGameStats`, requestOptions);
 }
+
+
 
 export const clearCache = async () => {
   await fetch(`${goldenLeopardApiBasePath}/api/clearCache`);
