@@ -4,6 +4,7 @@ import {
   Tab,
   Container,
   Breadcrumb,
+  Button,
 } from 'react-bootstrap'
 import styled from 'styled-components';
 import moment from "moment";
@@ -25,15 +26,17 @@ export async function getServerSideProps(context) {
   const id = context.params.id;
   const { year: ssYear = 'undefined', leagueId: ssLeagueId = 'undefined' } = context.query;
 
+  console.log(ssYear);
+  console.log(ssLeagueId);
+
+
   const ssPlayerGameStats = await getPlayerStatsByPlayerId({id, year: ssYear, leagueId: ssLeagueId});
   
   let ssScale = 'years';
 
   if (ssLeagueId && ssLeagueId !== 'undefined') {
     ssScale = 'league'
-  }
-
-  if (ssYear && ssYear !== 'undefined') {
+  } else if (ssYear && ssYear !== 'undefined') {
     ssScale = 'year'
   }
 
@@ -119,7 +122,7 @@ const leagueColumn = {
   Header: 'League',
   accessor: 'displayname',
   Cell: row => <div style={{
-    textAlign: "center",
+    textAlign: "left",
     maxWidth: 300,
     minWidth: 200,
     width: 200,
@@ -145,7 +148,7 @@ const tacklesColumn = {
 const opponentColumn = {
   Header: 'Opponent',
   accessor: 'opponent',
-  Cell: row => <div style={{
+  Cell: c => <div style={{
     textAlign: "left",
     maxWidth: 300,
     minWidth: 150,
@@ -153,7 +156,15 @@ const opponentColumn = {
     paddingLeft: '5px',
     whiteSpace: 'unset',
     lineHeight: 'normal',
-  }}>{ row.value }</div>
+  }}>
+      { c.row.original.recordgame ?
+          <a
+            href={ c.row.original.veolink } 
+            target="_blank"
+          >{ c.row.original.opponent }</a> :
+          <span>{ c.row.original.opponent }</span>
+      }
+  </div>
 }
 
 const scoreColumn = {
@@ -211,13 +222,14 @@ const columnOptions = {
 const scaleProgression = {
   years: 'year',
   year: 'league',
-  league: 'game',
+}
+
+const scaleRegression = {
+  year: 'years',
+  league: 'year',
 }
 
 const GLPlayer = ({ ssPlayerGameStats = [], id, ssYear, ssLeagueId, ssScale }) => {
-
-  console.log(ssPlayerGameStats);
-  console.log(ssScale);
 
   const router = useRouter()
   
@@ -229,34 +241,54 @@ const GLPlayer = ({ ssPlayerGameStats = [], id, ssYear, ssLeagueId, ssScale }) =
 
   const onRowClick = async (r) => {
     
-    console.log(r);
+    const { year: rowYear, id: rowId } = r;
 
-    const { year, id: leagueId } = r;
+    const localYear = rowYear || year;
+    const localLeagueId = rowId || leagueId;
 
-    console.log(year);
-    console.log(leagueId);
-
-    if (scale==='games') {
+    if (scale==='league') {
       return;
     }
 
-    console.log(`/players/${id}?year=${year}?leagueId=${leagueId}`);
-    router.push(`/players/${id}?year=${year}&leagueId=${leagueId}`, undefined, { shallow: true });
+    router.push(`/players/${id}?year=${localYear}&leagueId=${localLeagueId}`, undefined, { shallow: true });
 
-
-    const updatedStats = await getPlayerStatsByPlayerId({id, year, leagueId});
+    const updatedStats = await getPlayerStatsByPlayerId({id, year: localYear, leagueId: localLeagueId});
     const nextScale = scaleProgression[scale];
-
-    console.log(updatedStats);
-    console.log(nextScale);
 
     setPlayerGameStats(updatedStats);
     setColumns(columnOptions[nextScale]);
     setScale(nextScale);
+    setYear(localYear);
+    setLeagueId(localLeagueId);
+  }
 
-    if (year) {
-      setYear(year);
+  const handleGoBack = async () => {
+
+    if (scale==='years') {
+      return;
     }
+
+    const nextScale = scaleRegression[scale];
+
+    let localYear = year;
+    let localLeagueId = leagueId;
+
+    if (nextScale === 'years') {
+      localYear = 'undefined';
+      localLeagueId = 'undefined';
+    } else if (nextScale === 'year') {
+      localLeagueId = 'undefined';
+    }
+
+    router.push(`/players/${id}?year=${localYear}&leagueId=${localLeagueId}`, undefined, { shallow: true });
+
+    const updatedStats = await getPlayerStatsByPlayerId({id, year: localYear, leagueId: localLeagueId});
+
+    setScale(nextScale);
+    setYear(localYear);
+    setLeagueId(localLeagueId);
+    setPlayerGameStats(updatedStats);
+    setColumns(columnOptions[nextScale]);
   }
 
   return (
@@ -322,6 +354,7 @@ const GLPlayer = ({ ssPlayerGameStats = [], id, ssYear, ssLeagueId, ssScale }) =
         alignItems: 'center',
         backgroundColor: '#15469d'
       }}>
+        { scale !== 'years' && <Button onClick={ handleGoBack }>GO BACK</Button> }
       </div>
       <div style={{overflowX: 'scroll'}}>
         <GLPlayerGameStatsTable
