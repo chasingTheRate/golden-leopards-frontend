@@ -325,7 +325,7 @@ const GLPlayer = ({ ssPlayerData, ssPlayerGameStats = [], id, ssYear, ssLeagueId
   }
 
   return (
-    <Container style={{backgroundColor: 'white', padding: 0, height: '100%'}}>
+    <Container style={{backgroundColor: 'white', padding: 0, minHeight: '100%'}}>
       <div style={{
         padding: '10px 12px 0px 12px',
         display: 'flex',
