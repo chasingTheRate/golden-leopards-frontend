@@ -46,11 +46,12 @@ const GLGameResultItem = ({ record, eventKey }) => {
     goals: [],
     assists: [],
     saves: [],
-    defensive_tackles: []
+    defensive_tackles: [],
+    captain: []
   };
 
   playerStats.forEach(p => {
-    ['goals', 'assists', 'saves', 'defensive_tackles'].forEach(stat => {
+    ['goals', 'assists', 'saves', 'defensive_tackles', 'captain'].forEach(stat => {
       gameStats[stat].push(({ displayname: p.displayname, value: p[stat] }))
     })
   })
