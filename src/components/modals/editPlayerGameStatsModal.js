@@ -126,6 +126,12 @@ const EditPlayerGameStatsModal = ({modalRef, show, onHide, handleOnExit, onSubmi
         width: 1,
         Cell: EditableCell
       },
+      {
+        Header: 'Cap',
+        accessor: 'captain',
+        width: 1,
+        Cell: EditableCheckboxCell
+      },
     ],
     []
   )
