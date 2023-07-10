@@ -20,6 +20,11 @@ const PlayerGameStats = ({ gameStats }) => {
     return strArray.join(', ');
   }
 
+  const formatCaptain = (stats) => {
+    const captainsArray = stats.filter((v) => v.value).map(v => v.displayname)
+    return captainsArray.join(', ');
+  }
+
   return (
     <div style={{ paddingBottom: '8px', fontSize: 'x-small'}}>
       <div>
@@ -45,6 +50,12 @@ const PlayerGameStats = ({ gameStats }) => {
           <div>
             <span style={{ fontWeight: 500, color: 'grey'}}>Def Tackles: </span>
             <span style={{ fontWeight: 600, color: 'black'}}>{ formatStats(gameStats.defensive_tackles) }</span>
+          </div>
+        }
+        { gameStats.captain.filter((v) => v.value).length > 0 &&
+          <div style={{marginTop: '5px'}}>
+            <span style={{ fontWeight: 500, color: 'grey'}}>Captain(s): </span>
+            <span style={{ fontWeight: 600, color: 'black'}}>{ formatCaptain(gameStats.captain) }</span>
           </div>
         }
       </div>
