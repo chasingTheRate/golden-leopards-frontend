@@ -5,7 +5,7 @@ import {
 } from 'react-bootstrap';
 
 import gameProperties from "../schedule/gameProperties";
-import { gameStatusOptions } from "../schedule/gameProperties";
+import { gameStatusOptions, gameTypeOptions } from "../schedule/gameProperties";
 import GLInputField from "../multiuse/glInputField";
 import GLCheckbox from "../multiuse/glCheckbox";
 import GLSelect from "../multiuse/glSelect";
@@ -169,6 +169,13 @@ const GameForm = (props) => {
             options={ gameProperties.leagueId }
             selectOptions={ leagues }
             value= { game.league_id }
+            controlIsValid={ controlIsValid }
+            onChange={ selectDidChange }
+          ></GLSelect>
+          <GLSelect
+            options={ gameProperties.gameType }
+            selectOptions={ gameTypeOptions }
+            value= { game.game_type }
             controlIsValid={ controlIsValid }
             onChange={ selectDidChange }
           ></GLSelect>

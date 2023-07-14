@@ -31,6 +31,21 @@ export const gameStatusOptions = [
   }
 ]
 
+export const gameTypeOptions = [
+  {
+    value: 'league',
+    displayName: 'League'
+  },
+  {
+    value: 'tournament',
+    displayName: 'Tournament'
+  },
+  {
+    value: 'friendly',
+    displayName: 'Friendly'
+  }
+]
+
 export default {
   opponent: {
     controlId: 'opponent',
@@ -156,6 +171,20 @@ export default {
     values: 'leagues',
     valueKey: 'id',
     displayKey: 'displayname',
+    requiresValidation: true,
+    validationRegex: /^\s*\S+.*/,
+    validationMsg: 'Required',
+    minWidth: '300px',
+    maxWidth: '100%'
+  },
+  gameType: {
+    controlId: 'game_type',
+    displayName: 'Game Type',
+    type: 'select',
+    defaultValue: 'Select game type',
+    values: 'gameTypeOptions',
+    valueKey: 'value',
+    displayKey: 'displayName',
     requiresValidation: true,
     validationRegex: /^\s*\S+.*/,
     validationMsg: 'Required',
