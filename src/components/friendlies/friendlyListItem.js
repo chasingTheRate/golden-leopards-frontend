@@ -5,6 +5,8 @@ import {
 } from 'react-bootstrap';
 import moment from "moment";
 
+import Image from 'next/image';
+
 import GLExpandableContainer from "../multiuse/glExpandableContainer";
 import TournamentListItemAccordian from "../tournaments/tournamentListItemAccordian";
 
@@ -66,13 +68,8 @@ const FriendlyListItem = (props) => {
   }
 
   const getOpponentName = () => {
-    const { recordgame, opponent, veolink } = record;
-
-    if (recordgame) {
-      return <a href={ veolink } onClick={ (e) => handleClick(e) }>{ opponent }</a>
-    } else {
-      return <span>{ opponent }</span>
-    }
+    const { opponent } = record;
+    return <span>{ opponent }</span>
   }
 
   const getScore = () => {
@@ -224,7 +221,7 @@ const FriendlyListItem = (props) => {
         accordion={
           <TournamentListItemAccordian
             record= {record}
-            onEdit= {(record) => onEditTournament(record)}
+            onEdit= {(record) => console.log('onEdit')}
           ></TournamentListItemAccordian>
         }
       ></GLExpandableContainer>
