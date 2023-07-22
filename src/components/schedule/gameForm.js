@@ -147,12 +147,12 @@ const GameForm = (props) => {
           ></GLInputField>
           <GLCheckbox
             options={ gameProperties.isHometeam }
-            value={game.ishometeam}
+            value={game.is_hometeam}
             onChange={ checkboxDidChange }
           ></GLCheckbox>
           <GLCheckbox
             options={ gameProperties.reverseColors }
-            value={game.reversecolors}
+            value={game.reverse_colors}
             onChange={ checkboxDidChange }
           ></GLCheckbox>
           <GLCheckbox
@@ -165,6 +165,12 @@ const GameForm = (props) => {
             value={game.recordgame}
             onChange={ checkboxDidChange }
           ></GLCheckbox>
+          <GLInputField
+            options={ gameProperties.veoLink }
+            getValue={ getValue }
+            controlIsValid={ controlIsValid }
+            onChange={ inputBoxDidChange }
+          ></GLInputField>
           <GLSelect
             options={ gameProperties.leagueId }
             selectOptions={ leagues }
