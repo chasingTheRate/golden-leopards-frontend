@@ -39,7 +39,7 @@ const FriendlyListItem = (props) => {
     return isDisabled;
   }
 
-  const getClassName = () => notAttending ? 'tli not-attending' : 'tli';
+  const getClassName = (golden_leopards_plus) => golden_leopards_plus ? 'tli-golden-leopards-plus' : 'tli';
 
 
   const getDate = (timestamp) => {
@@ -215,7 +215,7 @@ const FriendlyListItem = (props) => {
       </div>
   )
   return (
-    <div className={ getClassName() }>
+    <div className={ getClassName(record.golden_leopards_plus) } style={{position: 'relative'}}>
       <GLExpandableContainer
         header= { header }
         accordion={
@@ -225,6 +225,24 @@ const FriendlyListItem = (props) => {
           ></TournamentListItemAccordian>
         }
       ></GLExpandableContainer>
+      { record.golden_leopards_plus &&
+        <div style={{
+          position: 'absolute',
+          height: '25px',
+          width: '50px',
+          bottom: '3px',
+          right: '3px',
+          backgroundColor: 'rgba(251, 214, 4, 1)',
+          color: 'white',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '2px',
+          borderRadius: '10%'
+          }}>
+            <span> 🐆+ </span>
+        </div>
+      }
     </div>
   );
 }

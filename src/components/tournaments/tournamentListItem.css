@@ -10,6 +10,17 @@
   border-style: solid
 }
 
+.tli-golden-leopards-plus {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  border-color: rgba(251, 214, 4, 1);
+  border-width: 2px;
+  border-style: solid
+}
+
 .not-attending {
   background-color: rgb(175, 175, 175);
 }
@@ -18,6 +29,12 @@
   background-color: white !important;
   color: var(--primary-team-color) !important;
   border-color: var(--primary-team-color) !important;
+}
+
+.tli-golden-leopards-plus button {
+  background-color: white !important;
+  color: var(--primary-team-color)  !important;
+  border-color: rgba(251, 214, 4, 1) !important;
 }
 
 .tli-status-badge {
