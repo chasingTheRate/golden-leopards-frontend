@@ -7,6 +7,7 @@ import moment from "moment";
 
 import GLExpandableContainer from "../multiuse/glExpandableContainer";
 import TournamentListItemAccordian from "./tournamentListItemAccordian";
+import GLIntrested from "../multiuse/glIntrested";
 
 const TournamentListItem = ({record, onAdd, onEditTournament }) => {
 
@@ -121,21 +122,7 @@ const TournamentListItem = ({record, onAdd, onEditTournament }) => {
         { (record.players && !notAttending) && 
         
           <div>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              height: '20px',
-              margin: '5px',
-            }}>
-              <hr style={{flexGrow: 1}}></hr>
-              <span style={{
-                fontSize: '0.7em',
-                color: 'rgb(100 100 100)',
-                fontWeight: 600
-              }}
-              >&nbsp; Intrested &nbsp;</span>
-              <hr style={{flexGrow: 1}}></hr>
-            </div>
+            <GLIntrested players={record.players}></GLIntrested>
             <div>
               <div style={{
                 display: 'flex',
