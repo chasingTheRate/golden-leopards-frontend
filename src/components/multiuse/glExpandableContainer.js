@@ -17,9 +17,9 @@ function CustomToggle({ children, eventKey }) {
   );
 }
 
-const GLExpandableContainer = ({ eventKey = 1, header, accordion }) => {
+const GLExpandableContainer = ({ eventKey = 1, header, accordion, style }) => {
   return (
-    <Accordion>
+    <Accordion style={style}>
       <Card style={{ border: 'none', backgroundColor: 'transparent'}}>
         <Card.Header style={{padding: 0, backgroundColor: 'transparent', margin: 0, border: 'none'}}>
           <div>

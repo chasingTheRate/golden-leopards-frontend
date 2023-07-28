@@ -211,6 +211,7 @@ const FriendlyListItem = (props) => {
             onEdit= {(record) => console.log('onEdit')}
           ></TournamentListItemAccordian>
         }
+        style={{marginBottom: '15px'}}
       ></GLExpandableContainer>
       { record.golden_leopards_plus &&
         <div style={{
