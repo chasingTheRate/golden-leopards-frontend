@@ -154,6 +154,18 @@ const tacklesColumn = {
   }}>{row.value}</div>
 }
 
+const attackingTacklesColumn = {
+  Header: 'Att Tackles',
+  accessor: 'attacking_tackles',
+  Cell: row => <div style={{
+    textAlign: "center",
+    maxWidth: 50,
+    minWidth: 50,
+    width: 50,
+    fontSize: '14px',
+  }}>{row.value}</div>
+}
+
 const opponentColumn = {
   Header: 'Opponent',
   accessor: 'opponent',
@@ -212,7 +224,8 @@ const columnOptions = {
     goalsColumn,
     assistsColumn,
     savesColumn,
-    tacklesColumn
+    tacklesColumn,
+    attackingTacklesColumn
   ],
   year: [
     leagueColumn,
@@ -220,7 +233,8 @@ const columnOptions = {
     goalsColumn,
     assistsColumn,
     savesColumn,
-    tacklesColumn
+    tacklesColumn,
+    attackingTacklesColumn
   ],
   league: [
     dateColumn,
@@ -229,7 +243,8 @@ const columnOptions = {
     goalsColumn,
     assistsColumn,
     savesColumn,
-    tacklesColumn
+    tacklesColumn,
+    attackingTacklesColumn
   ],
 
 }

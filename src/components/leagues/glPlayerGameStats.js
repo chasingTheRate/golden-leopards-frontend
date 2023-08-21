@@ -33,6 +33,10 @@ function GLPlayerGameStats({stats}) {
       {
         Header: 'Tackles',
         accessor: 'def_tackles'
+      },
+      {
+        Header: 'AttackingTackles',
+        accessor: 'attacking_tackles'
       }
     ],
     []

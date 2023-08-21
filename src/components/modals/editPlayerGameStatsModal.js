@@ -127,6 +127,12 @@ const EditPlayerGameStatsModal = ({modalRef, show, onHide, handleOnExit, onSubmi
         Cell: EditableCell
       },
       {
+        Header: 'Att Tck',
+        accessor: 'attacking_tackles',
+        width: 1,
+        Cell: EditableCell
+      },
+      {
         Header: 'Cap',
         accessor: 'captain',
         width: 1,

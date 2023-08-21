@@ -52,6 +52,12 @@ const PlayerGameStats = ({ gameStats }) => {
             <span style={{ fontWeight: 600, color: 'black'}}>{ formatStats(gameStats.defensive_tackles) }</span>
           </div>
         }
+        { gameStats.attacking_tackles.reduce((partialSum, a) => partialSum + a.value, 0) > 0 > 0 &&
+          <div>
+            <span style={{ fontWeight: 500, color: 'grey'}}>Att Tackles: </span>
+            <span style={{ fontWeight: 600, color: 'black'}}>{ formatStats(gameStats.attacking_tackles) }</span>
+          </div>
+        }
         { gameStats.captain.filter((v) => v.value).length > 0 &&
           <div style={{marginTop: '5px'}}>
             <span style={{ fontWeight: 500, color: 'grey'}}>Captain(s): </span>
