@@ -29,8 +29,6 @@ const GLGameResultItem = ({ record, eventKey }) => {
   
   const router = useRouter();
   
-  const {  playerStats = [] } = record;
-
   const { 
     ourscore, 
     opponentscore, 
@@ -39,7 +37,10 @@ const GLGameResultItem = ({ record, eventKey }) => {
     logoheight,
     logowidth,
     recordgame,
-    veolink
+    veolink,
+    playerStats = [],
+    highlights = false,
+    highlights_url
   } = record;
 
   const gameStats = {
@@ -110,6 +111,25 @@ const GLGameResultItem = ({ record, eventKey }) => {
         </Card.Header>
         <Accordion.Collapse eventKey={ eventKey }>
           <Card.Body style={{ padding: '12px 0 0 0'}}>
+            { highlights &&
+              <div className="youtube-container" style={{
+                position: 'relative',
+                paddingBottom: '56.25%',
+                width: '100%',
+                overflow: 'hidden',
+                marginBottom: '13px'
+              }}>
+                <iframe 
+                  src={ highlights_url }
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullscreen
+                  style={{
+                    position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: '5px'
+                  }}>
+                </iframe>
+              </div>
+            }
             <PlayerGameStats gameStats={ gameStats }></PlayerGameStats>
             { recordgame &&
               <div style={{display: 'flex', flexDirection: 'column'}} className='sli-action-container'>
