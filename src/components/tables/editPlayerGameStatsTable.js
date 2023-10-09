@@ -19,7 +19,7 @@ function EditPlayerGameStatsTable({ columns, data = [], updateMyData }) {
   // Render the UI for your table
   return (
     <table className='pgs-table' {...getTableProps()}>
-      <thead>
+      <thead style={{position: 'sticky', top: 0, zIndex: 10, backgroundColor: 'white'}}>
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()}>
           {headerGroup.headers.map(column => (
