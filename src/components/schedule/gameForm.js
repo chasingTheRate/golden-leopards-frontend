@@ -171,6 +171,17 @@ const GameForm = (props) => {
             controlIsValid={ controlIsValid }
             onChange={ inputBoxDidChange }
           ></GLInputField>
+          <GLCheckbox
+            options={ gameProperties.highlights }
+            value={game.highlights}
+            onChange={ checkboxDidChange }
+          ></GLCheckbox>
+          <GLInputField
+            options={ gameProperties.highlights_url }
+            getValue={ getValue }
+            controlIsValid={ controlIsValid }
+            onChange={ inputBoxDidChange }
+          ></GLInputField>
           <GLSelect
             options={ gameProperties.leagueId }
             selectOptions={ leagues }

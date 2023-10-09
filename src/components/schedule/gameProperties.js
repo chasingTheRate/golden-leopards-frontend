@@ -174,6 +174,24 @@ export default {
     minWidth: '100%',
     maxWidth: '100%'
   },
+  highlights: {
+    controlId: 'highlights',
+    displayName: 'Highlights',
+    type: 'checkbox',
+    requiresValidation: false,
+    validationMsg: '',
+    minWidth: '120px',
+    maxWidth: '100%'
+  },
+  highlights_url: {
+    controlId: 'highlights_url',
+    displayName: 'Highlight URL',
+    type: 'text',
+    requiresValidation: false,
+    validationMsg: '',
+    minWidth: '100%',
+    maxWidth: '100%'
+  },
   leagueId: {
     controlId: 'league_id',
     displayName: 'League',
