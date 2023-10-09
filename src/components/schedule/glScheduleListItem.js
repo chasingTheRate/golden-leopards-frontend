@@ -11,6 +11,7 @@ import Image from 'next/image';
 import _ from 'lodash';
 
 import PlayerGameStats from "../multiuse/playerGameStats";
+import { gameStatusOptionKeys } from "./gameProperties";
 
 function CustomToggle({ children, eventKey }) {
   const decoratedOnClick = useAccordionButton(eventKey);
@@ -103,34 +104,39 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStat
     }
   }
 
-  const getScoreOrLogo = () => {
-  
-    if (gamestatus === 'final') {
+  const finalScoreComponent = (
+    <div className="sli-score-container">{ getScore() }</div>
+  );
 
-      return <div className="sli-score-container">
-        { getScore() }
-      </div>
+  const canceledScoreComponent = (
+    <div className="sli-logo-container">
+      <Badge bg='danger'>CANCELED</Badge>
+    </div>
+  );
 
-    } else if (gamestatus === 'canceled') {
-      return (
-        <div className="sli-logo-container">
-          <Badge bg='danger'>CANCELED</Badge>
-        </div>
-      )
-    } else {
+  const rainedOutScoreComponent = (
+    <div className="sli-logo-container">
+      <Badge bg='warning'>RAINED OUT</Badge>
+    </div>
+  );
 
-      return (
-        <div className="sli-logo-container">
-          { logofilename &&
-            <Image 
-              src={ `https://d33nclgf902cx6.cloudfront.net/assets/teams/${ logofilename }` } 
-              alt="Logo" 
-              height={ logoheight } 
-              width= { logowidth }
-            /> }
-        </div>
-      )
-    }     
+  const scheduledScoreComponent = (
+    <div className="sli-logo-container">
+      { logofilename &&
+        <Image 
+          src={ `https://d33nclgf902cx6.cloudfront.net/assets/teams/${ logofilename }` } 
+          alt="Logo" 
+          height={ logoheight } 
+          width= { logowidth }
+        /> }
+    </div>
+  )
+
+  const scoreComponents = {
+    [gameStatusOptionKeys.final]: finalScoreComponent,
+    [gameStatusOptionKeys.canceled]: canceledScoreComponent,
+    [gameStatusOptionKeys.scheduled]: scheduledScoreComponent,
+    [gameStatusOptionKeys.rainedOut]: rainedOutScoreComponent
   }
 
   return (
@@ -156,7 +162,7 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStat
                       </div>
                   </div>
                 </div>
-                { getScoreOrLogo() }
+                { scoreComponents[gamestatus] }
               </div>
             </CustomToggle>
           </div>

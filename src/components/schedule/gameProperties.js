@@ -28,8 +28,19 @@ export const gameStatusOptions = [
   {
     value: 'canceled',
     displayName: 'Canceled'
+  },
+  {
+    value: 'rainedOut',
+    displayName: 'Rained Out'
   }
 ]
+
+export const gameStatusOptionKeys = {
+  scheduled : 'scheduled',
+  final: 'final',
+  canceled: 'canceled',
+  rainedOut: 'rainedOut'
+}
 
 export const gameTypeOptions = [
   {
