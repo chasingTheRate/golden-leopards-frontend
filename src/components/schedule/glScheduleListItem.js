@@ -26,7 +26,15 @@ function CustomToggle({ children, eventKey }) {
 
 const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStats, displayOnly }) => {
 
-  const { gamestatus = 'scheduled', logofilename, logoheight = 40, logowidth = 40, playerStats = [] } = record;
+  const {
+    gamestatus = 'scheduled',
+    logofilename,
+    logoheight = 40,
+    logowidth = 40,
+    playerStats = [],
+    highlights,
+    highlights_url,
+  } = record;
 
   const gameStats = {
     goals: [],
@@ -170,6 +178,25 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStat
         { !displayOnly &&
           <Accordion.Collapse eventKey={ eventKey }>
             <Card.Body className="sli-card-container">
+              { highlights &&
+                <div className="youtube-container" style={{
+                  position: 'relative',
+                  paddingBottom: '56.25%',
+                  width: '100%',
+                  overflow: 'hidden',
+                  marginBottom: '13px'
+                }}>
+                  <iframe 
+                    src={ highlights_url }
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen
+                    style={{
+                      position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: '5px'
+                    }}>
+                  </iframe>
+                </div>
+              }
               <PlayerGameStats gameStats={ gameStats }></PlayerGameStats>
               <div className="sli-action-container">
                 <div className="sli-action-button-container">
