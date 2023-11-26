@@ -19,23 +19,23 @@ function GLPlayerGameStats({stats}) {
         accessor: 'games_played',
       },
       {
-        Header: 'Goals',
+        Header: 'G',
         accessor: 'goals',
       },
       {
-        Header: 'Assists',
+        Header: 'A',
         accessor: 'assists'
       },
       {
-        Header: 'Saves',
+        Header: 'S',
         accessor: 'saves'
       },
       {
-        Header: 'Tackles',
+        Header: 'Tck',
         accessor: 'def_tackles'
       },
       {
-        Header: 'AttackingTackles',
+        Header: 'Att Tck',
         accessor: 'attacking_tackles'
       }
     ],
