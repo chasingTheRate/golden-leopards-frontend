@@ -40,6 +40,12 @@ const PlayerGameStats = ({ gameStats }) => {
             <span style={{ fontWeight: 600, color: 'black'}}>{ formatStats(gameStats.assists) }</span>
           </div>
         }
+        { gameStats.passes?.reduce((partialSum, a) => partialSum + a.value, 0) > 0 &&
+          <div>
+            <span style={{ fontWeight: 500, color: 'grey'}}>Passes: </span>
+            <span style={{ fontWeight: 600, color: 'black'}}>{ formatStats(gameStats.passes) }</span>
+          </div>
+        }
         { gameStats.saves.reduce((partialSum, a) => partialSum + a.value, 0) > 0 &&
           <div>
             <span style={{ fontWeight: 500, color: 'grey'}}>Saves: </span>
@@ -56,6 +62,12 @@ const PlayerGameStats = ({ gameStats }) => {
           <div>
             <span style={{ fontWeight: 500, color: 'grey'}}>Att Tackles: </span>
             <span style={{ fontWeight: 600, color: 'black'}}>{ formatStats(gameStats.attacking_tackles) }</span>
+          </div>
+        }
+        { gameStats.fouls?.reduce((partialSum, a) => partialSum + a.value, 0) > 0 &&
+          <div>
+            <span style={{ fontWeight: 500, color: 'grey'}}>Fouls: </span>
+            <span style={{ fontWeight: 600, color: 'black'}}>{ formatStats(gameStats.fouls) }</span>
           </div>
         }
         { gameStats.captain.filter((v) => v.value).length > 0 &&

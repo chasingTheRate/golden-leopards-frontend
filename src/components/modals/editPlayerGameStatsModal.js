@@ -13,9 +13,8 @@ import EditableCheckboxCell from "../tables/cells/editableCheckboxCell";
 const Styles = styled.div`
   /* This is required to make the table full-width */
   display: block;
-  max-width: 100%;
-  max-height: 300px;
-  overflow-y: scroll;
+  max-height: 300px; /* Keep max-height if needed */
+  overflow: scroll;
 
   table {
     /* Make sure the inner table is always as wide as needed */
@@ -92,50 +91,60 @@ const EditPlayerGameStatsModal = ({modalRef, show, onHide, handleOnExit, onSubmi
       {
         Header: 'Player',
         accessor: 'displayname',
-        maxWidth: 75,
-        width: 3,
+        width: 100,
       },
       {
-        Header: 'P',
+        Header: 'Played',
         accessor: 'played',
-        maxWidth: 75,
-        width: 1,
+        width: 75,
         Cell: EditableCheckboxCell
       },
       {
-        Header: 'G',
+        Header: 'Goals',
         accessor: 'goals',
-        width: 1,
+        width: 75,
         Cell: EditableCell
       },
       {
-        Header: 'A',
+        Header: 'Assists',
         accessor: 'assists',
-        width: 1,
+        width: 75,
         Cell: EditableCell
       },
       {
-        Header: 'S',
+        Header: 'Passes',
+        accessor: 'passes',
+        width: 75,
+        Cell: EditableCell
+      },
+      {
+        Header: 'Saves',
         accessor: 'saves',
-        width: 1,
+        width: 75,
         Cell: EditableCell
       },
       {
-        Header: 'Tck',
+        Header: 'Tackles',
         accessor: 'defensive_tackles',
-        width: 1,
+        width: 75,
         Cell: EditableCell
       },
       {
-        Header: 'Att Tck',
+        Header: 'Att Tckl',
         accessor: 'attacking_tackles',
-        width: 1,
+        width: 80,
         Cell: EditableCell
       },
       {
-        Header: 'Cap',
+        Header: 'Fouls',
+        accessor: 'fouls',
+        width: 75,
+        Cell: EditableCell
+      },
+      {
+        Header: 'Captain',
         accessor: 'captain',
-        width: 1,
+        width: 75,
         Cell: EditableCheckboxCell
       },
     ],

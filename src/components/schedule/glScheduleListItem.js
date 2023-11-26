@@ -39,14 +39,16 @@ const GLScheduleListItem = ({ record, eventKey, onEditGame, onEditPlayerGameStat
   const gameStats = {
     goals: [],
     assists: [],
+    passes: [],
     saves: [],
+    fouls: [],
     defensive_tackles: [],
     attacking_tackles: [],
     captain: []
   };
 
   playerStats.forEach(p => {
-    ['goals', 'assists', 'saves', 'defensive_tackles', 'attacking_tackles', 'captain'].forEach(stat => {
+    ['goals', 'assists', 'saves', 'passes', 'fouls', 'defensive_tackles', 'attacking_tackles', 'captain'].forEach(stat => {
       gameStats[stat].push(({ displayname: p.displayname, value: p[stat] }))
     })
   })
