@@ -28,8 +28,8 @@ const EditTournamentModal = (props) => {
 
   React.useEffect(() => {
     const tempTournament = Object.assign({}, selectedTournament);
-    tempTournament.startdate = moment.utc(tempTournament.startdate, 'YYYY-MM-DDTHH:mm:ss.sssZ').local().format('M/D/YYYY').toString();
-    tempTournament.enddate = moment.utc(tempTournament.enddate, 'YYYY-MM-DDTHH:mm:ss.sssZ').local().format('M/D/YYYY').toString();
+    tempTournament.startdate = moment.utc(tempTournament.startdate, 'YYYY-MM-DDTHH:mm:ss.sssZ').format('M/D/YYYY').toString();
+    tempTournament.enddate = moment.utc(tempTournament.enddate, 'YYYY-MM-DDTHH:mm:ss.sssZ').format('M/D/YYYY').toString();
     setTournament(tempTournament);
   }, [selectedTournament])
 
