@@ -11,6 +11,13 @@ const GLAchievements = () => {
   const data = [
     {
       bannerYear: '2023',
+      bannerSeason: 'FALL', 
+      bannerVersion: 'v3',
+      bannerLeague: 'EDPL SUPER 2', 
+      bannerPlace: 'CHAMPIONS'
+    },
+    {
+      bannerYear: '2023',
       bannerSeason: 'SPRING', 
       bannerVersion: 'v3',
       bannerLeague: 'EASTERN DIVISION 2', 
